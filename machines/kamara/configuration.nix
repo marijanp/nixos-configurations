@@ -1,7 +1,5 @@
 { config, pkgs, lib, ... }:
 {
-  imports = [ <nixpkgs/nixos/modules/installer/cd-dvd/sd-image-raspberrypi.nix> ];
-
   # NixOS wants to enable GRUB by default
   boot.loader.grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf
@@ -36,7 +34,7 @@
   swapDevices = [ { device = "/swapfile"; size = 1024; } ];
 
 
-  networking.hostName = "split";
+  networking.hostName = "kamara";
   networking.wireless.enable = true;
 
   i18n = {
