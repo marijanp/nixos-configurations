@@ -2,12 +2,22 @@
 
 {
 
+  # internationalisation properties
+  i18n = {
+    consoleFont = "Lat2-Terminus16";
+    consoleKeyMap = "de";
+    defaultLocale = "en_US.UTF-8";
+  };
+  time.timeZone = "Europe/Berlin";
+
   # Allow packages with non-free licenses.
   nixpkgs.config.allowUnfree = true;
 
   environment = {
     systemPackages = with pkgs; [
+      curl
       git
+      oh-my-zsh
       tmux
       unzip
       vim
@@ -19,6 +29,11 @@
 
   programs = {
     vim.defaultEditor = true;
+    zsh.ohMyZsh = {
+      enable = true;
+      theme = "amuse";
+      plugins = [ "git" "tmux" ];
+    };
   };
 
   # ssh
@@ -28,15 +43,7 @@
     # Disable OpenSSH password login
     passwordAuthentication = false;
     permitRootLogin = "no";
-  }
-
-  # internationalisation properties
-  i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "de";
-    defaultLocale = "en_US.UTF-8";
   };
-  time.timeZone = "Europe/Berlin"
 
   # users
   users.users.marijan = {
@@ -53,5 +60,9 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should
-  system.stateVersion = "18.09";
+  system.stateVersion = "19.03";
+  
+  # Automatic Upgrades
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.channel = https://nixos.org/channels/nixos-unstable;
 }

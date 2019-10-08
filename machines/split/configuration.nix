@@ -10,15 +10,23 @@
 
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./update-dynv6.nix
+      ../common.nix
     ];
+
+  
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  nix = {
+    extraOptions = ''
+      build-cores = 4
+    '';
+    maxJobs = 4;
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
