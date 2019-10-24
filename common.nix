@@ -1,17 +1,16 @@
 { config, pkgs, ... }:
 
 {
-
-  # internationalisation properties
+  imports = [
+    ./nixpkgs-config.nix
+  ];
+  # Internationalisation properties
   i18n = {
     consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "de";
     defaultLocale = "en_US.UTF-8";
   };
   time.timeZone = "Europe/Berlin";
-
-  # Allow packages with non-free licenses.
-  nixpkgs.config.allowUnfree = true;
 
   environment = {
     systemPackages = with pkgs; [
@@ -20,7 +19,7 @@
       oh-my-zsh
       tmux
       unzip
-      vim
+      custom-vim
       wget
       zsh
       zip
