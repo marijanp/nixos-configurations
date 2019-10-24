@@ -28,11 +28,14 @@
 
   programs = {
     vim.defaultEditor = true;
-    zsh.ohMyZsh = {
+    zsh = {
       enable = true;
-      theme = "amuse";
-      plugins = [ "git" "tmux" ];
-    };
+      ohMyZsh = {
+        enable = true;
+        theme = "amuse";
+        plugins = [ "git" "tmux" ];
+      };
+   };
   };
 
   # ssh
