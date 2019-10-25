@@ -6,5 +6,8 @@
     "WLAN-280772" = {
       pskRaw = "ad679f5e4fb1fcce5444843e46e3e0f8e288efeda0116d84c98c104f55fbfadf";
     };
+    "HUB" = {
+	    pskRaw = "cee96167f2a4e92a0588b6055483f76ac980c005a345a886e3ceaa6f020c15ff";
+    };
   };
 }
