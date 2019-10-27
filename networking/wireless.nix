@@ -9,5 +9,8 @@
     "HUB" = {
 	    pskRaw = "cee96167f2a4e92a0588b6055483f76ac980c005a345a886e3ceaa6f020c15ff";
     };
+    "EspressoGuests" = {
+   	  pskRaw = "bf5adb74626711019a31f2e47f1babf98dcccbc4e987d3c266ace7ea9ea3ae0e";
+    };
   };
 }
