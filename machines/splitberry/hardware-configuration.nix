@@ -4,6 +4,7 @@
   boot.loader.generic-extlinux-compatible.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = ["cma=256M"];
+  boot.growPartition = true;
     
   # File systems configuration for using the installer's partition layout
   fileSystems = {
