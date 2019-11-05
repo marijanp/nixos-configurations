@@ -12,7 +12,7 @@
     ./networking/wireless.nix
   ];
 
-  networking.hostName = "splitbook.nixos"; # Define your hostname.
+  networking.hostName = "splitbook"; # Define your hostname.
   networking.interfaces.wlp3s0.useDHCP = true;
   
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.

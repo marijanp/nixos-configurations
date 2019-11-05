@@ -9,7 +9,7 @@
  #     ./qemu.nix
   ];
 
-  networking.hostName = "split.nixos"; # Define your hostname.
+  networking.hostName = "split"; # Define your hostname.
 
   #qemu-user = {
   #    aarch64 = true;

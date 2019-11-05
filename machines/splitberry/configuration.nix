@@ -5,6 +5,6 @@
     ./common.nix
     ./networking/wireless.nix
   ];
-  networking.hostName = "splitberry.nixos";
+  networking.hostName = "splitberry";
   networking.useDHCP = true;
 }
