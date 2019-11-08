@@ -4,12 +4,12 @@
   boot.loader.generic-extlinux-compatible.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = ["cma=256M"];
-  boot.growPartition = true;
-    
+  hardware.enableRedistributableFirmware = true;
+ 
   # File systems configuration for using the installer's partition layout
   fileSystems = {
     "/boot" = {
-      device = "/dev/disk/by-label/NIXOS_BOOT";
+      device = "/dev/mmcblk0p1";
       fsType = "vfat";
     };
     "/" = {
