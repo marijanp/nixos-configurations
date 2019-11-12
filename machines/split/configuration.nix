@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./common.nix
     ./environments/desktop.nix
+    ./services/avahi.nix
  #     ./qemu.nix
   ];
 
