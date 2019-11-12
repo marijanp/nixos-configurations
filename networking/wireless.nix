@@ -21,5 +21,8 @@
     "Excellence" = {
     	pskRaw = "e751221d62e9fa740710e50f5152a39288f497819f26c9af086257469b9d2829";
     };
+    "FZI-GUESTS" = {
+      auth = "key_mgmt=NONE";
+    };
   };
 }

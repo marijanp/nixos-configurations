@@ -4,7 +4,12 @@
     ./hardware-configuration.nix
     ./common.nix
     ./networking/wireless.nix
+    ./services/avahi.nix
   ];
   networking.hostName = "splitberry";
-  networking.useDHCP = true;
+  networking.interfaces.wlan0.useDHCP = true;
+  networking.interfaces.eth0.useDHCP = true;
+  networking.useDHCP = false;
+
+  nixpkgs.config.allowUnsupportedSystem = true;
 }
