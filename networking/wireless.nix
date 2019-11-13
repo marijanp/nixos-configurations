@@ -25,7 +25,7 @@
       auth = ''
         key_mgmt=WPA-EAP
         identity="petricev"
-        password=hash:4db5ccc75eb1bc29cd92e41e9f762136;
+        password=hash:4db5ccc75eb1bc29cd92e41e9f762136
       '';
     };
   };
