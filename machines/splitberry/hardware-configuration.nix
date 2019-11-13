@@ -5,6 +5,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = ["cma=256M"];
   hardware.enableRedistributableFirmware = true;
+  boot.kernelModules = ["i2c-dev"];
  
   # File systems configuration for using the installer's partition layout
   fileSystems = {
