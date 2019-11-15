@@ -3,6 +3,9 @@
 {
   networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
   networking.wireless.networks = {
+    "laganini" = {
+      pskRaw = "f48f5b78d95de5d0b8b57498223011d079ad524f93fb32d2b610ef14592000d2";
+    };
     "WLAN-574446" = {
 	    pskRaw = "ca0f1467dbc64525d536fd4bc1dd36361868d3c72a2c51a6b043ab1520e38270";
     };
