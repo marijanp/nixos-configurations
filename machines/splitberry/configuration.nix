@@ -10,6 +10,4 @@
   networking.interfaces.wlan0.useDHCP = true;
   networking.interfaces.eth0.useDHCP = true;
   networking.useDHCP = false;
-
-  nixpkgs.config.allowUnsupportedSystem = true;
 }
