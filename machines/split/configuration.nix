@@ -1,4 +1,3 @@
-
 { config, pkgs, ... }:
 
 {
@@ -8,7 +7,7 @@
     ./environments/desktop.nix
     ./services/avahi.nix
     ./networking/wireless.nix
-    ./environments/hydra.nix
+    ./services/services.nix
   ];
 
   networking.hostName = "split";
