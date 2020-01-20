@@ -3,11 +3,11 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./common.nix
-    ./environments/desktop.nix
-    ./services/avahi.nix
-    ./networking/wireless.nix
-    ./services/services.nix
+    ../../common.nix
+    ../../environments/desktop.nix
+    ../../services/avahi.nix
+    ../../networking/wireless.nix
+    ../../services/services.nix
   ];
 
   networking.hostName = "split";

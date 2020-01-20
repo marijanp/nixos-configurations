@@ -1,3 +1,2 @@
 #/bin/bash
-sudo rsync -av --progress ./ /etc/nixos/ --exclude machines setup-host.sh
-sudo rsync -av --progress ./machines/$0/* /etc/nixos/ --exclude setup-host.sh 
+sudo ln -s $PWD/machines/$1/configuration.nix /etc/nixos/configuration.nix

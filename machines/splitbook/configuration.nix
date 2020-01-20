@@ -3,9 +3,9 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./common.nix
-    ./environments/desktop.nix
-    ./networking/wireless.nix
+    ../../common.nix
+    ../../environments/desktop.nix
+    ../../networking/wireless.nix
   ];
 
   networking.hostName = "splitbook"; # Define your hostname.
