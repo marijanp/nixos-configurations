@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  db_user="hydra";
+  db_user="split";
   db_pass="split_ventures";
   documize_db_name="documize";
   hydra_db_name="hydra";
