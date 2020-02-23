@@ -23,6 +23,9 @@ in
     '';
   };
 
+  nix.extraOptions = ''
+    allowed-uris = git@ssh.dev.azure.com:v3/NOVUSBIKE/lion/
+  '';
   services.hydra = {
     dbi = "dbi:Pg:dbname=${hydra_db_name};user=${db_user};";
     enable = true;
