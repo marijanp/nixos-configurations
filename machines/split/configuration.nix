@@ -8,6 +8,7 @@
     ../../services/avahi.nix
     ../../networking/wireless.nix
     ../../services/services.nix
+    ../../services/mongodb.nix
   ];
 
   networking.hostName = "split";
