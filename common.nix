@@ -1,9 +1,20 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, options, ... }:
+let
+  splitpkgs = builtins.fetchGit {
+    url = "git@github.com:marijanp/splitpkgs.git";
+    rev = "a874bd22c2c0e24d79c2c1e1fdf692a4f15ec474";
+  };
+in
 {
   imports = [
     ./nixpkgs-config.nix
   ];
+
+  nix.nixPath =
+    options.nix.nixPath.default ++ [
+      "splitpkgs=${splitpkgs}/"
+    ]
+  ;
 
   # internationalisation
   i18n = {
