@@ -6,7 +6,7 @@
   environment.systemPackages = with pkgs; [
     firefox
     #pulseaudio
-    vscode
+    vscodium
     ml-python
   ];
 
