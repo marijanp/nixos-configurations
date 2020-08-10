@@ -31,5 +31,8 @@
         password=hash:4db5ccc75eb1bc29cd92e41e9f762136
       '';
     };
+    "NOVUS" = {
+      pskRaw = "c99c6ac36851dddf610d042fd19729cad522bb96b65540b0a8293d38bbfe3bfa";
+    };
   };
 }
