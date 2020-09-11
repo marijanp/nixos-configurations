@@ -2,7 +2,7 @@
 let
   splitpkgs = builtins.fetchGit {
     url = "git@github.com:marijanp/splitpkgs.git";
-    rev = "a874bd22c2c0e24d79c2c1e1fdf692a4f15ec474";
+    ref = "refs/heads/master";
   };
 in
 {
@@ -73,5 +73,5 @@ in
 
   # Automatic Upgrades
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = https://nixos.org/channels/nixos-19.09;
+  system.autoUpgrade.channel = https://nixos.org/channels/nixos-20.03;
 }
