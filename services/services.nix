@@ -39,7 +39,7 @@ in
   };
 
   services.documize = {
-    enable = true;
+    enable = false;
     port = 5001;
     db = "host=localhost port=${toString config.services.postgresql.port} dbname=${documize_db_name} user=${db_user} password=${db_pass} sslmode=disable";
   };
