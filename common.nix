@@ -30,6 +30,7 @@ in
     systemPackages = with pkgs; [
       curl
       git
+      gnupg
       oh-my-zsh
       tmux
       unzip
