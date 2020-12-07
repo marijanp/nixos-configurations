@@ -1,23 +1,22 @@
-let splitpkgs = import <splitpkgs> {};
+{ pkgs, ... }:
+let 
+  splitpkgs = import <splitpkgs> {};
+  vscodium-custom = import ../../custom-applications/vscodium-custom.nix { inherit pkgs; };
 in
 {
-  allowUnsupportedSystem = true;
   allowUnfree = true;
+  #allowUnsupportedSystem = true;
   #allowBroken = true;
   packageOverrides = pkgs: with pkgs; rec {
-    haskell-env = pkgs.haskell.packages.ghc865.ghcWithPackages
+    haskell-env = pkgs.haskellPackages.ghcWithPackages
                      (haskellPackages: with haskellPackages; [
                        # libraries
                        base
-                       graphviz
-                       statistics
-                       vector
                        # tools
                        cabal-install
                        haskintex
                      ]);
-
-    ml-python = pkgs.python3.withPackages
+    ml-python = pkgs.pythoen3.withPackages
                   (pythonPackages: with pythonPackages; [ 
                     numpy 
                     #pandas
@@ -56,16 +55,17 @@ in
 
       paths = [
         haskell-env
-        ml-python
+        #ml-python
 
+        gimp
         git
+        gnupg 
+        gopass
         hledger
-        josm
+        #kicad
         tmux
         vim
-        #virtualbox
-        vscode
-        xquartz
+        vscodium-custom
         zsh
       ];
     };
