@@ -19,7 +19,7 @@ in
   # internationalisation
   console = {
     font = "Lat2-Terminus16";
-    keyMap = "de";
+    keyMap = "us";
   };
   
   i18n.defaultLocale = "de_DE.UTF-8";
@@ -31,26 +31,16 @@ in
       curl
       git
       gnupg
-      oh-my-zsh
       tmux
       unzip
       custom-vim
       wget
-      zsh
       zip
     ];
   };
 
   programs = {
     vim.defaultEditor = true;
-    zsh = {
-      enable = true;
-      ohMyZsh = {
-        enable = true;
-        theme = "amuse";
-        plugins = [ "git" "tmux" ];
-      };
-   };
   };
 
   # ssh
@@ -66,7 +56,6 @@ in
       isNormalUser = true;
       uid = 1000;
       extraGroups = ["wheel"];
-      shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAuIz0wFEPdBpR8RZkR2dnX57TPlsv69sUN0I9WjR6jj marijan@laganini"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGRDEu0YvbI33NNrAPrFKhl2EHs/1cNfSv6g7rLrvD19 marijan@iphone"
@@ -76,5 +65,5 @@ in
 
   # Automatic Upgrades
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = https://nixos.org/channels/nixos-20.03;
+  system.autoUpgrade.channel = https://nixos.org/channels/nixos-20.09;
 }
