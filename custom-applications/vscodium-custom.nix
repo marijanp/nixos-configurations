@@ -1,14 +1,14 @@
 { pkgs, ... }:
 let
   extensions = (with pkgs.vscode-extensions; [
-    
+    vscodevim.vim 
     ms-vscode-remote.remote-ssh
   ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     {
       name = "gitlens";
       publisher = "eamodio";
-      version = "11.0.6";
-      sha256 = "0qlaq7hn3m73rx9bmbzz3rc7khg0kw948z2j4rd8gdmmryy217yw";
+      version = "11.2.1";
+      sha256 = "1ba72sr7mv9c0xzlqlxbv1x8p6jjvdjkkf7dn174v8b8345164v6";
     }
     {
       name = "vsc-material-theme";
@@ -25,26 +25,26 @@ let
     {
       name = "nix-ide";
       publisher = "jnoortheen";
-      version = "0.1.3";
-      sha256 = "1c2yljzjka17hr213hiqad58spk93c6q6xcxvbnahhrdfvggy8al";
+      version = "0.1.7";
+      sha256 = "1bw4wyq9abimxbhl7q9g8grvj2ax9qqq6mmqbiqlbsi2arvk0wrm";
     }
     {
       name = "nix-env-selector";
       publisher = "arrterian";
-      version = "0.1.2";
-      sha256 = "1n5ilw1k29km9b0yzfd32m8gvwa2xhh6156d4dys6l8sbfpp2cv9";
+      version = "1.0.1";
+      sha256 = "0kvfp2hlrda91n3digbpdhqr84gdcshxqnybfqbkq2yzjbidmyjg";
     }
     {
       name = "vscode-clangd";
       publisher = "llvm-vs-code-extensions";
-      version = "0.1.8";
-      sha256 = "0rhpgxwjkpl1iahjlaprdz0943lrngm56dicajd2rgcmgya6jxlq";
+      version = "0.1.9";
+      sha256 = "0kfxpcgxaswq2d1ybf9c5wzlqarcvy0fd0dg06fi4gfmnfrd6zga";
     }
     {
       name = "python";
       publisher = "ms-python";
-      version = "2020.11.371526539";
-      sha256 = "0iavy4c209k53jkqsbhsvibzjj3fjxa500rv72fywgb2vxsi9fc3";
+      version = "2021.1.502429796";
+      sha256 = "0drvpr98gryldbfmwjnyig8pmalrd22biqmhkhvih3sxzcwsyqjk";
     }
   ];
 in {
