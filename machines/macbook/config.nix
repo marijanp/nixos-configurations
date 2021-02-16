@@ -6,7 +6,7 @@ in
 {
   allowUnfree = true;
   #allowUnsupportedSystem = true;
-  #allowBroken = true;
+  allowBroken = true;
   packageOverrides = pkgs: with pkgs; rec {
     haskell-env = pkgs.haskellPackages.ghcWithPackages
                      (haskellPackages: with haskellPackages; [
@@ -16,7 +16,7 @@ in
                        cabal-install
                        haskintex
                      ]);
-    ml-python = pkgs.pythoen3.withPackages
+    ml-python = pkgs.python3.withPackages
                   (pythonPackages: with pythonPackages; [ 
                     numpy 
                     #pandas
@@ -54,19 +54,19 @@ in
       name = "packages";
 
       paths = [
-        haskell-env
-        #ml-python
-
-        gimp
+#        haskell-env
+#        #ml-python
+#
+        bashInteractive_5
+#        gimp
         git
         gnupg 
         gopass
         hledger
-        #kicad
+#        #kicad
         tmux
         vim
         vscodium-custom
-        zsh
       ];
     };
   };
