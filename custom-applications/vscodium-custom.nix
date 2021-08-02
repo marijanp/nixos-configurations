@@ -13,8 +13,8 @@ let
     {
       name = "vsc-material-theme";
       publisher = "Equinusocio";
-      version = "33.0.0";
-      sha256 = "1r8g9jm34xp7lld9mwv3sja1913aan0khxqrp7az89szwpnv73vg";
+      version = "33.2.2";
+      sha256 = "0a55ksf58d4fhk1vgafibxkg61rhyd6cl10wz9gwg22rykx6i8d9";
     }
     {
       name = "material-icon-theme";
@@ -43,8 +43,14 @@ let
     {
       name = "python";
       publisher = "ms-python";
-      version = "2021.1.502429796";
-      sha256 = "0drvpr98gryldbfmwjnyig8pmalrd22biqmhkhvih3sxzcwsyqjk";
+      version = "2021.7.1060902895";
+      sha256 = "0lmf0q1p3wzm6lf7pb3ah4ck6abdwv5a6hmwcb1jwnwfwj0ylrc8";
+    }
+    {
+      name = "haskell";
+      publisher = "haskell";
+      version = "1.4.0";
+      sha256 = "1jk702fd0b0aqfryixpiy6sc8njzd1brd0lbkdhcifp0qlbdwki0";
     }
   ];
 in {
