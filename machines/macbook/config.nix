@@ -54,7 +54,7 @@ in
       name = "packages";
 
       paths = [
-#        haskell-env
+        haskell-env
 #        #ml-python
 #
         bashInteractive_5
