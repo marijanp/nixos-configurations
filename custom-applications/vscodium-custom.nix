@@ -25,14 +25,14 @@ let
     {
       name = "nix-ide";
       publisher = "jnoortheen";
-      version = "0.1.7";
-      sha256 = "1bw4wyq9abimxbhl7q9g8grvj2ax9qqq6mmqbiqlbsi2arvk0wrm";
+      version = "0.1.16";
+      sha256 = "04ky1mzyjjr1mrwv3sxz4mgjcq5ylh6n01lvhb19h3fmwafkdxbp";
     }
     {
       name = "nix-env-selector";
       publisher = "arrterian";
-      version = "1.0.1";
-      sha256 = "0kvfp2hlrda91n3digbpdhqr84gdcshxqnybfqbkq2yzjbidmyjg";
+      version = "1.0.7";
+      sha256 = "0mralimyzhyp4x9q98x3ck64ifbjqdp8cxcami7clvdvkmf8hxhf";
     }
     {
       name = "vscode-clangd";
@@ -43,14 +43,20 @@ let
     {
       name = "python";
       publisher = "ms-python";
-      version = "2021.7.1060902895";
-      sha256 = "0lmf0q1p3wzm6lf7pb3ah4ck6abdwv5a6hmwcb1jwnwfwj0ylrc8";
+      version = "2021.8.1159798656";
+      sha256 = "030si91s53ii9mqwzf4djsdh7ranaky3x9m26s279n6g9i7vd3r7";
     }
     {
       name = "haskell";
       publisher = "haskell";
-      version = "1.4.0";
-      sha256 = "1jk702fd0b0aqfryixpiy6sc8njzd1brd0lbkdhcifp0qlbdwki0";
+      version = "1.6.1";
+      sha256 = "1l6nrbqkq1p62dkmzs4sy0rxbid3qa1104s3fd9fzkmc1sldzgsn";
+    }
+    {
+      name = "language-haskell";
+      publisher = "justusadam";
+      version = "3.4.0";
+      sha256 = "0ab7m5jzxakjxaiwmg0jcck53vnn183589bbxh3iiylkpicrv67y";
     }
   ];
 in {
