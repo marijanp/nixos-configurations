@@ -60,7 +60,7 @@ let
     }
   ];
 in {
-  custom-vscodium = pkgs.vscode-with-extensions.override {
+  vscodium-custom = pkgs.vscode-with-extensions.override {
       vscode = pkgs.vscodium;
       vscodeExtensions = extensions;
     };
