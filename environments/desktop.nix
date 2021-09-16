@@ -1,13 +1,16 @@
 { config, pkgs, ... }:
-
+let
+  vscodium-custom = import ../custom-applications/vscodium-custom.nix { inherit pkgs; };
+in
 {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     firefox
     #pulseaudio
-    vscodium
+    vscodium-custom.vscodium-custom
     ml-python
+    gopass
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -20,7 +23,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "de";
+  services.xserver.layout = "us,de";
   services.xserver.xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
