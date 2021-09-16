@@ -22,7 +22,7 @@ in
     keyMap = "us";
   };
   
-  i18n.defaultLocale = "de_DE.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   time.timeZone = "Europe/Berlin";
 
@@ -65,5 +65,5 @@ in
 
   # Automatic Upgrades
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = https://nixos.org/channels/nixos-20.09;
+  system.autoUpgrade.channel = https://nixos.org/channels/nixos-21.05;
 }
