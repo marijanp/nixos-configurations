@@ -24,7 +24,6 @@
           set tabstop=2 expandtab
           syntax on
           filetype plugin indent on "enable the listed plugins in this file
-          nnoremap n<Space> :NERDTreeToggle<CR>;
         '';
       };
 
@@ -33,12 +32,12 @@
                     numpy 
                     #pandas
                     scikitlearn
-                    tensorflow
+                    #tensorflow
                     pip
                     virtualenvwrapper
                   ]);
 
-      haskell-env = pkgs.haskell.packages.ghc865.ghcWithPackages
+      haskell-env = pkgs.haskellPackages.ghcWithPackages
                      (haskellPackages: with haskellPackages; [
                        # libraries
                        base
