@@ -13,6 +13,9 @@
 
   networking.hostName = "split";
   networking.interfaces.eno1.useDHCP = true;
+
+  networking.wireless.enable = true;
+  networking.wireless.interfaces = ["wlp3s0u1"];
   networking.interfaces.wlp3s0u1 = {
     useDHCP = false;
     ipv4.addresses = [ {
