@@ -37,8 +37,8 @@ let
     {
       name = "vscode-clangd";
       publisher = "llvm-vs-code-extensions";
-      version = "0.1.9";
-      sha256 = "0kfxpcgxaswq2d1ybf9c5wzlqarcvy0fd0dg06fi4gfmnfrd6zga";
+      version = "0.1.13";
+      sha256 = "0qjllvg2wwy3w8gg7q9dkbs0mccxxdq8cg59pbvw0vd8rxn71jpw";
     }
     {
       name = "python";
