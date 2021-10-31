@@ -2,6 +2,7 @@
 let 
   splitpkgs = import <splitpkgs> {};
   vscodium-custom = import ../../custom-applications/vscodium-custom.nix { inherit pkgs; };
+  vim-custom = import ../../custom-applications/vim-custom.nix { inherit pkgs; };
 in
 {
   allowUnfree = true;
@@ -12,6 +13,10 @@ in
                      (haskellPackages: with haskellPackages; [
                        # libraries
                        base
+                       regex-posix
+                       req
+                       time
+                       transformers
                        # tools
                        cabal-install
                        haskintex
@@ -26,46 +31,26 @@ in
                     virtualenvwrapper
                   ]);
 
-    custom-vim = pkgs.vim_configurable.customize {
-      name = "vim";
-      vimrcConfig.customRC = ''
-        :set number relativenumber
-        :inoremap jk <Esc>l:w<CR> 
-        :vnoremap jk <Esc>l:w<CR>
-        noremap <Up> <NOP>
-        noremap <Down> <NOP>
-        noremap <Left> <NOP>
-        noremap <Right> <NOP>
-        inoremap <Up> <NOP>
-        inoremap <Down> <NOP>
-        inoremap <Left> <NOP>
-        inoremap <Right> <NOP>
-        inoremap <Esc> <NOP>
-        vnoremap <Esc> <NOP>
-        set t_BE=                 "Fix paste bug triggered by the above inoremaps
-        set tabstop=2 expandtab
-        syntax on
-        filetype plugin indent on "enable the listed plugins in this file
-        nnoremap n<Space> :NERDTreeToggle<CR>;
-      '';
-    };
-
     packages = pkgs.buildEnv {
       name = "packages";
 
       paths = [
         haskell-env
+        haskell-language-server
 #        #ml-python
-#
+        splitpkgs.kaching
         bashInteractive_5
-#        gimp
+        clang-tools
+        # gimp
         git
         gnupg 
         gopass
+        gopass-jsonapi
         hledger
 #        #kicad
+        niv
         tmux
-        vim
+        vim-custom
         vscodium-custom
       ];
     };

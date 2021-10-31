@@ -4,6 +4,7 @@ let
     url = "git@github.com:marijanp/splitpkgs.git";
     ref = "refs/heads/master";
   };
+  vim-custom = import custom-applications/vim-custom.nix { inherit pkgs; }; 
 in
 {
   imports = [
@@ -33,7 +34,7 @@ in
       gnupg
       tmux
       unzip
-      custom-vim
+      vim-custom
       wget
       zip
     ];
