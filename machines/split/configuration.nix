@@ -12,6 +12,8 @@
     ../../services/mongodb.nix
   ];
 
+  services.xserver.videoDrivers = ["nvidia"]; # due to freezing using nouveau
+
   networking.hostName = "split";
   networking.interfaces.eno1.useDHCP = true;
 
