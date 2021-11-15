@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../common.nix
+    ../../binary-caches.nix
     ../../environments/desktop.nix
     ../../services/avahi.nix
     ../../networking/wireless.nix
