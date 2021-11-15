@@ -58,6 +58,12 @@ let
       version = "3.4.0";
       sha256 = "0ab7m5jzxakjxaiwmg0jcck53vnn183589bbxh3iiylkpicrv67y";
     }
+    {
+      name = "todo-tree";
+      publisher = "Gruntfuggly";
+      version = "0.0.214";
+      sha256 = "0rwxjnrl44rnhx3183037k6435xs4772p58a37azl5cahsyav1hk";
+    }
   ];
 in {
   vscodium-custom = pkgs.vscode-with-extensions.override {
