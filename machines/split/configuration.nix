@@ -12,6 +12,8 @@
     ../../services/mongodb.nix
   ];
 
+  programs.gnupg.agent.enable = true;
+
   services.xserver.videoDrivers = ["nvidia"]; # due to freezing using nouveau
 
   networking.hostName = "split";
