@@ -19,9 +19,9 @@ let
     syntax on
     filetype plugin indent on "enable the listed plugins in this file
   '';
-in {
-  vim-custom = pkgs.vim_configurable.customize {
-    name = "vim";
-    vimrcConfig.customRC = vimrc;
-  };
-}
+in 
+  ((pkgs.vim_configurable.override { inherit pkgs; }).customize{
+      name = "vim";
+      vimrcConfig.customRC = vimrc;
+    }
+  )
