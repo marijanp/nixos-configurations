@@ -8,6 +8,10 @@
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ];
 
+    # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   boot.loader.grub = {
     enable = true;
     version = 2;

@@ -1,20 +1,22 @@
 { config, pkgs, ... }:
-
+let
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+in
 {
   imports = [
     ./hardware-configuration.nix
-    ../../common.nix
-    ../../binary-caches.nix
+    
+    (import "${home-manager}/nixos")
+
+    ../../users/marijan/base.nix
     ../../environments/desktop.nix
-    ../../services/avahi.nix
-    ../../networking/wireless.nix
-    ../../services/services.nix
-    ../../services/mongodb.nix
+    ../../options/wireless.nix
+    
+    #../../services/services.nix
+    #../../services/mongodb.nix
   ];
 
-  programs.gnupg.agent.enable = true;
-
-  services.xserver.videoDrivers = ["nvidia"]; # due to freezing using nouveau
+  home-manager.users.marijan = import ../../dotfiles/desktop.nix;
 
   networking.hostName = "split";
   networking.interfaces.eno1.useDHCP = true;
