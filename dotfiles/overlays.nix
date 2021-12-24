@@ -1,0 +1,3 @@
+[
+ (import ./qemu-overlay.nix)
+]
