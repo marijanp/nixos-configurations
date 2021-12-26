@@ -39,5 +39,5 @@ in
     ];
   };
 
-  home.file.codium-settings-path.source = ./codium-settings.json;
+  home.file.${codium-settings-path}.source = ./codium-settings.json;
 }
