@@ -1,4 +1,9 @@
 { pkgs, lib, ... }:
+let 
+  codium-settings-path = if builtins.currentSystem != "x86_64-darwin"
+                         then ".config/VSCodium/User/settings.json"
+                         else "Library/Application Support/VSCodium/User/settings.json";
+in
 {
   imports = [
     ./common.nix
@@ -33,4 +38,6 @@
       gruntfuggly.todo-tree
     ];
   };
+
+  home.file.codium-settings-path.source = ./codium-settings.json;
 }
