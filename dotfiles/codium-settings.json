@@ -82,7 +82,7 @@
       "after":  ["<NOP>"]
     }
   ],
-  "oneDarkPro.editorTheme": "oneDarkPro",
+  "oneDarkPro.editorTheme": "One Dark Pro",
   "workbench.colorTheme": "One Dark Pro",
   "workbench.preferredDarkColorTheme": "One Dark Pro",
   "todo-tree.general.tags": [
