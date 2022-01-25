@@ -18,6 +18,7 @@ in
     #splitpkgs.kaching
     qemu
   ] ++ lib.optionals (builtins.currentSystem != "x86_64-darwin") [
+    element-desktop
     firefox
   ];
 
