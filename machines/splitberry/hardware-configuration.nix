@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }:
-
+{
   boot.loader.grub.enable = false;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.generic-extlinux-compatible.enable = true;
