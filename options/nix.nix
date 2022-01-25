@@ -8,4 +8,5 @@
     "https://hydra.iohk.io"
     "https://iohk.cachix.org"
   ];
+  nix.buildCores = 4;
 }
