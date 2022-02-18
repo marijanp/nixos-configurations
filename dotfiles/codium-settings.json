@@ -3,6 +3,10 @@
   "editor.tabSize": 2,
   "editor.minimap.maxColumn": 80,
   "editor.detectIndentation": false,
+  "editor.lineNumbers": "relative",
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.acceptSuggestionOnEnter": "smart",
+  "editor.minimap.enabled": false,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorCustomizations": {
     "activityBarBadge.background": "#64FFDA",
@@ -25,9 +29,8 @@
     "menu.selectionForeground": "#64FFDA",
     "menubar.selectionForeground": "#64FFDA"
   },
-  "editor.acceptSuggestionOnCommitCharacter": false,
-  "editor.minimap.enabled": false,
   "diffEditor.ignoreTrimWhitespace": false,
+  "vim.useSystemClipboard": false,
   "vim.insertModeKeyBindingsNonRecursive": [
     {
       "before": ["j","k"],
@@ -96,5 +99,5 @@
     "INFO",
     "NOTE"
   ],
-  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)"
+  "todo-tree.regex.regex": "(--|//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)"
 }
