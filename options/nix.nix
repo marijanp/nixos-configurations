@@ -9,4 +9,5 @@
     "https://iohk.cachix.org"
   ];
   nix.buildCores = 4;
+  nix.trustedUsers = [ "root" "marijan" ];
 }
