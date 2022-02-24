@@ -10,12 +10,12 @@ in
   ];
 
   home.packages = with pkgs; [
+    cachix
     gopass
     gopass-jsonapi
     haskell-language-server
     hledger
     niv
-    #splitpkgs.kaching
     qemu
   ] ++ lib.optionals (builtins.currentSystem != "x86_64-darwin") [
     element-desktop
