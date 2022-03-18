@@ -32,6 +32,9 @@
     enable = true;
     userName = "Marijan Petričević";
     userEmail = "marijan.petricevic94@gmail.com";
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
   };
 
   programs.vim = {
