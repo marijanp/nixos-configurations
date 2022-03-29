@@ -10,6 +10,7 @@ in
 
     ../../users/marijan/base.nix
     ../../environments/desktop.nix
+    ../../environments/work.nix
     ../../options/wireless.nix
     
     #../../services/services.nix
