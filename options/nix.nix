@@ -14,4 +14,5 @@
   ];
   nix.buildCores = 4;
   nix.trustedUsers = [ "root" "marijan" ];
+  nix.useSandbox = true;
 }

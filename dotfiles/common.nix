@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   programs.home-manager.enable = true;
-  nixpkgs.config.allowUnfree = true;
 
   imports = [
     ../users/marijan/home.nix
@@ -38,7 +37,7 @@
   };
 
   programs.vim = {
-    enable = builtins.currentSystem != "x86_64-darwin";
+    enable = true;
     extraConfig = ''
       :set number relativenumber
       :inoremap jk <Esc>l:w<CR>
@@ -67,7 +66,5 @@
     unzip
     wget
     zip
-  ] ++ lib.optionals (builtins.currentSystem == "x86_64-darwin") [
-    vim    
   ];
 }

@@ -1,8 +1,6 @@
 { pkgs, lib, ... }:
 let 
-  codium-settings-path = if builtins.currentSystem != "x86_64-darwin"
-                         then ".config/VSCodium/User/settings.json"
-                         else "Library/Application Support/VSCodium/User/settings.json";
+  codium-settings-path = ".config/VSCodium/User/settings.json";
 in
 {
   imports = [
@@ -13,14 +11,13 @@ in
     cachix
     gopass
     gopass-jsonapi
-    haskell-language-server
     hledger
     niv
     qemu
-  ] ++ lib.optionals (builtins.currentSystem != "x86_64-darwin") [
     element-desktop
     firefox
     thunderbird
+    solaar
   ];
 
   programs.vscode = {
