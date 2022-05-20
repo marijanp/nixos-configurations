@@ -85,7 +85,6 @@
       "after":  ["<NOP>"]
     }
   ],
-  "oneDarkPro.editorTheme": "One Dark Pro",
   "workbench.colorTheme": "One Dark Pro",
   "workbench.preferredDarkColorTheme": "One Dark Pro",
   "todo-tree.general.tags": [
@@ -99,5 +98,12 @@
     "INFO",
     "NOTE"
   ],
-  "todo-tree.regex.regex": "(--|//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)"
+  "todo-tree.regex.regex": "(--|//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "/home/marijan/.nix-profile/bin/bash",
+      "icon": "terminal-bash"
+    }
+  },
+  "terminal.integrated.copyOnSelection": true
 }
