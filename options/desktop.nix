@@ -9,15 +9,19 @@
     jack.enable = true;
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us+keypad(x11)";
-  services.xserver.xkbOptions = "eurosign:e";
-
-  # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5 = {
+  services.xserver = {
     enable = true;
-    runUsingSystemd = true;
+    displayManager.sddm.enable= true;
+    desktopManager.plasma5 = {
+      enable = true;
+      runUsingSystemd = true;
+    };
+    desktopManager.wallpaper = {
+      mode = "center";
+      combineScreens = true;
+    };
+    videoDrivers = [ "nvidia" "intel" ];
+    layout = "us+keypad(x11)";
+    xkbOptions = "eurosign:e";
   };
 }

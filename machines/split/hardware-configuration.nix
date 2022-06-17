@@ -4,7 +4,6 @@
 { config, lib, ... }:
 
 {
-  # Use the systemd-boot EFI boot loader.
   boot.loader = {
     efi.canTouchEfiVariables = true;
     grub = {
@@ -15,6 +14,9 @@
       useOSProber = true;
     };
   };
+
+  hardware.opengl.enable = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
