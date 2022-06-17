@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 {
-  nix.package = pkgs.nix_2_7;
+  nix.package = pkgs.nixVersions.nix_2_7;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';

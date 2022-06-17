@@ -1,8 +1,8 @@
 {
   description = "marijanp's NixOS system configurations";
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-21.11;
-    home-manager.url = github:nix-community/home-manager/release-21.11;
+    nixpkgs.url = github:NixOS/nixpkgs/nixos-22.05;
+    home-manager.url = github:nix-community/home-manager/release-22.05;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -15,6 +15,7 @@
             nixpkgs.nixosModules.notDetected
             home-manager.nixosModules.home-manager
             ({ pkgs, ... }: {
+              system.stateVersion = "22.05";
               # Let 'nixos-version --json' know about the Git revision of this flake.
               system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
               imports = [
