@@ -25,6 +25,9 @@
     enable = true;
     clock24 = true;
     keyMode = "vi";
+    prefix = "C-z";
+    resizeAmount = 50;
+    customPaneNavigationAndResize = true;
   };
 
   programs.git = {
