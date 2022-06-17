@@ -68,9 +68,9 @@
   };
 
   home.packages = with pkgs; [
-    bashInteractive
     curl
     gnupg
+    tmate
     unzip
     wget
     zip
