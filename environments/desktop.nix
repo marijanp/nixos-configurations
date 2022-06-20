@@ -2,6 +2,6 @@
 {
   imports = [
     ./common.nix
-    ../options/desktop.nix
+    ../options/sound.nix
   ];
 }
