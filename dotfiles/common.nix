@@ -67,6 +67,11 @@
     '';
   };
 
+  services.gpg-agent = {
+    enable = true;
+    pinentryFlavor = "curses";
+  };
+
   home.packages = with pkgs; [
     curl
     gnupg

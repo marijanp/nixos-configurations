@@ -9,5 +9,4 @@
   ];
 
   programs.vim.defaultEditor = true;
-  programs.gnupg.agent.enable = true;
 }
