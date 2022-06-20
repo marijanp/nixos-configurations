@@ -9,6 +9,16 @@ in
 
   fonts.fontconfig.enable = true;
 
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      font = {
+        normal.family = "Roboto Mono";
+        size = 11;
+      };
+    };
+  };
+
   programs.waybar = {
     enable = true;
     settings = {
@@ -18,7 +28,7 @@ in
         height = 30;
         modules-left = [ "sway/workspaces" "sway/mode" ];
         modules-center = [ "sway/window" ];
-        modules-right = ["cpu" "memory" "network" "pulseaudio" "sway/language" "clock"];
+        modules-right = ["cpu" "memory" "network" "bluetooth" "pulseaudio" "clock"];
         "cpu" = {
           format = "CPU {usage0}% {usage1}% {usage2}% {usage3}%";
         };
@@ -29,7 +39,7 @@ in
           format = "{essid} ⬆️{bandwidthUpBits}⬇️{bandwidthDownBits}";
         };
         "clock" = {
-          format = "{:%H:%M}";
+          format = "{:%Y-%m-%d %H:%M}";
         };
         "pulseaudio" = {
           format = "{icon} {volume}%";
@@ -131,8 +141,6 @@ in
     };
   };
 
-  #xdg.configFile."sway/config".onChange = lib.mkForce "";
-  
   home.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     MOZ_ENABLE_WAYLAND = "1";
@@ -153,7 +161,6 @@ in
     gopass
     gopass-jsonapi
     hledger
-    hack-font
     niv
     noto-fonts-emoji
     qemu
