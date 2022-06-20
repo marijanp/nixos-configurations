@@ -1,5 +1,6 @@
 {
   "git.autofetch": true,
+  "editor.fontFamily": "Roboto Mono",
   "editor.tabSize": 2,
   "editor.minimap.maxColumn": 80,
   "editor.detectIndentation": false,
@@ -105,5 +106,6 @@
       "icon": "terminal-bash"
     }
   },
-  "terminal.integrated.copyOnSelection": true
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.fontFamily": "Roboto Mono"
 }
