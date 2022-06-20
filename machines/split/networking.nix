@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
+  
   networking = {
+    firewall.allowedTCPPorts = [ ] ++ config.services.openssh.ports;
     hostName = "split";
     interfaces = {
       eno1.useDHCP = true;
@@ -13,7 +15,6 @@
       };
     };
     wireless = {
-      enable = true;
       interfaces = ["wlp3s0u1"];
     };
     defaultGateway = "192.168.1.1";
