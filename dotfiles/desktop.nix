@@ -86,6 +86,7 @@ in
 
         "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show run";
         "${modifier}+p" = "exec ${pkgs.firefox}/bin/firefox";
+        "${modifier}+x" = "exec ${pkgs.swaylock}/bin/swaylock";
 
         "${modifier}+f" = "fullscreen toggle";
         "${modifier}+space" = "floating toggle";
