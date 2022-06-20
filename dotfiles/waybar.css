@@ -1,0 +1,58 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Roboto Mono", "Noto Emoji Color";
+    font-size: 15px;
+    /*font-weight: bold;*/
+    min-height: 0;
+}
+
+window#waybar {
+    background: #325D79;
+    color: #EFEEEE;
+}
+
+#workspaces button {
+    background: transparent;
+}
+
+#workspaces button.focused {
+    background: #3F6A8A;
+}
+
+#workspaces button.urgent {
+    background-color: #bf616a;
+}
+
+#workspaces button:hover {
+    background-color: #3F6A8A;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#clock, #battery, #cpu, #memory, #temperature, #backlight, #network, #pulseaudio, #custom-media, #tray, #mode, #idle_inhibitor, #language {
+  margin-left: 1;
+  margin-right: 1;
+  padding-left: 5;
+  padding-right: 5;
+  background: #3F6A8A;
+}
+
+#clock {
+    /*background-color: #64727D;*/
+    font-weight: bold;
+}
+
+#pulseaudio.muted {
+    /*background: #000000;*/
+    color: #c0392b;
+}
+
+#temperature.critical {
+    background: #eb4d4b;
+}

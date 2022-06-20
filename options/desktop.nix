@@ -9,19 +9,4 @@
     jack.enable = true;
   };
 
-  services.xserver = {
-    enable = true;
-    displayManager.sddm.enable= true;
-    desktopManager.plasma5 = {
-      enable = true;
-      runUsingSystemd = true;
-    };
-    desktopManager.wallpaper = {
-      mode = "center";
-      combineScreens = true;
-    };
-    videoDrivers = [ "nvidia" "intel" ];
-    layout = "us+keypad(x11)";
-    xkbOptions = "eurosign:e";
-  };
 }
