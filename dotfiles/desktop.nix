@@ -213,6 +213,12 @@ in
         version = "0.2.8";
         sha256 = "sha256-2uOwCHvnlQQM8s8n7dtvIaMgpW8ROeoUraM02rncH9o=";
       }
+      {
+        name = "ide-purescript";
+        publisher = "nwolverson";
+        version = "0.25.12";
+        sha256 = "sha256-tgZ0PnWrSDBNKBB5bKH/Fmq6UVNSRYZ8HJdzFDgxILk=";
+      }
     ];
   };
 
