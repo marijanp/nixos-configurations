@@ -36,7 +36,8 @@ in
           format = "RAM {}%";
         };
         "network" = {
-          format = "{essid} ⬆️{bandwidthUpBits}⬇️{bandwidthDownBits}";
+          format-wifi = "{essid} ⬆️{bandwidthUpBits}⬇️{bandwidthDownBits}";
+          format-disconnected = "⚠️";
         };
         "clock" = {
           format = "{:%Y-%m-%d %H:%M}";
@@ -139,15 +140,15 @@ in
         "${modifier}+KP_8" = "workspace number 8";
         "${modifier}+KP_9" = "workspace number 9";
 
-        "${modifier}+Shift+KP_1" = "move container to workspace number 1";
-        "${modifier}+Shift+KP_2" = "move container to workspace number 2";
-        "${modifier}+Shift+KP_3" = "move container to workspace number 3";
-        "${modifier}+Shift+KP_4" = "move container to workspace number 4";
-        "${modifier}+Shift+KP_5" = "move container to workspace number 5";
-        "${modifier}+Shift+KP_6" = "move container to workspace number 6";
-        "${modifier}+Shift+KP_7" = "move container to workspace number 7";
-        "${modifier}+Shift+KP_8" = "move container to workspace number 8";
-        "${modifier}+Shift+KP_9" = "move container to workspace number 9";
+        "${modifier}+Shift+KP_End" = "move container to workspace number 1";
+        "${modifier}+Shift+KP_Down" = "move container to workspace number 2";
+        "${modifier}+Shift+KP_Next" = "move container to workspace number 3";
+        "${modifier}+Shift+KP_Left" = "move container to workspace number 4";
+        "${modifier}+Shift+KP_Begin" = "move container to workspace number 5";
+        "${modifier}+Shift+KP_Right" = "move container to workspace number 6";
+        "${modifier}+Shift+KP_Home" = "move container to workspace number 7";
+        "${modifier}+Shift+KP_Up" = "move container to workspace number 8";
+        "${modifier}+Shift+KP_Prior" = "move container to workspace number 9";
 
         "${modifier}+h" = "focus left";
         "${modifier}+j" = "focus down";
