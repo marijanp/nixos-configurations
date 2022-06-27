@@ -196,7 +196,6 @@ in
     package = pkgs.vscodium;
     extensions = (with pkgs.vscode-extensions; [
       vscodevim.vim
-      ms-vscode-remote.remote-ssh
       eamodio.gitlens
       zhuangtongfa.material-theme
       pkief.material-icon-theme

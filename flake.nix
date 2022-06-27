@@ -52,22 +52,35 @@
         ];
       };
     };
-    qemu-image = import (nixpkgs.path + "/nixos/lib/make-disk-image.nix") {
-        pkgs = nixpkgs;
-        lib = nixpkgs.lib;
-        format = "qcow2";
-        config = (import (nixpkgspkgs.path + "/nixos/lib/eval-config.nix") {
-          inherit pkgs;
+    qemu-image =
+      let nixpkgsSource = nixpkgs.sourceInfo.outPath;
           system = "x86_64-linux";
+          pkgs = nixpkgs.legacyPackages.${system};
+          lib = pkgs.lib;
+      in
+      import (nixpkgsSource + "/nixos/lib/make-disk-image.nix") {
+        inherit pkgs lib;
+        format = "qcow2";
+        config = (import (nixpkgsSource + "/nixos/lib/eval-config.nix") {
+          inherit pkgs system;
           modules = [
-            (import ./nixos/configurations/development-blockchain-service.nix)
-            (pkgs.path + "/nixos/modules/profiles/qemu-guest.nix")
-            {
+            nixpkgs.nixosModules.notDetected
+            home-manager.nixosModules.home-manager
+            (nixpkgsSource + "/nixos/modules/profiles/qemu-guest.nix")
+            ({ pkgs, ... }: {
               fileSystems."/".device = "/dev/disk/by-label/nixos";
               boot.loader.grub.device = "/dev/vda";
               boot.loader.timeout = 0;
               users.extraUsers.root.password = "";
-            }
+              system.stateVersion = "22.05";
+              imports = [
+                ./users/marijan/base.nix
+                ./environments/desktop.nix
+              ];
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.marijan = import ./dotfiles/desktop.nix;
+            })
           ];
         }).config;
       };
