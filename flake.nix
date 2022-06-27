@@ -52,6 +52,24 @@
         ];
       };
     };
-
+    qemu-image = import (nixpkgs.path + "/nixos/lib/make-disk-image.nix") {
+        pkgs = nixpkgs;
+        lib = nixpkgs.lib;
+        format = "qcow2";
+        config = (import (nixpkgspkgs.path + "/nixos/lib/eval-config.nix") {
+          inherit pkgs;
+          system = "x86_64-linux";
+          modules = [
+            (import ./nixos/configurations/development-blockchain-service.nix)
+            (pkgs.path + "/nixos/modules/profiles/qemu-guest.nix")
+            {
+              fileSystems."/".device = "/dev/disk/by-label/nixos";
+              boot.loader.grub.device = "/dev/vda";
+              boot.loader.timeout = 0;
+              users.extraUsers.root.password = "";
+            }
+          ];
+        }).config;
+      };
   };
 }
