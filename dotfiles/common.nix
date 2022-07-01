@@ -25,7 +25,7 @@
     enable = true;
     clock24 = true;
     keyMode = "vi";
-    prefix = "C-z";
+    prefix = "C-s";
     resizeAmount = 50;
     customPaneNavigationAndResize = true;
   };
