@@ -57,22 +57,34 @@ in
   # Block auto-sway reload, Sway crashes if allowed to reload this way.
   xdg.configFile."sway/config".onChange = lib.mkForce "";
 
+  # programs.swaylock.settings = {
+  #   color = "325D79";
+  # };
+
+  services.swayidle = {
+    enable = true;
+    events = [
+      { event = "lock"; command = "swaylock"; }
+      { event = "before-sleep"; command = "swaylock"; }
+    ];
+
+  };
+
   wayland.windowManager.sway = {
     enable = true;
+    extraOptions = [ "--unsupported-gpu" ];
     config = rec {
-      terminal = "${pkgs.alacritty}/bin/alacritty";
+      terminal = "alacritty";
       modifier = "Mod4";
+      workspaceLayout =  "tabbed";
       bars = [
         {
-          command =  "${pkgs.waybar}/bin/waybar";
+          command =  "waybar";
         }
       ];
-      fonts = {
+            fonts = {
         names = [ "Roboto" "Roboto Mono" ];
         size = 11.0;
-      };
-      colors = {
-        focused = { background = "#64FFDA"; border = "#64FFDA"; childBorder = "#285577"; indicator = "#2e9ef4"; text = "#ffffff"; };
       };
       input = {
         "type:keyboard" = {
@@ -81,6 +93,9 @@ in
           xkb_numlock = "enabled";
         };
       };
+      floating.criteria = [
+        { class = "*Mattermost*"; }
+      ];
       startup = [
         { always = true; command = "touch $SWAYSOCK.wob && tail -n0 -f $SWAYSOCK.wob | ${pkgs.wob}/bin/wob"; }
       ];
@@ -91,14 +106,14 @@ in
         "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer -ud 2 && ${pkgs.pamixer}/bin/pamixer --get-volume > $SWAYSOCK.wob";
         "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer --toggle-mute && ( ${pkgs.pamixer}/bin/pamixer --get-mute && echo 0 > $SWAYSOCK.wob ) || ${pkgs.pamixer}/bin/pamixer --get-volume > $SWAYSOCK.wob";
 
-        "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+        "${modifier}+Return" = "exec alacritty";
         "${modifier}+c" = "kill";
         "${modifier}+Shift+r" = "reload";
         "${modifier}+r" = "mode resize";
 
         "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show run";
-        "${modifier}+p" = "exec ${pkgs.firefox}/bin/firefox";
-        "${modifier}+x" = "exec ${pkgs.swaylock}/bin/swaylock -c 325D79";
+        "${modifier}+p" = "exec firefox";
+        "${modifier}+x" = "exec swaylock";
 
         "${modifier}+f" = "fullscreen toggle";
         "${modifier}+space" = "floating toggle";
@@ -161,19 +176,19 @@ in
         "${modifier}+Shift+l" = "move right";
       };
     };
-  };
-
-  home.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-    MOZ_ENABLE_WAYLAND = "1";
-    # OZ_USE_XINPUT2 = "1";
-     #WLR_DRM_NO_MODIFIERS = "1";
-    SDL_VIDEODRIVER = "wayland";
-    # QT_QPA_PLATFORM = "wayland";
-    # QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    # _JAVA_AWT_WM_NONREPARENTING = "1";
-    XDG_SESSION_TYPE = "wayland";
-    XDG_CURRENT_DESKTOP = "sway";
+    extraSessionCommands = ''
+      export SDL_VIDEODRIVER=wayland
+      # fix mouse cursor
+      export WLR_NO_HARDWARE_CURSORS=1
+      export MOZ_ENABLE_WAYLAND=1
+      # export OZ_USE_XINPUT2=1
+      # export WLR_DRM_NO_MODIFIERS=1
+      # export QT_QPA_PLATFORM=wayland
+      # export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+      # export _JAVA_AWT_WM_NONREPARENTING=1
+      export XDG_SESSION_TYPE=wayland
+      export XDG_CURRENT_DESKTOP=sway
+    '';
   };
 
   home.packages = with pkgs; [
@@ -190,6 +205,7 @@ in
     roboto
     roboto-mono
     solaar
+    swaylock
     thunderbird
   ];
 
