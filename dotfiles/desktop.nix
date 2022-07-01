@@ -183,6 +183,7 @@ in
     gopass
     gopass-jsonapi
     hledger
+    material-icons
     niv
     noto-fonts-emoji
     qemu
