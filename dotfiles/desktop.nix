@@ -63,9 +63,12 @@ in
 
   services.swayidle = {
     enable = true;
+    timeouts = [
+      { timeout = 360; command = "systemctl suspend"; }
+    ];
     events = [
-      { event = "lock"; command = "swaylock"; }
-      { event = "before-sleep"; command = "swaylock"; }
+      { event = "lock"; command = "swaylock -c 325D79"; }
+      { event = "before-sleep"; command = "swaylock -c 325D79"; }
     ];
 
   };
@@ -94,7 +97,7 @@ in
         };
       };
       floating.criteria = [
-        { class = "*Mattermost*"; }
+        { class = ".*Mattermost.*"; }
       ];
       startup = [
         { always = true; command = "touch $SWAYSOCK.wob && tail -n0 -f $SWAYSOCK.wob | ${pkgs.wob}/bin/wob"; }
