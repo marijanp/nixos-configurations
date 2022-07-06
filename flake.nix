@@ -61,6 +61,7 @@
       import (nixpkgsSource + "/nixos/lib/make-disk-image.nix") {
         inherit pkgs lib;
         format = "qcow2";
+        diskSize = "20000";
         config = (import (nixpkgsSource + "/nixos/lib/eval-config.nix") {
           inherit pkgs system;
           modules = [
@@ -75,11 +76,11 @@
               system.stateVersion = "22.05";
               imports = [
                 ./users/marijan/base.nix
-                ./environments/desktop.nix
+                ./environments/common.nix
               ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.marijan = import ./dotfiles/desktop.nix;
+              home-manager.users.marijan = import ./dotfiles/common.nix;
             })
           ];
         }).config;
