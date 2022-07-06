@@ -99,6 +99,8 @@ in
       floating.criteria = [
         { class = ".*Mattermost.*"; }
       ];
+      floating.titlebar = true;
+      focus.newWindow = "urgent";
       startup = [
         { always = true; command = "touch $SWAYSOCK.wob && tail -n0 -f $SWAYSOCK.wob | ${pkgs.wob}/bin/wob"; }
       ];
