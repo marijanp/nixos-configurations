@@ -24,9 +24,11 @@
                 ./machines/split/hardware-configuration.nix
                 ./machines/split/networking.nix
                 ./users/marijan/base.nix
+                ./users/marijan/home.nix
                 ./environments/work.nix
                 ./options/wireless.nix
               ];
+              programs.home-manager.enable = true;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.marijan = import ./dotfiles/work.nix;

@@ -1,10 +1,5 @@
 { pkgs, ... }:
 {
-  programs.home-manager.enable = true;
-
-  imports = [
-    ../users/marijan/home.nix
-  ];
 
   programs.bash = {
     enable = true;
@@ -65,11 +60,6 @@
       syntax on
       filetype plugin indent on "enable the listed plugins in this file
     '';
-  };
-
-  services.gpg-agent = {
-    enable = true;
-    pinentryFlavor = "curses";
   };
 
   home.packages = with pkgs; [

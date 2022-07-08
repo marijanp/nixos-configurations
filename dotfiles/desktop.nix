@@ -1,10 +1,8 @@
 { pkgs, lib, ... }:
-let 
-  codium-settings-path = ".config/VSCodium/User/settings.json";
-in
 {
   imports = [
     ./common.nix
+    ./vscodium.nix
   ];
 
   fonts.fontconfig.enable = true;
@@ -214,35 +212,4 @@ in
     thunderbird
   ];
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-    extensions = (with pkgs.vscode-extensions; [
-      vscodevim.vim
-      eamodio.gitlens
-      zhuangtongfa.material-theme
-      pkief.material-icon-theme
-      jnoortheen.nix-ide
-      haskell.haskell
-      justusadam.language-haskell
-      #llvm-vs-code-extensions.vscode-clangd
-      #ms-python.python
-      gruntfuggly.todo-tree
-    ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        name = "language-purescript";
-        publisher = "nwolverson";
-        version = "0.2.8";
-        sha256 = "sha256-2uOwCHvnlQQM8s8n7dtvIaMgpW8ROeoUraM02rncH9o=";
-      }
-      {
-        name = "ide-purescript";
-        publisher = "nwolverson";
-        version = "0.25.12";
-        sha256 = "sha256-tgZ0PnWrSDBNKBB5bKH/Fmq6UVNSRYZ8HJdzFDgxILk=";
-      }
-    ];
-  };
-
-  home.file.${codium-settings-path}.source = ./codium-settings.json;
 }
