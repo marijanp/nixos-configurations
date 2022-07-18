@@ -24,14 +24,12 @@
                 ./machines/split/hardware-configuration.nix
                 ./machines/split/networking.nix
                 ./users/marijan/base.nix
-                ./users/marijan/home.nix
                 ./environments/work.nix
                 ./options/wireless.nix
               ];
-              programs.home-manager.enable = true;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.marijan = import ./dotfiles/work.nix;
+              home-manager.users.marijan = { imports = [ ./users/marijan/home.nix ./dotfiles/work.nix ]; };
               # home-manager.extraSpecialArgs = { inherit splitpkgs; };
             })
           ];
