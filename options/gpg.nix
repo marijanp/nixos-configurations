@@ -1,7 +1,7 @@
 { pkgs,  ... }:
 {
-  options.programs.gnupg.agent = {
+  programs.gnupg.agent = {
     enable = true;
-    defaultPinentryFlavor = "curses";
+    pinentryFlavor = "curses";
   };
 }
