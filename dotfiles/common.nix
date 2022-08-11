@@ -64,6 +64,7 @@
   home.packages = with pkgs; [
     curl
     gnupg
+    lazygit
     tmate
     unzip
     wget
