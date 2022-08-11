@@ -9,7 +9,7 @@
     "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
   ];
   nix.binaryCaches = [
-    "https://hydra.iohk.io"
+    "https://cache.iog.io"
     "https://iohk.cachix.org"
   ];
   nix.buildCores = 4;
