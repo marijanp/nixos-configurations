@@ -49,8 +49,7 @@
       inoremap <Down> <NOP>
       inoremap <Left> <NOP>
       inoremap <Right> <NOP>
-      inoremap <Esc> <NOP>
-      vnoremap <Esc> <NOP>
+      vnoremap q :normal ^@q<CR>
       set t_BE=                 "Fix paste bug triggered by the above inoremaps
       nnoremap <C-Z> :Lex<CR>:vertical resize 50<CR><C-C>
       set tabstop=2             "intendation width to 2 spaces
