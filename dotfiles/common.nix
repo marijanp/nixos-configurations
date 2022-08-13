@@ -29,6 +29,10 @@
     enable = true;
     userName = "Marijan Petričević";
     userEmail = "marijan.petricevic94@gmail.com";
+    signing = {
+      key = "0xEFF1AB41802F3FA7";
+      signByDefault = true;
+    };
     extraConfig = {
       init.defaultBranch = "main";
     };
