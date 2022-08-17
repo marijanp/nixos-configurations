@@ -36,54 +36,12 @@
     {
       "before": ["j","k"],
       "after":  ["<ESC>", "l", "workbench.action.files.save"]
-    },
-    {
-      "before": ["<Up>"],
-      "after":  ["<NOP>"]
-    },
-    {
-      "before": ["<Down>"],
-      "after":  ["<NOP>"]
-    },
-    {
-      "before": ["<Right>"],
-      "after":  ["<NOP>"]
-    },
-    {
-      "before": ["<Left>"],
-      "after":  ["<NOP>"]
-    },
-    {
-      "before": ["<ESC>"],
-      "after":  ["<NOP>"]
-    }
-  ],
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["<Up>"],
-      "after":  ["<NOP>"]
-    },
-    {
-      "before": ["<Down>"],
-      "after":  ["<NOP>"]
-    },
-    {
-      "before": ["<Right>"],
-      "after":  ["<NOP>"]
-    },
-    {
-      "before": ["<Left>"],
-      "after":  ["<NOP>"]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": ["j","k"],
       "after":  ["<ESC>", "l", "workbench.action.files.save"]
-    },
-    {
-      "before": ["<ESC>"],
-      "after":  ["<NOP>"]
     }
   ],
   "workbench.colorTheme": "One Dark Pro",
