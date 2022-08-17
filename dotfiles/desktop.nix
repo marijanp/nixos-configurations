@@ -9,6 +9,7 @@
 
   home.file.".config/xmonad/xmonad.hs".source = ./xmonad.hs;
   home.file.".xmobarrc".source = ./xmobar.hs;
+  home.file.".config/rofi/nord.rasi".source = ./nord.rasi;
 
   programs.alacritty = {
     enable = true;
@@ -27,14 +28,15 @@
     gopass
     gopass-jsonapi
     hledger
-    material-icons
     niv
-    noto-fonts-emoji
     qemu
-    roboto
-    roboto-mono
     solaar
     thunderbird
+    # fonts
+    roboto
+    roboto-mono
+    noto-fonts-emoji
+    # material-icons
     # xmonad related
     haskellPackages.xmobar
     pamixer
