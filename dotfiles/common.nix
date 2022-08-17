@@ -5,6 +5,7 @@
     enable = true;
     shellAliases = {
       vim = "vim -X";
+      switch-yubi = ''gpg-connect-agent "scd serialno" "learn --force" /bye'';
     };
     profileExtra = ''
       export PS1="📅 \d ⌚️ \A\n\[\e[36m\]\u@\H\[\e[m\] [\w]\$ "
