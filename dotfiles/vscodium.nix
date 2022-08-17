@@ -16,8 +16,6 @@ in
       jnoortheen.nix-ide
       haskell.haskell
       justusadam.language-haskell
-      #llvm-vs-code-extensions.vscode-clangd
-      #ms-python.python
       gruntfuggly.todo-tree
     ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
