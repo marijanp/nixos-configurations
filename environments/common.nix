@@ -8,7 +8,5 @@
     ../services/ssh.nix
     ../services/avahi.nix
   ];
-
   programs.vim.defaultEditor = true;
-  services.udev.packages = [ pkgs.yubikey-personalization ];
 }

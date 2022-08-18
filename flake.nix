@@ -27,6 +27,7 @@
                 ./users/marijan/base.nix
                 ./environments/work.nix
                 ./options/wireless.nix
+                ./services/yubikey.nix
               ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
