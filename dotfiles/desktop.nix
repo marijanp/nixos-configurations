@@ -5,8 +5,6 @@
     ./vscodium.nix
   ];
 
-  fonts.fontconfig.enable = true;
-
   programs.alacritty = {
     enable = true;
     settings = {
@@ -57,8 +55,8 @@
     solaar
     thunderbird
     # fonts
+    # iosevka
     roboto
-    roboto-mono
     noto-fonts-emoji
     # material-icons
     # xmonad related

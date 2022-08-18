@@ -43,6 +43,8 @@
     extraConfig = builtins.readFile ./.vimrc;
   };
 
+  fonts.fontconfig.enable = true;
+
   home.packages = with pkgs; [
     curl
     gnupg
@@ -51,5 +53,7 @@
     unzip
     wget
     zip
+    # fonts
+    roboto-mono
   ];
 }
