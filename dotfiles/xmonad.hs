@@ -17,6 +17,7 @@ xmonadConfig = def {
   , terminal = "alacritty"
   , normalBorderColor = "#c8d6e5"
   , focusedBorderColor = "#48dbfb"
+  , workspaces = ["1:term","2:web","3:code","4:chat"] ++ (show <$> [5..9])
   , manageHook = manageHookConfig
   }
   `additionalKeysP`
@@ -31,7 +32,11 @@ xmonadConfig = def {
   ]
 
 manageHookConfig = composeAll [
-    className =? "control"         --> doFloat
+    className =? "firefox"         --> doShift "2:web"
+  , className =? "alacritty"       --> doShift "1:term"
+  , className =? "element-desktop" --> doShift "4:chat"
+  , className =? "vscodium"        --> doShift "3:code"
+  , className =? "control"         --> doFloat
   , className =? "error"           --> doFloat
   , className =? "file_progress"   --> doFloat
   , className =? "dialog"          --> doFloat
