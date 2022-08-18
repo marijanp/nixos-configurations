@@ -7,8 +7,6 @@
 
   fonts.fontconfig.enable = true;
 
-  home.file.".config/rofi/nord.rasi".source = ./nord.rasi;
-
   programs.alacritty = {
     enable = true;
     settings = {
@@ -36,6 +34,11 @@
     extraConfig = builtins.readFile ./xmobar.hs;
   };
 
+  programs.rofi = {
+    enable = true;
+    theme = ./nord.rasi;
+  };
+
   home.packages = with pkgs; [
     cachix
     element-desktop
@@ -55,7 +58,6 @@
     # xmonad related
     pamixer
     light
-    rofi
     xob
   ];
 
