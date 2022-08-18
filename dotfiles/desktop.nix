@@ -7,8 +7,6 @@
 
   fonts.fontconfig.enable = true;
 
-  home.file.".config/xmonad/xmonad.hs".source = ./xmonad.hs;
-  home.file.".xmobarrc".source = ./xmobar.hs;
   home.file.".config/rofi/nord.rasi".source = ./nord.rasi;
 
   programs.alacritty = {
@@ -19,6 +17,23 @@
         size = 11;
       };
     };
+  };
+
+  xsession = {
+    enable = true;
+    windowManager.xmonad = {
+      enable = true;
+      extraPackages = hsPkgs: with hsPkgs; [
+        xmobar
+      ];
+      enableContribAndExtras = true;
+      config = ./xmonad.hs;
+    };
+  };
+
+  programs.xmobar = {
+    enable = true;
+    extraConfig = builtins.readFile ./xmobar.hs;
   };
 
   home.packages = with pkgs; [
@@ -38,7 +53,6 @@
     noto-fonts-emoji
     # material-icons
     # xmonad related
-    haskellPackages.xmobar
     pamixer
     light
     rofi
