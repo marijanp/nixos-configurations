@@ -55,11 +55,6 @@
     qemu
     solaar
     thunderbird
-    # fonts
-    # iosevka
-    roboto
-    noto-fonts-emoji
-    # material-icons
     # xmonad related
     pamixer
     light
