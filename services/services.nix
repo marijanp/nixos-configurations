@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 
 let
-  db_user="split";
-  db_pass="split_ventures";
-  documize_db_name="documize";
-  hydra_db_name="hydra";
+  db_user = "split";
+  db_pass = "split_ventures";
+  documize_db_name = "documize";
+  hydra_db_name = "hydra";
 in
 {
   services.postgresql = {
@@ -29,7 +29,7 @@ in
     hydraURL = "split.local"; # externally visible URL
     notificationSender = "marijan.petricevic@icloud.com"; # e-mail of hydra service
     # a standalone hydra will require you to unset the buildMachinesFiles list to avoid using a nonexistant /etc/nix/machines
-    buildMachinesFiles = [];
+    buildMachinesFiles = [ ];
     # you will probably also want, otherwise *everything* will be built from scratch
     useSubstitutes = true;
     port = 3000;

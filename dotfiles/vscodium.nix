@@ -1,8 +1,9 @@
 { pkgs, lib, ... }:
-let 
-  codium-settings-path = if pkgs.stdenv.isDarwin
-                           then "Library/Application\ Support/VSCodium/User/settings.json"
-                           else ".config/VSCodium/User/settings.json";
+let
+  codium-settings-path =
+    if pkgs.stdenv.isDarwin
+    then "Library/Application\ Support/VSCodium/User/settings.json"
+    else ".config/VSCodium/User/settings.json";
 in
 {
   programs.vscode = {

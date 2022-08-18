@@ -10,10 +10,10 @@
 
   outputs = { self, nixpkgs, home-manager, splitpkgs }: {
     nixosConfigurations = {
-      split =  nixpkgs.lib.nixosSystem {
+      split = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules =
-          [ 
+          [
             nixpkgs.nixosModules.notDetected
             home-manager.nixosModules.home-manager
             ({ pkgs, ... }: {
@@ -36,28 +36,29 @@
           ];
       };
       splitberry = {
-        modules  = [
+        modules = [
           nixpkgs.nixosModules.notDetected
           ({ pkgs, ... }: {
-              system.stateVersion = "22.05";
-              # Let 'nixos-version --json' know about the Git revision of this flake.
-              system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
-              imports = [
-                ./machines/splitberry/hardware-configuration.nix
-                ./users/marijan/base.nix
-                ./environments/common.nix
-                ./options/wireless.nix
-                ./services/nastavi.nix
-              ];
+            system.stateVersion = "22.05";
+            # Let 'nixos-version --json' know about the Git revision of this flake.
+            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+            imports = [
+              ./machines/splitberry/hardware-configuration.nix
+              ./users/marijan/base.nix
+              ./environments/common.nix
+              ./options/wireless.nix
+              ./services/nastavi.nix
+            ];
           })
         ];
       };
     };
     qemu-image =
-      let nixpkgsSource = nixpkgs.sourceInfo.outPath;
-          system = "x86_64-linux";
-          pkgs = nixpkgs.legacyPackages.${system};
-          lib = pkgs.lib;
+      let
+        nixpkgsSource = nixpkgs.sourceInfo.outPath;
+        system = "x86_64-linux";
+        pkgs = nixpkgs.legacyPackages.${system};
+        lib = pkgs.lib;
       in
       import (nixpkgsSource + "/nixos/lib/make-disk-image.nix") {
         inherit pkgs lib;

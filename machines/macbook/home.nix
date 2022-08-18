@@ -1,6 +1,6 @@
 let
   sources = import ./nix/sources.nix;
-  nixpkgs = import sources.nixpkgs {};
+  nixpkgs = import sources.nixpkgs { };
 in
 { pkgs ? nixpkgs, ... }:
 {
