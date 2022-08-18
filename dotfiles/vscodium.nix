@@ -11,7 +11,6 @@ in
     package = pkgs.vscodium;
     extensions = (with pkgs.vscode-extensions; [
       vscodevim.vim
-      eamodio.gitlens
       zhuangtongfa.material-theme
       pkief.material-icon-theme
       jnoortheen.nix-ide

@@ -1,7 +1,7 @@
 {
   "git.autofetch": true,
   "editor.fontFamily": "Roboto Mono",
-  "editor.fontSize": "15",
+  "editor.fontSize": 15,
   "editor.tabSize": 2,
   "editor.minimap.maxColumn": 80,
   "editor.detectIndentation": false,
@@ -67,5 +67,6 @@
   },
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.fontFamily": "Roboto Mono",
-  "terminal.integrated.fontSize": 15
+  "terminal.integrated.fontSize": 15,
+  "scm.inputFontSize": 15
 }
