@@ -23,7 +23,7 @@ xmonadConfig = def {
   `additionalKeysP`
   [ ("M-f", spawn "firefox")
   , ("M-e", spawn "codium")
-  , ("M-d", spawn "rofi -show window -theme nord")
+  , ("M-d", spawn "rofi -show run -theme nord")
   , ("<XF86AudioRaiseVolume>", raiseVolume 2 >> pure ())
   , ("<XF86AudioLowerVolume>", lowerVolume 2 >> pure ())
   , ("<XF86AudioMute>", toggleMute >> pure ())
