@@ -51,6 +51,7 @@
     gopass
     gopass-jsonapi
     hledger
+    mattermost-desktop
     niv
     qemu
     solaar
