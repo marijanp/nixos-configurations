@@ -32,19 +32,20 @@ xmonadConfig = def {
   ]
 
 manageHookConfig = composeAll [
-    className =? "firefox"         --> doShift "2:web"
-  , className =? "alacritty"       --> doShift "1:term"
-  , className =? "element-desktop" --> doShift "4:chat"
-  , className =? "vscodium"        --> doShift "3:code"
-  , className =? "control"         --> doFloat
-  , className =? "error"           --> doFloat
-  , className =? "file_progress"   --> doFloat
-  , className =? "dialog"          --> doFloat
-  , className =? "download"        --> doFloat
-  , className =? "Gimp"            --> doFloat
-  , className =? "Update"          --> doFloat
-  , className =? "notification"    --> doFloat
-  , className =? "confirm"         --> doFloat
-  , className =? "splash"          --> doFloat
-  , className =? "toolbar"         --> doFloat
+    className =? "firefox"            --> doShift "2:web"
+  , className =? "alacritty"          --> doShift "1:term"
+  , className =? "element-desktop"    --> doShift "4:chat"
+  , className =? "mattermost-desktop" --> doShift "4:chat"
+  , className =? "vscodium"           --> doShift "3:code"
+  , className =? "control"            --> doFloat
+  , className =? "error"              --> doFloat
+  , className =? "file_progress"      --> doFloat
+  , className =? "dialog"             --> doFloat
+  , className =? "download"           --> doFloat
+  , className =? "Gimp"               --> doFloat
+  , className =? "Update"             --> doFloat
+  , className =? "notification"       --> doFloat
+  , className =? "confirm"            --> doFloat
+  , className =? "splash"             --> doFloat
+  , className =? "toolbar"            --> doFloat
   ] 
