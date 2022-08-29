@@ -16,12 +16,12 @@
         modules =
           [
             nixpkgs.nixosModules.notDetected
-              (import ./machines/split/hardware-configuration.nix)
-              (import ./machines/split/networking.nix)
-              (import ./users/marijan/base.nix)
-              (import ./environments/work.nix)
-              (import ./options/wireless.nix)
-              (import ./services/yubikey.nix)
+            (import ./machines/split/hardware-configuration.nix)
+            (import ./machines/split/networking.nix)
+            (import ./users/marijan/base.nix)
+            (import ./environments/work.nix)
+            (import ./options/wireless.nix)
+            (import ./services/yubikey.nix)
             home-manager.nixosModules.home-manager
             ({ pkgs, ... }: {
               system.stateVersion = "22.05";
@@ -40,7 +40,7 @@
             })
           ];
       };
-      
+
       splitpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules =
@@ -93,7 +93,7 @@
           })
         ];
       };
-};
+    };
     qemu-image =
       let
         nixpkgsSource = nixpkgs.sourceInfo.outPath;
