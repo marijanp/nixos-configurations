@@ -16,23 +16,26 @@
         modules =
           [
             nixpkgs.nixosModules.notDetected
+              (import ./machines/split/hardware-configuration.nix)
+              (import ./machines/split/networking.nix)
+              (import ./users/marijan/base.nix)
+              (import ./environments/work.nix)
+              (import ./options/wireless.nix)
+              (import ./services/yubikey.nix)
             home-manager.nixosModules.home-manager
             ({ pkgs, ... }: {
               system.stateVersion = "22.05";
               # Let 'nixos-version --json' know about the Git revision of this flake.
               system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
               nix.registry.nixpkgs.flake = nixpkgs;
-              imports = [
-                ./machines/split/hardware-configuration.nix
-                ./machines/split/networking.nix
-                ./users/marijan/base.nix
-                ./environments/work.nix
-                ./options/wireless.nix
-                ./services/yubikey.nix
-              ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.marijan = { imports = [ ./users/marijan/home.nix ./dotfiles/work.nix ]; };
+              home-manager.users.marijan = {
+                imports = [
+                  ./users/marijan/home.nix
+                  ./dotfiles/work.nix
+                ];
+              };
               # home-manager.extraSpecialArgs = { inherit splitpkgs; };
             })
           ];
