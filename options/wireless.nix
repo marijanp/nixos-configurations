@@ -34,5 +34,8 @@
     "NOVUS" = {
       pskRaw = "c99c6ac36851dddf610d042fd19729cad522bb96b65540b0a8293d38bbfe3bfa";
     };
+    "Bava Bar" = {
+      pskRaw = "41ee6cf3cd5b0a02accecf96b70d8f77e8489d4d209cdb5fc8ab6adf482ca9d5";
+    };
   };
 }
