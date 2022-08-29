@@ -5,6 +5,7 @@
     ../options/sound.nix
   ];
 
+  programs.dconf.enable = true;
   services.xserver = {
     enable = true;
     xkbOptions = "eurosign:e";

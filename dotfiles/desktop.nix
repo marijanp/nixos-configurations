@@ -5,6 +5,14 @@
     ./vscodium.nix
   ];
 
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.arc-theme;
+      name = "Arc-Dark";
+    };
+  };
+
   programs.alacritty = {
     enable = true;
     settings = {
