@@ -66,7 +66,7 @@
     thunderbird
     # xmonad related
     pamixer
-    light
+    brightnessctl
     xob
   ];
 
