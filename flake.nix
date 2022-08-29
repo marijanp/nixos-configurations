@@ -2,13 +2,14 @@
   description = "marijanp's NixOS system configurations";
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/nixos-22.05;
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
     home-manager.url = github:nix-community/home-manager/release-22.05;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     splitpkgs.url = "git+ssh://git@github.com/marijanp/splitpkgs.git";
     splitpkgs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, splitpkgs }: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, splitpkgs }: {
     nixosConfigurations = {
       split = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -36,6 +37,42 @@
             })
           ];
       };
+      
+      splitpad = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules =
+          [
+            # nixpkgs.nixosModules.notDetected
+            nixos-hardware.nixosModules.common-cpu-amd
+            nixos-hardware.nixosModules.common-cpu-amd-pstate # Enables the amd cpu scaling
+            nixos-hardware.nixosModules.common-pc-laptop
+            nixos-hardware.nixosModules.common-pc-laptop-acpi_call
+            nixos-hardware.nixosModules.common-pc-laptop-ssd
+            nixos-hardware.nixosModules.lenovo-thinkpad
+            (import ./machines/splitpad/hardware-configuration.nix)
+            (import ./machines/splitpad/networking.nix)
+            (import ./machines/splitpad/bluetooth.nix)
+            (import ./users/marijan/base.nix)
+            (import ./environments/work.nix)
+            (import ./services/yubikey.nix)
+            home-manager.nixosModules.home-manager
+            ({ pkgs, ... }: {
+              system.stateVersion = "22.05";
+              # Let 'nixos-version --json' know about the Git revision of this flake.
+              system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+              nix.registry.nixpkgs.flake = nixpkgs; # pin nix flake registry, to avoid downloading the latest all the time
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.marijan = {
+                imports = [
+                  ./users/marijan/home.nix
+                  ./dotfiles/work.nix
+                ];
+              };
+            })
+          ];
+      };
+
       splitberry = {
         modules = [
           nixpkgs.nixosModules.notDetected
@@ -53,7 +90,7 @@
           })
         ];
       };
-    };
+};
     qemu-image =
       let
         nixpkgsSource = nixpkgs.sourceInfo.outPath;

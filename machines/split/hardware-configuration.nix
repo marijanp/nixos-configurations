@@ -18,6 +18,11 @@
   hardware.opengl.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
 
+  services.xserver = {
+    videoDrivers = [ "nvidia" "intel" ];
+    layout = "us+keypad(x11)";
+  };
+
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
