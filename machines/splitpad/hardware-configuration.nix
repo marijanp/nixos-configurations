@@ -11,6 +11,7 @@
 
   boot.kernelPackages = pkgs.linuxPackages_5_18;
 
+  hardware.opengl.enable = true;
   hardware.enableAllFirmware = true;
   hardware.video.hidpi.enable = true;
   services.xserver.dpi = 180;
