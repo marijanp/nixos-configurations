@@ -5,6 +5,7 @@
     enable = true;
     shellAliases = {
       switch-yubi = ''gpg-connect-agent "scd serialno" "learn --force" /bye'';
+      lg = "lazygit";
     };
     profileExtra = ''
       export PS1="📅 \d ⌚️ \A\n\[\e[36m\]\u@\H\[\e[m\] [\w]\$ "
