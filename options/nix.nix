@@ -4,6 +4,7 @@
     package = pkgs.nixVersions.nix_2_9;
     extraOptions = ''
       experimental-features = nix-command flakes
+      netrc-file = ${./netrc}
     '';
     settings = {
       cores = 4;
@@ -11,11 +12,10 @@
       sandbox = true;
       trusted-substituters = [
         "https://cache.iog.io"
-        "https://private-ardanalabs.cachix.org"
+        "https://cache.nixos.org"
       ];
       trusted-public-keys = [
         "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-        "private-ardanalabs.cachix.org-1:BukERsr5ezLsqNT1T7zlS7i1+5YHsuxNTdvcgaI7I6Q="
       ];
     };
   };
