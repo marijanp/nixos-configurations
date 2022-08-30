@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  services.logind.lidSwitch = "ignore";
+  services.logind.lidSwitch = "lock";
   
   boot.kernelPackages = pkgs.linuxPackages_5_18;
   hardware.opengl.enable = true;
