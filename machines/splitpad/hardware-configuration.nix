@@ -7,6 +7,8 @@
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
+
+  services.logind.lidSwitch = "ignore";
   
   boot.kernelPackages = pkgs.linuxPackages_5_18;
   hardware.opengl.enable = true;
