@@ -45,7 +45,7 @@
         system = "x86_64-linux";
         modules =
           [
-            # nixpkgs.nixosModules.notDetected
+            nixpkgs.nixosModules.notDetected
             nixos-hardware.nixosModules.common-cpu-amd
             nixos-hardware.nixosModules.common-cpu-amd-pstate # Enables the amd cpu scaling
             nixos-hardware.nixosModules.common-gpu-amd
