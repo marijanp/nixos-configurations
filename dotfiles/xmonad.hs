@@ -16,7 +16,7 @@ xmonadConfig = def {
     modMask = mod4Mask
   , terminal = "alacritty"
   , normalBorderColor = "#c8d6e5"
-  , focusedBorderColor = "#48dbfb"
+  , focusedBorderColor = "#64FFDA"
   , workspaces = ["1:term","2:web","3:code","4:chat"] ++ (show <$> [5..9])
   , manageHook = manageHookConfig
   }
