@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, agenix, ... }:
 {
 
   programs.bash = {
@@ -45,6 +45,7 @@
   };
 
   home.packages = with pkgs; [
+    agenix.defaultPackage.${pkgs.system}
     curl
     gnupg
     lazygit

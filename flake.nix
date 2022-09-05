@@ -5,11 +5,13 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     home-manager.url = github:nix-community/home-manager/release-22.05;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
     splitpkgs.url = "git+ssh://git@github.com/marijanp/splitpkgs.git";
     splitpkgs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, splitpkgs }: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, splitpkgs, agenix }: {
     nixosConfigurations = {
       split = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -22,6 +24,7 @@
             (import ./environments/work.nix)
             (import ./options/wireless.nix)
             (import ./services/yubikey.nix)
+            agenix.nixosModule
             home-manager.nixosModules.home-manager
             ({ pkgs, ... }: {
               system.stateVersion = "22.05";
@@ -36,7 +39,7 @@
                   ./dotfiles/work.nix
                 ];
               };
-              # home-manager.extraSpecialArgs = { inherit splitpkgs; };
+              home-manager.extraSpecialArgs = { inherit agenix; };
             })
           ];
       };
@@ -59,6 +62,7 @@
             (import ./users/marijan/base.nix)
             (import ./environments/work.nix)
             (import ./services/yubikey.nix)
+            agenix.nixosModule
             home-manager.nixosModules.home-manager
             ({ pkgs, ... }: {
               system.stateVersion = "22.05";
@@ -73,6 +77,7 @@
                   ./dotfiles/work.nix
                 ];
               };
+              home-manager.extraSpecialArgs = { inherit agenix; };
             })
           ];
       };
