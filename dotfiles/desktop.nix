@@ -59,6 +59,7 @@
     gopass
     gopass-jsonapi
     hledger
+    okular
     mattermost-desktop
     niv
     qemu
