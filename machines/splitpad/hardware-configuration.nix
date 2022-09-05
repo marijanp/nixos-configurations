@@ -26,9 +26,15 @@
     efi.canTouchEfiVariables = true;
   };
 
+  console = {
+    font = "ter-v24n";
+    keyMap = "us";
+    packages = with pkgs; [ terminus_font ];
+  };
+
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-amd" "thinkpad_acpi" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
