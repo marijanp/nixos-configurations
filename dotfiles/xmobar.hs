@@ -7,18 +7,18 @@ Config {
 , position = TopH 30
 , commands = [
     Run XMonadLog
+  , Run DynNetwork ["--template", "Down: <rx> kB/s Up: <tx> kB/s"
+                   ,"-_High",     "400"
+                   ,"--Low",      "10"
+                   ,"--high",     "#bbc2cf"
+                   ,"--low",      "#bbc2cf"
   , Run Volume "default" "Master" [ ] 10
-  , Run MultiCpu [ "--template" , "CPU: <total0>% <total1>% <total2>% <total3>%" ] 10
-  , Run Memory ["--template", "RAM: <usedratio>%"] 10
-  , Run DynNetwork ["-t"," Down: <rx> kB/s Up: <tx> kB/s"
-                   ,"-H","400"
-                   ,"-L","10"
-                   ,"-h","#bbc2cf"
-                   ,"-l","#bbc2cf"
-                   ,"-n","#bbc2cf"] 10
+  , Run MultiCpu    [ "--template" , "CPU: <total0>% <total1>% <total2>% <total3>%" ] 10
+  , Run Memory      ["--template", "RAM: <usedratio>%"] 10
+  , Run Date      "%a %b %_d %k:%M" "date" 60
   ]
 , sepChar = "%"
 , alignSep = "}{"
-, template = "%XMonadLog% }{ %default:Master% | %multicpu% | %memory% | %dynnetwork% | %date% "
+, template = "%XMonadLog% }{ %dynnetwork% | %default:Master% | %multicpu% | %memory% | %date% "
 }
 
