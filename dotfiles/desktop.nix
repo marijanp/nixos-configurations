@@ -55,11 +55,11 @@
   home.packages = with pkgs; [
     cachix
     element-desktop
+    evince
     firefox
     gopass
     gopass-jsonapi
     hledger
-    okular
     mattermost-desktop
     niv
     qemu
