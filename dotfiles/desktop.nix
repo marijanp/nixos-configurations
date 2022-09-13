@@ -63,6 +63,7 @@
     mattermost-desktop
     niv
     qemu
+    rclone
     solaar
     thunderbird
     # xmonad related
