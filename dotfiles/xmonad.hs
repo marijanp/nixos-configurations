@@ -27,8 +27,8 @@ xmonadConfig = def {
   , ("<XF86AudioRaiseVolume>", raiseVolume 2 >> pure ())
   , ("<XF86AudioLowerVolume>", lowerVolume 2 >> pure ())
   , ("<XF86AudioMute>", toggleMute >> pure ())
-  , ("<XF86MonBrightnessUp>", spawn "brightnessctl set +10%")
-  , ("<XF86MonBrightnessDown>", spawn "brightnessctl set 10%-")
+  , ("<XF86MonBrightnessUp>", spawn "brightnessctl set +5%")
+  , ("<XF86MonBrightnessDown>", spawn "brightnessctl set 5%-")
   ]
 
 manageHookConfig = composeAll [
