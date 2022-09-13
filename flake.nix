@@ -39,7 +39,7 @@
                   ./dotfiles/work.nix
                 ];
               };
-              home-manager.extraSpecialArgs = { inherit agenix; };
+              home-manager.extraSpecialArgs = { inherit agenix; hostName = "split"; };
             })
           ];
       };
@@ -77,7 +77,7 @@
                   ./dotfiles/work.nix
                 ];
               };
-              home-manager.extraSpecialArgs = { inherit agenix; };
+              home-manager.extraSpecialArgs = { inherit agenix; hostName = "splitpad"; };
             })
           ];
       };
