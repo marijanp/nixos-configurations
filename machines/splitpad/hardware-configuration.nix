@@ -5,22 +5,19 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  services.logind.lidSwitch = "lock";
-  
-  boot.kernelPackages = pkgs.linuxPackages_5_18;
   hardware.opengl.enable = true;
-  hardware.enableAllFirmware = true;
-  hardware.enableRedistributableFirmware = true;
-  hardware.video.hidpi.enable = true;
+
   services.xserver.dpi = 180;
   environment.variables = {
     GDK_SCALE = "2";
     GDK_DPI_SCALE = "0.5";
   };
 
+  boot.kernelPackages = pkgs.linuxPackages_5_19;
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
@@ -38,18 +35,19 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/c15c0cf2-75d0-4e95-934a-bf4f6ba08f4e";
+    {
+      device = "/dev/disk/by-uuid/c15c0cf2-75d0-4e95-934a-bf4f6ba08f4e";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/FDE5-ECBA";
+    {
+      device = "/dev/disk/by-uuid/FDE5-ECBA";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/cb4a9137-a954-4e85-a983-76d219e52e5a"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/cb4a9137-a954-4e85-a983-76d219e52e5a"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

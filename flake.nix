@@ -48,14 +48,7 @@
         system = "x86_64-linux";
         modules =
           [
-            nixpkgs.nixosModules.notDetected
-            nixos-hardware.nixosModules.common-cpu-amd
-            nixos-hardware.nixosModules.common-cpu-amd-pstate # Enables the amd cpu scaling
-            nixos-hardware.nixosModules.common-gpu-amd
-            nixos-hardware.nixosModules.common-pc-laptop
-            nixos-hardware.nixosModules.common-pc-laptop-acpi_call
-            nixos-hardware.nixosModules.common-pc-laptop-ssd
-            nixos-hardware.nixosModules.lenovo-thinkpad
+            nixos-hardware.nixosModules.lenovo-thinkpad-z13
             (import ./machines/splitpad/hardware-configuration.nix)
             (import ./machines/splitpad/networking.nix)
             (import ./machines/splitpad/bluetooth.nix)
