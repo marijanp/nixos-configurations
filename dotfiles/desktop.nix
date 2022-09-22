@@ -45,8 +45,8 @@
     enable = true;
     extraConfig = builtins.readFile (
       if hostName == "splitpad"
-        then ./xmobar_laptop.hs
-        else ./xmobar.hs
+      then ./xmobar_laptop.hs
+      else ./xmobar.hs
     );
   };
 
