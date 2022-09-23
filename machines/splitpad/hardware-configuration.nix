@@ -10,6 +10,7 @@
     ];
 
   hardware.opengl.enable = true;
+  services.logind.lidSwitch = "suspend";
 
   services.xserver.dpi = 180;
   environment.variables = {
