@@ -30,6 +30,12 @@ in
         version = "0.25.12";
         sha256 = "sha256-tgZ0PnWrSDBNKBB5bKH/Fmq6UVNSRYZ8HJdzFDgxILk=";
       }
+      {
+        name = "vscode-bazel";
+        publisher = "BazelBuild";
+        version = "0.5.0";
+        sha256 = "sha256-JJQSwU3B5C2exENdNsWEcxFSgWHnImYas4t/KLsgTj4=";
+      }
     ];
   };
 
