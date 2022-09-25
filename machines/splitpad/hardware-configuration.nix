@@ -12,7 +12,10 @@
   hardware.opengl.enable = true;
   services.logind.lidSwitch = "suspend";
 
-  services.xserver.dpi = 180;
+  services.xserver = {
+    dpi = 180;
+    libinput.touchpad.disableWhileTyping = true;
+  };
   environment.variables = {
     GDK_SCALE = "2";
     GDK_DPI_SCALE = "0.5";
