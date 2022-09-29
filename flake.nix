@@ -95,21 +95,20 @@
     };
     qemu-image =
       let
-        nixpkgsSource = nixpkgs.sourceInfo.outPath;
         system = "x86_64-linux";
         pkgs = nixpkgs.legacyPackages.${system};
         lib = pkgs.lib;
       in
-      import (nixpkgsSource + "/nixos/lib/make-disk-image.nix") {
+      import "${nixpkgs}/nixos/lib/make-disk-image.nix" {
         inherit pkgs lib;
         format = "qcow2";
         diskSize = "20000";
-        config = (import (nixpkgsSource + "/nixos/lib/eval-config.nix") {
+        config = (import "${nixpkgs}/nixos/lib/eval-config.nix" {
           inherit pkgs system;
           modules = [
             nixpkgs.nixosModules.notDetected
             home-manager.nixosModules.home-manager
-            (nixpkgsSource + "/nixos/modules/profiles/qemu-guest.nix")
+            "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
             ({ pkgs, ... }: {
               fileSystems."/".device = "/dev/disk/by-label/nixos";
               boot.loader.grub.device = "/dev/vda";
@@ -123,6 +122,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.marijan = import ./dotfiles/common.nix;
+              home-manager.extraSpecialArgs = { inherit agenix; hostName = "qemu-image"; };
             })
           ];
         }).config;
