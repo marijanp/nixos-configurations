@@ -15,6 +15,7 @@
   services.xserver = {
     dpi = 180;
     libinput.touchpad.disableWhileTyping = true;
+    libinput.touchpad.tapping = false;
   };
   environment.variables = {
     GDK_SCALE = "2";
