@@ -13,15 +13,8 @@
     };
   };
 
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      font = {
-        normal.family = "Roboto Mono";
-        size = 11;
-      };
-    };
-  };
+  programs.alacritty.enable = true;
+  home.file.".config/alacritty/alacritty.yml".source = ./alacritty.yml;
 
   # allows startx to start xmonad, because home-manager puts
   # all xsession related stuff in .xsession
