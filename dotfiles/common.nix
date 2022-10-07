@@ -42,7 +42,10 @@
   programs.vim = {
     enable = true;
     extraConfig = builtins.readFile ./.vimrc;
+    plugins = [ pkgs.vimPlugins.coc-nvim ];
   };
+
+  home.file.".vim/coc-setings.json".source = ./coc-settings.json;
 
   home.packages = with pkgs; [
     agenix.defaultPackage.${pkgs.system}
@@ -53,5 +56,6 @@
     unzip
     wget
     zip
+    nodejs
   ];
 }
