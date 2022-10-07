@@ -1,4 +1,4 @@
-{ pkgs, agenix, ... }:
+{ pkgs, lib, agenix, hostName, ... }:
 {
 
   programs.bash = {
@@ -6,7 +6,19 @@
     shellAliases = {
       switch-yubi = ''gpg-connect-agent "scd serialno" "learn --force" /bye'';
       lg = "lazygit";
-    };
+    } //
+    lib.optionalAttrs (hostName == "splitpad") (
+      let
+        roamAddress = "F0:F6:C1:30:24:FA";
+        airpodsAddress = "7C:C1:80:4F:7D:85";
+      in
+      {
+        connect-airpods = "bluetoothctl connect ${airpodsAddress}";
+        disconnect-airpods = "bluetootctl disconnect ${airpodsAddress}";
+        connect-roam = "bluetoothctl connect ${roamAddress}";
+        disconnect-roam = "bluetoothctl disconnect ${roamAddress}";
+      }
+    );
     profileExtra = ''
       export PS1="📅 \d ⌚️ \A\n\[\e[36m\]\u@\H\[\e[m\] [\w]\$ "
     '';
