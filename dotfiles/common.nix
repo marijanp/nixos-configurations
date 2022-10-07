@@ -39,10 +39,19 @@
     };
   };
 
+  programs.neovim = {
+    enable = true;
+    extraConfig = builtins.readFile ./.vimrc;
+    plugins = with pkgs.vimPlugins; [
+      vim-nix
+      nvim-lspconfig
+      vim-airline
+    ];
+  };
+
   programs.vim = {
     enable = true;
     extraConfig = builtins.readFile ./.vimrc;
-    plugins = [ pkgs.vimPlugins.coc-nvim ];
   };
 
   home.file.".vim/coc-setings.json".source = ./coc-settings.json;
@@ -56,6 +65,5 @@
     unzip
     wget
     zip
-    nodejs
   ];
 }
