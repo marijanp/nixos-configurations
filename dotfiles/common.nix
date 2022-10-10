@@ -14,7 +14,7 @@
       in
       {
         connect-airpods = "bluetoothctl connect ${airpodsAddress}";
-        disconnect-airpods = "bluetootctl disconnect ${airpodsAddress}";
+        disconnect-airpods = "bluetoothctl disconnect ${airpodsAddress}";
         connect-roam = "bluetoothctl connect ${roamAddress}";
         disconnect-roam = "bluetoothctl disconnect ${roamAddress}";
       }
