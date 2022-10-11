@@ -11,7 +11,7 @@
     splitpkgs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, splitpkgs, agenix }: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, splitpkgs, agenix }@inputs: {
     nixosConfigurations = {
       split = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -30,7 +30,6 @@
               system.stateVersion = "22.05";
               # Let 'nixos-version --json' know about the Git revision of this flake.
               system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
-              nix.registry.nixpkgs.flake = nixpkgs;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.marijan = {
@@ -42,6 +41,7 @@
               home-manager.extraSpecialArgs = { inherit agenix; hostName = "split"; };
             })
           ];
+        specialArgs = { inherit inputs;  hostName = "split"; };
       };
 
       splitpad = nixpkgs.lib.nixosSystem {
@@ -61,7 +61,6 @@
               system.stateVersion = "22.05";
               # Let 'nixos-version --json' know about the Git revision of this flake.
               system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
-              nix.registry.nixpkgs.flake = nixpkgs; # pin nix flake registry, to avoid downloading the latest all the time
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.marijan = {
@@ -73,6 +72,7 @@
               home-manager.extraSpecialArgs = { inherit agenix; hostName = "splitpad"; };
             })
           ];
+        specialArgs = { inherit inputs;  hostName = "splitpad"; };
       };
 
       splitberry = {
@@ -91,6 +91,7 @@
             ];
           })
         ];
+        specialArgs = { inherit inputs;  hostName = "splitberry"; };
       };
     };
     qemu-image =
@@ -122,10 +123,11 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.marijan = import ./dotfiles/common.nix;
-              home-manager.extraSpecialArgs = { inherit agenix; hostName = "qemu-image"; };
+              home-manager.extraSpecialArgs = { inherit agenix; hostName = "split-qemu-image"; };
             })
           ];
         }).config;
+        specialArgs = { inherit inputs;  hostName = "split-qemu-image"; };
       };
   };
 }
