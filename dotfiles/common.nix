@@ -1,6 +1,10 @@
 { pkgs, lib, agenix, hostName, ... }:
 {
 
+  imports = [
+    ./nvim
+  ];
+
   programs.bash = {
     enable = true;
     shellAliases = {
@@ -51,22 +55,10 @@
     };
   };
 
-  programs.neovim = {
-    enable = true;
-    extraConfig = builtins.readFile ./.vimrc;
-    plugins = with pkgs.vimPlugins; [
-      vim-nix
-      nvim-lspconfig
-      vim-airline
-    ];
-  };
-
   programs.vim = {
     enable = true;
     extraConfig = builtins.readFile ./.vimrc;
   };
-
-  home.file.".vim/coc-setings.json".source = ./coc-settings.json;
 
   home.packages = with pkgs; [
     agenix.defaultPackage.${pkgs.system}
