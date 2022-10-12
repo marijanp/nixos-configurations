@@ -41,7 +41,7 @@
               home-manager.extraSpecialArgs = { inherit agenix; hostName = "split"; };
             })
           ];
-        specialArgs = { inherit inputs;  hostName = "split"; };
+        specialArgs = { inherit inputs; hostName = "split"; };
       };
 
       splitpad = nixpkgs.lib.nixosSystem {
@@ -72,7 +72,7 @@
               home-manager.extraSpecialArgs = { inherit agenix; hostName = "splitpad"; };
             })
           ];
-        specialArgs = { inherit inputs;  hostName = "splitpad"; };
+        specialArgs = { inherit inputs; hostName = "splitpad"; };
       };
 
       splitberry = {
@@ -91,7 +91,7 @@
             ];
           })
         ];
-        specialArgs = { inherit inputs;  hostName = "splitberry"; };
+        specialArgs = { inherit inputs; hostName = "splitberry"; };
       };
     };
     qemu-image =
@@ -127,7 +127,7 @@
             })
           ];
         }).config;
-        specialArgs = { inherit inputs;  hostName = "split-qemu-image"; };
+        specialArgs = { inherit inputs; hostName = "split-qemu-image"; };
       };
   };
 }
