@@ -18,18 +18,16 @@
         modules =
           [
             nixpkgs.nixosModules.notDetected
-            (import ./machines/split/hardware-configuration.nix)
-            (import ./machines/split/networking.nix)
-            (import ./users/marijan/base.nix)
-            (import ./environments/work.nix)
-            (import ./options/wireless.nix)
-            (import ./services/yubikey.nix)
+            ./machines/split/hardware-configuration.nix
+            ./machines/split/networking.nix
+            ./users/marijan/base.nix
+            ./environments/work.nix
+            ./options/wireless.nix
+            ./services/yubikey.nix
             agenix.nixosModule
             home-manager.nixosModules.home-manager
             ({ pkgs, ... }: {
               system.stateVersion = "22.05";
-              # Let 'nixos-version --json' know about the Git revision of this flake.
-              system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.marijan = {
@@ -49,18 +47,16 @@
         modules =
           [
             nixos-hardware.nixosModules.lenovo-thinkpad-z13
-            (import ./machines/splitpad/hardware-configuration.nix)
-            (import ./machines/splitpad/networking.nix)
-            (import ./machines/splitpad/bluetooth.nix)
-            (import ./users/marijan/base.nix)
-            (import ./environments/work.nix)
-            (import ./services/yubikey.nix)
+            ./machines/splitpad/hardware-configuration.nix
+            ./machines/splitpad/networking.nix
+            ./machines/splitpad/bluetooth.nix
+            ./users/marijan/base.nix
+            ./environments/work.nix
+            ./services/yubikey.nix
             agenix.nixosModule
             home-manager.nixosModules.home-manager
             ({ pkgs, ... }: {
               system.stateVersion = "22.05";
-              # Let 'nixos-version --json' know about the Git revision of this flake.
-              system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.marijan = {
@@ -80,8 +76,6 @@
           nixpkgs.nixosModules.notDetected
           ({ pkgs, ... }: {
             system.stateVersion = "22.05";
-            # Let 'nixos-version --json' know about the Git revision of this flake.
-            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
             imports = [
               ./machines/splitberry/hardware-configuration.nix
               ./users/marijan/base.nix
