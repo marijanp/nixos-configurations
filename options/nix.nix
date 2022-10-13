@@ -6,7 +6,6 @@
     '';
 
     settings = {
-      cores = 4;
       trusted-users = [ "root" "marijan" ];
       sandbox = true;
       trusted-substituters = [
