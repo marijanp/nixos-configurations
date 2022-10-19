@@ -13,8 +13,7 @@
     wireless = {
       interfaces = [ "wlp1s0" ];
     };
-    # defaultGateway = "192.168.1.1";
-    nameservers = [ "8.8.8.8" ];
+    nameservers = [ "8.8.8.8" "8.8.4.4" ];
     useDHCP = false;
   };
 }
