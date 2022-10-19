@@ -33,6 +33,7 @@
             cmd = { "haskell-language-server", "--lsp" }
           }
           require'lspconfig'.rnix.setup{}
+          require'lspconfig'.purescriptls.setup{}
         '';
       }
     ];
