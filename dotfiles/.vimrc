@@ -1,7 +1,12 @@
-:inoremap jk <Esc>l:w<CR>
-:vnoremap jk <Esc>l:w<CR>
+inoremap jk <Esc>l:w<CR>
+vnoremap jk <Esc>l:w<CR>
+"after recording a macro to q, select the lines in visual mode and apply the macro.
+"To record a macro do : qq <your-sequence-here> q -> select lines in visual mode -> press 'q' to apply
 vnoremap q :normal ^@q<CR>
+"opens the file tree
 nnoremap <C-Z> :Lex<CR>:vertical resize 40<CR><C-C>
+"fast search for last opened files
+noremap <C-B> :ls t<CR>:b<Space>
 set tabstop=2             "intendation width to 2 spaces
 set expandtab             "use spaces instead of tab
 set shiftwidth=2          "autoindent with 2 spaces
