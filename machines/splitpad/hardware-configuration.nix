@@ -22,7 +22,7 @@
     GDK_DPI_SCALE = "0.5";
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_5_19;
+  boot.kernelPackages = pkgs.linuxPackages_6_0;
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
