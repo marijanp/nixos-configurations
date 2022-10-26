@@ -17,6 +17,7 @@
       vim-airline
       vim-nix
       haskell-vim
+      purescript-vim
       cmp_luasnip # required by nvim-cmp
       luasnip # required by nvim-cmp
       cmp-nvim-lsp # required by nvim-cmp
