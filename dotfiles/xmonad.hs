@@ -27,6 +27,7 @@ xmonadConfig = def {
   , ("<XF86AudioRaiseVolume>", raiseVolume 2 >> pure ())
   , ("<XF86AudioLowerVolume>", lowerVolume 2 >> pure ())
   , ("<XF86AudioMute>", toggleMute >> pure ())
+  , ("<XF86AudioMicMute>", spawn "amixer set Capture toggle")
   , ("<XF86MonBrightnessUp>", spawn "brightnessctl set +5%")
   , ("<XF86MonBrightnessDown>", spawn "brightnessctl set 5%-")
   ]

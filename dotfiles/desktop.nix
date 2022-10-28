@@ -65,6 +65,7 @@
     thunderbird
     # xmonad related
     pamixer
+    alsa-utils
     brightnessctl
     xob
   ];
