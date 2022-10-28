@@ -47,6 +47,7 @@
     enable = true;
     terminal = "alacritty";
     theme = ./nord.rasi;
+    extraConfig.font = "Roboto Mono 25";
   };
 
   home.packages = with pkgs; [
@@ -57,11 +58,9 @@
     gopass
     gopass-jsonapi
     hledger
-    mattermost-desktop
     niv
     qemu
     rclone
-    solaar
     thunderbird
     # xmonad related
     pamixer
