@@ -18,6 +18,7 @@ xmonadConfig = def {
   , normalBorderColor = "#c8d6e5"
   , focusedBorderColor = "#64FFDA"
   , workspaces = ["1:term","2:web","3:code","4:chat"] ++ (show <$> [5..9])
+  , layoutHook = layoutHookConfig
   , manageHook = manageHookConfig
   }
   `additionalKeysP`
@@ -48,3 +49,11 @@ manageHookConfig = composeAll [
   , className =? "splash"             --> doFloat
   , className =? "toolbar"            --> doFloat
   ] 
+
+layoutHookConfig = Full ||| tiled ||| Mirror tiled
+  where
+    tiled   = Tall nmaster delta ratio
+    nmaster = 1      -- Default number of windows in the master pane
+    ratio   = 1/2    -- Default proportion of screen occupied by master pane
+    delta   = 3/100  -- Percent of screen to increment by when resizing panes
+
