@@ -50,6 +50,13 @@
     extraConfig.font = "Roboto Mono 25";
   };
 
+  services.screen-locker = {
+    enable = true;
+    lockCmd = "xsecurelock";
+    inactiveInterval = 5;
+  };
+
+
   home.packages = with pkgs; [
     cachix
     element-desktop
