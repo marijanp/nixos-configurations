@@ -69,6 +69,7 @@
     qemu
     rclone
     thunderbird
+    xsecurelock
     # xmonad related
     pamixer
     alsa-utils
