@@ -7,6 +7,8 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 
+import XMonad.Layout.NoBorders (smartBorders)
+
 import XMonad.Actions.Volume (raiseVolume, lowerVolume, toggleMute)
 
 main :: IO ()
@@ -18,7 +20,7 @@ xmonadConfig = def {
   , normalBorderColor = "#c8d6e5"
   , focusedBorderColor = "#64FFDA"
   , workspaces = ["1:term","2:web","3:code","4:chat"] ++ (show <$> [5..9])
-  , layoutHook = layoutHookConfig
+  , layoutHook = smartBorders layoutHookConfig
   , manageHook = manageHookConfig
   }
   `additionalKeysP`
