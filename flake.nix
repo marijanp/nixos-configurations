@@ -19,10 +19,8 @@
           [
             nixpkgs.nixosModules.notDetected
             ./machines/split/hardware-configuration.nix
-            ./machines/split/networking.nix
             ./users/marijan/base.nix
             ./environments/work.nix
-            ./options/wireless.nix
             ./services/yubikey.nix
             agenix.nixosModule
             home-manager.nixosModules.home-manager
@@ -36,7 +34,7 @@
                   ./dotfiles/work.nix
                 ];
               };
-              home-manager.extraSpecialArgs = { inherit agenix; hostName = "split"; };
+              home-manager.extraSpecialArgs = { inherit agenix; };
             })
           ];
         specialArgs = { inherit inputs; hostName = "split"; };
@@ -48,15 +46,13 @@
           [
             nixos-hardware.nixosModules.lenovo-thinkpad-z13
             ./machines/splitpad/hardware-configuration.nix
-            ./machines/splitpad/networking.nix
-            ./machines/splitpad/bluetooth.nix
             ./users/marijan/base.nix
             ./environments/work.nix
             ./services/yubikey.nix
             agenix.nixosModule
             home-manager.nixosModules.home-manager
             ({ pkgs, ... }: {
-              system.stateVersion = "22.05";
+              system.stateVersion = "22.11";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.marijan = {
@@ -65,7 +61,7 @@
                   ./dotfiles/work.nix
                 ];
               };
-              home-manager.extraSpecialArgs = { inherit agenix; hostName = "splitpad"; };
+              home-manager.extraSpecialArgs = { inherit agenix; };
             })
           ];
         specialArgs = { inherit inputs; hostName = "splitpad"; };
@@ -80,7 +76,6 @@
               ./machines/splitberry/hardware-configuration.nix
               ./users/marijan/base.nix
               ./environments/common.nix
-              ./options/wireless.nix
               ./services/nastavi.nix
             ];
           })
@@ -117,7 +112,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.marijan = import ./dotfiles/common.nix;
-              home-manager.extraSpecialArgs = { inherit agenix; hostName = "split-qemu-image"; };
+              home-manager.extraSpecialArgs = { inherit agenix; };
             })
           ];
         }).config;

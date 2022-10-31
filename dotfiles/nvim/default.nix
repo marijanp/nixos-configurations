@@ -1,4 +1,4 @@
-{ pkgs, lib, agenix, hostName, ... }:
+{ pkgs, lib, agenix, ... }:
 {
   programs.neovim = {
     enable = true;

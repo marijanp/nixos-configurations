@@ -16,7 +16,6 @@ in
 
     ../../users/marijan/base.nix
     ../../environments/common.nix
-    ../../options/wireless.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -35,11 +34,9 @@ in
   };
 
   networking = {
-    hostName = "splitberry";
-    nameservers = [ "8.8.8.8" ];
     wireless = {
-      enable = true;
       interfaces = [ "wlan0" ];
     };
   };
+  imports = [ ../../options/wireless.nix ];
 }

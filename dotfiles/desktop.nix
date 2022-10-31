@@ -1,4 +1,4 @@
-{ pkgs, lib, hostName, ... }:
+{ pkgs, lib, osConfig, ... }:
 {
   imports = [
     ./common.nix
@@ -37,7 +37,7 @@
   programs.xmobar = {
     enable = true;
     extraConfig = builtins.readFile (
-      if hostName == "splitpad"
+      if osConfig.networking.hostName == "splitpad"
       then ./xmobar_laptop.hs
       else ./xmobar.hs
     );

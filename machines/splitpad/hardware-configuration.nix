@@ -7,6 +7,8 @@
   imports =
     [
       (modulesPath + "/installer/scan/not-detected.nix")
+      ./networking.nix
+      ./bluetooth.nix
     ];
 
   hardware.opengl.enable = true;
@@ -22,7 +24,7 @@
     GDK_DPI_SCALE = "0.5";
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_6_0;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
