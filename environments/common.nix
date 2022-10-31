@@ -9,7 +9,10 @@
     ../services/avahi.nix
   ];
 
-  programs.vim.defaultEditor = true;
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
 
   fonts = {
     fonts = with pkgs; [
