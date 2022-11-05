@@ -15,6 +15,7 @@
     '';
     plugins = with pkgs.vimPlugins; [
       vim-airline
+      vim-signify # show git diff
       vim-nix
       haskell-vim
       purescript-vim
