@@ -1,8 +1,9 @@
-{ pkgs, lib, osConfig, ... }:
+{ config, pkgs, lib, osConfig, inputs, ... }:
 {
   imports = [
     ./common.nix
     ./vscodium.nix
+    inputs.smos.homeManagerModules.x86_64-linux.default
   ];
 
   gtk = {
@@ -59,6 +60,11 @@
   # see https://github.com/nix-community/nix-direnv
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
+
+  programs.smos = {
+    enable = true;
+    workflowDir = "${config.home.homeDirectory}/smos-workflow";
+  };
 
   home.packages = with pkgs; [
     cachix

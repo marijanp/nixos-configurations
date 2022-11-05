@@ -9,9 +9,11 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     splitpkgs.url = "git+ssh://git@github.com/marijanp/splitpkgs.git";
     splitpkgs.inputs.nixpkgs.follows = "nixpkgs";
+    smos.url = "github:NorfairKing/smos/flake";
+    smos.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, splitpkgs, agenix }@inputs: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, splitpkgs, agenix, ... }@inputs: {
     nixosConfigurations = {
       split = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -61,7 +63,7 @@
                   ./dotfiles/work.nix
                 ];
               };
-              home-manager.extraSpecialArgs = { inherit agenix; };
+              home-manager.extraSpecialArgs = { inherit agenix inputs; };
             })
           ];
         specialArgs = { inherit inputs; hostName = "splitpad"; };
