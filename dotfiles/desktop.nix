@@ -53,7 +53,7 @@
 
   services.screen-locker = {
     enable = true;
-    lockCmd = "xsecurelock";
+    lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
     inactiveInterval = 5;
   };
 
