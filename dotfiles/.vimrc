@@ -7,6 +7,10 @@ vnoremap q :normal ^@q<CR>
 nnoremap <C-Z> :Lex<CR>:vertical resize 40<CR><C-C>
 "fast search for last opened files
 noremap <C-B> :ls t<CR>:b<Space>
+"allow copy pasting to system clipboard using Y and P
+noremap YY "+yy
+noremap Y "+y
+noremap P "+p
 set tabstop=2             "intendation width to 2 spaces
 set expandtab             "use spaces instead of tab
 set shiftwidth=2          "autoindent with 2 spaces

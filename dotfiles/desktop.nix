@@ -78,6 +78,7 @@
     qemu
     rclone
     thunderbird
+    xclip
     xsecurelock
     # xmonad related
     pamixer
