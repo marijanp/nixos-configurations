@@ -40,6 +40,12 @@
     prefix = "C-s";
     resizeAmount = 50;
     customPaneNavigationAndResize = true;
+    plugins = [
+      {
+        plugin = pkgs.tmuxPlugins.nord;
+        extraConfig = ''set -g @plugin "arcticicestudio/nord-tmux"'';
+      }
+    ];
   };
 
   programs.git = {
