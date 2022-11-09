@@ -34,7 +34,7 @@
           require'lspconfig'.hls.setup{
             cmd = { "haskell-language-server", "--lsp" }
           }
-          require'lspconfig'.rnix.setup{}
+          require'lspconfig'.nil_ls.setup{}
           require'lspconfig'.purescriptls.setup{}
         '';
       }
@@ -42,7 +42,7 @@
   };
 
   home.packages = with pkgs; [
-    rnix-lsp
+    nil
   ];
 }
 
