@@ -10,4 +10,5 @@
     };
   };
   services.udev.packages = [ pkgs.yubikey-personalization ];
+  security.polkit.enable = true;
 }
