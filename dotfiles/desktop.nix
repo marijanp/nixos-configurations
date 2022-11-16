@@ -69,12 +69,12 @@
   home.packages = with pkgs; [
     cachix
     element-desktop
-    evince
     firefox
     gopass
     gopass-jsonapi
     hledger
     niv
+    okular
     qemu
     rclone
     thunderbird
