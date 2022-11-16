@@ -48,7 +48,6 @@
     enable = true;
     terminal = "alacritty";
     theme = ./nord.rasi;
-    extraConfig.font = "Roboto Mono 25";
   };
 
   services.screen-locker = {
