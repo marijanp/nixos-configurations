@@ -63,7 +63,7 @@
 
   programs.vim = {
     enable = true;
-    extraConfig = builtins.readFile ./.vimrc;
+    extraConfig = builtins.readFile ./vim/.vimrc;
   };
 
   home.packages = with pkgs; [
@@ -71,7 +71,7 @@
     curl
     gnupg
     (lazygit.overrideAttrs (oldAttrs: {
-      patches = (oldAttrs.patches or []) ++ [
+      patches = (oldAttrs.patches or [ ]) ++ [
         (pkgs.fetchpatch {
           name = "fix-credential-prompt.patch";
           url = "https://patch-diff.githubusercontent.com/raw/jesseduffield/lazygit/pull/2239.patch";

@@ -2,7 +2,7 @@
 {
   imports = [
     ./common.nix
-    ./vscodium.nix
+    ./vscodium
     inputs.smos.homeManagerModules.x86_64-linux.default
   ];
 
@@ -15,13 +15,11 @@
   };
 
   programs.alacritty.enable = true;
-  home.file.".config/alacritty/alacritty.yml".source = ./alacritty.yml;
+  home.file."${config.xdg.configHome}/alacritty/alacritty.yml".source = ./alacritty/alacritty.yml;
 
   # allows startx to start xmonad, because home-manager puts
   # all xsession related stuff in .xsession
-  home.file.".xinitrc".text = ''
-    . $HOME/.xsession
-  '';
+  home.file.".xinitrc".text = ". ${config.home.homeDirectory}/.xsession";
 
   xsession = {
     enable = true;
@@ -31,7 +29,7 @@
         xmobar
       ];
       enableContribAndExtras = true;
-      config = ./xmonad.hs;
+      config = ./xmonad/xmonad.hs;
     };
   };
 
@@ -39,15 +37,15 @@
     enable = true;
     extraConfig = builtins.readFile (
       if osConfig.networking.hostName == "splitpad"
-      then ./xmobar_laptop.hs
-      else ./xmobar.hs
+      then ./xmonad/xmobar_laptop.hs
+      else ./xmonad/xmobar.hs
     );
   };
 
   programs.rofi = {
     enable = true;
     terminal = "alacritty";
-    theme = ./nord.rasi;
+    theme = ./rofi/nord.rasi;
   };
 
   services.screen-locker = {
