@@ -70,7 +70,15 @@
     agenix.defaultPackage.${pkgs.system}
     curl
     gnupg
-    lazygit
+    (lazygit.overrideAttrs (oldAttrs: {
+      patches = (oldAttrs.patches or []) ++ [
+        (pkgs.fetchpatch {
+          name = "fix-credential-prompt.patch";
+          url = "https://patch-diff.githubusercontent.com/raw/jesseduffield/lazygit/pull/2239.patch";
+          sha256 = "sha256-olj4xV1AU93R76drDuISQRNpxv/85GBfXJe6WgO33xc=";
+        })
+      ];
+    }))
     ripgrep
     tmate
     unzip
