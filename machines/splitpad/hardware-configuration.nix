@@ -14,6 +14,7 @@
   hardware.opengl.enable = true;
   services.logind.lidSwitch = "suspend";
 
+  # tweaks which make work on a HiDPI screen more pleasant
   services.xserver = {
     dpi = 180;
     libinput.touchpad.disableWhileTyping = true;
