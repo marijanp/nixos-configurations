@@ -1,10 +1,10 @@
 Config {
   overrideRedirect = False
-, font     = "xft:Roboto Mono:pixelsize = 15:antialias=true:hinting=true"
-, bgColor  = "#325D79"
-, fgColor  = "#EFEEEE"
+, font     = "Roboto Mono 20"
+, bgColor  = "#3b4252"
+, fgColor  = "#d8dee9"
 , allDesktops = True
-, position = TopH 30
+, position = TopH 40
 , commands = [
     Run XMonadLog
   , Run Brightness  ["--template", "Br: <percent>%"

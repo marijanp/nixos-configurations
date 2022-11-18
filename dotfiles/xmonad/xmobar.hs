@@ -1,10 +1,10 @@
 Config {
   overrideRedirect = False
-, font     = "xft:Roboto Mono:pixelsize = 16:antialias=true:hinting=true"
+, font     = "Roboto Mono 20"
 , bgColor  = "#325D79"
 , fgColor  = "#EFEEEE"
 , allDesktops = True
-, position = TopH 30
+, position = TopH 40
 , commands = [
     Run XMonadLog
   , Run DynNetwork ["--template", "Down: <rx> kB/s Up: <tx> kB/s"
