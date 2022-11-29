@@ -1,4 +1,3 @@
-{ pkgs, lib, agenix, osConfig, ... }:
 { pkgs, config, lib, agenix, osConfig, ... }:
 {
 
@@ -74,6 +73,7 @@
 
   home.packages = with pkgs; [
     agenix.defaultPackage.${pkgs.system}
+    age-plugin-yubikey
     curl
     gnupg
     (lazygit.overrideAttrs (oldAttrs: {
