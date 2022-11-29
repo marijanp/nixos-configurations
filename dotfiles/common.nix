@@ -1,4 +1,5 @@
 { pkgs, lib, agenix, osConfig, ... }:
+{ pkgs, config, lib, agenix, osConfig, ... }:
 {
 
   imports = [
@@ -65,6 +66,11 @@
     enable = true;
     extraConfig = builtins.readFile ./vim/.vimrc;
   };
+
+  home.file."${config.xdg.configHome}/lazygit/config.yml".text = ''
+    git:
+      autoFetch: false
+  '';
 
   home.packages = with pkgs; [
     agenix.defaultPackage.${pkgs.system}
