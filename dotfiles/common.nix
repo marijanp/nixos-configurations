@@ -66,17 +66,9 @@
     extraConfig = builtins.readFile ./vim/.vimrc;
   };
 
-  home.file."${config.xdg.configHome}/lazygit/config.yml".text = ''
-    git:
-      autoFetch: false
-  '';
-
-  home.packages = with pkgs; [
-    agenix.defaultPackage.${pkgs.system}
-    age-plugin-yubikey
-    curl
-    gnupg
-    (lazygit.overrideAttrs (oldAttrs: {
+  programs.lazygit = {
+    enable = true;
+    package = (pkgs.lazygit.overrideAttrs (oldAttrs: {
       patches = (oldAttrs.patches or [ ]) ++ [
         (pkgs.fetchpatch {
           name = "fix-credential-prompt.patch";
@@ -84,7 +76,17 @@
           sha256 = "sha256-olj4xV1AU93R76drDuISQRNpxv/85GBfXJe6WgO33xc=";
         })
       ];
-    }))
+    }));
+    settings = {
+      git.autoFetch = false;
+    };
+  };
+
+  home.packages = with pkgs; [
+    agenix.defaultPackage.${pkgs.system}
+    age-plugin-yubikey
+    curl
+    gnupg
     ripgrep
     tmate
     unzip
