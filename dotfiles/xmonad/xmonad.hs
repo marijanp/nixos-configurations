@@ -33,6 +33,7 @@ xmonadConfig = def {
   , ("<XF86AudioMicMute>", spawn "amixer set Capture toggle")
   , ("<XF86MonBrightnessUp>", spawn "brightnessctl set +5%")
   , ("<XF86MonBrightnessDown>", spawn "brightnessctl set 5%-")
+  , ("<Print>", spawn "scrot 'scrot-%Y-%m-%d_$wx$h.png' -e 'optipng $f' -s")
   ]
 
 manageHookConfig = composeAll [

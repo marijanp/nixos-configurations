@@ -82,6 +82,8 @@
     alsa-utils
     brightnessctl
     xob
+    scrot
+    optipng
   ];
 
 }
