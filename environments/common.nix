@@ -24,11 +24,20 @@
     enableDefaultFonts = true;
     fontconfig = {
       enable = true;
+      antialias = true;
       defaultFonts = {
         serif = [ "Roboto" ];
         sansSerif = [ "Roboto" ];
         monospace = [ "Roboto Mono" ];
         emoji = [ "Noto Color Emoji" "Noto Emoji" ];
+      };
+      hinting = {
+        enable = true;
+        style = "hintmedium";
+      };
+      subpixel = {
+        rgba = "vrgb";
+        lcdfilter = "none";
       };
     };
   };
