@@ -52,6 +52,7 @@
     enable = true;
     lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
     inactiveInterval = 5;
+    xautolock.enable = false;
   };
 
   # see https://github.com/nix-community/nix-direnv
