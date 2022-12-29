@@ -2,7 +2,6 @@
 {
   imports = [
     ./common.nix
-    ./vscodium
     inputs.smos.homeManagerModules.x86_64-linux.default
   ];
 
