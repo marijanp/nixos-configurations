@@ -9,8 +9,7 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     splitpkgs.url = "git+ssh://git@github.com/marijanp/splitpkgs.git";
     splitpkgs.inputs.nixpkgs.follows = "nixpkgs";
-    smos.url = "github:NorfairKing/smos/flake";
-    smos.inputs.nixpkgs.follows = "nixpkgs";
+    smos.url = "github:NorfairKing/smos";
   };
 
   outputs = { self, nixpkgs, nixos-hardware, home-manager, splitpkgs, agenix, ... }@inputs: {
