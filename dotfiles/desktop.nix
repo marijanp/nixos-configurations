@@ -2,6 +2,7 @@
 {
   imports = [
     ./common.nix
+    ./email.nix
     inputs.smos.homeManagerModules.x86_64-linux.default
   ];
 
@@ -74,7 +75,6 @@
     okular
     qemu
     rclone
-    thunderbird
     xclip
     xsecurelock
     # xmonad related
