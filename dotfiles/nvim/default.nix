@@ -17,6 +17,10 @@
       vim-airline
       vim-signify # show git diff
       vim-nix
+      {
+        plugin = rainbow;
+        config = "let g:rainbow_active = 1";
+      }
       haskell-vim
       purescript-vim
       cmp_luasnip # required by nvim-cmp
