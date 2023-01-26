@@ -3,8 +3,10 @@
   services.openssh = {
     enable = true;
     # Disable OpenSSH password login
-    passwordAuthentication = false;
-    permitRootLogin = "no";
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
   };
 
   users.users.marijan.openssh.authorizedKeys.keys = [

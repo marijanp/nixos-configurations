@@ -10,6 +10,8 @@
     splitpkgs.url = "git+ssh://git@github.com/marijanp/splitpkgs.git";
     splitpkgs.inputs.nixpkgs.follows = "nixpkgs";
     smos.url = "github:NorfairKing/smos";
+    feedback.url = "github:NorfairKing/feedback";
+    feedback.follows = "smos/feedback";
   };
 
   outputs = { self, nixpkgs, nixos-hardware, home-manager, splitpkgs, agenix, ... }@inputs: {
@@ -119,5 +121,10 @@
         }).config;
         specialArgs = { inherit inputs; hostName = "split-qemu-image"; };
       };
+    nixConfig = {
+      extra-substituters = [ "https://smos.cachix.org" ];
+      extra-trusted-public-keys = [ "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM=" ];
+      #allow-import-from-derivation = "true"; # needed for callCabal2Nix
+    };
   };
 }
