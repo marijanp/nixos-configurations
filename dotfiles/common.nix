@@ -11,7 +11,7 @@
       switch-yubi = ''gpg-connect-agent "scd serialno" "learn --force" /bye'';
       lg = "lazygit";
     } //
-    lib.optionalAttrs (osConfig.networking.hostName == "splitpad") (
+    lib.optionalAttrs osConfig.hardware.bluetooth.enable (
       let
         roamAddress = "F0:F6:C1:30:24:FA";
         airpodsAddress = "7C:C1:80:4F:7D:85";
