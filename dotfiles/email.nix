@@ -53,6 +53,24 @@
         passwordCommand =
           "gopass show epilentio/email/petricevic@epilentio.hr";
 
+        signature = {
+          text = ''
+            --
+            Marijan Petričević
+            Direktor / CEO
+
+            Epilentio d.o.o
+            https://www.epilentio.hr/
+
+            OIB / Personal ID: 34933283965
+            Trgovački sud / Court of Registry: Split
+            MBS / Commercial Register No. 060406392
+            Sjedište / Registered Office: Ulica Gospe od Zdravlja 34, 21260 Proložac, HR
+            Direktor/ CEO: Marijan Petričević
+          '';
+          showSignature = "append";
+        };
+
         thunderbird = {
           enable = true;
           profiles = [ "personal" ];
