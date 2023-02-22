@@ -68,15 +68,6 @@
 
   programs.lazygit = {
     enable = true;
-    package = (pkgs.lazygit.overrideAttrs (oldAttrs: {
-      patches = (oldAttrs.patches or [ ]) ++ [
-        (pkgs.fetchpatch {
-          name = "fix-credential-prompt.patch";
-          url = "https://patch-diff.githubusercontent.com/raw/jesseduffield/lazygit/pull/2239.patch";
-          sha256 = "sha256-X7WeBUI9g7Kg22iAuHCRBVhahxKtnk/cOntjMqjH9/o=";
-        })
-      ];
-    }));
     settings = {
       git.autoFetch = false;
     };
