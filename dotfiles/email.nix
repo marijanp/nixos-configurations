@@ -55,7 +55,6 @@
 
         signature = {
           text = ''
-            --
             Marijan Petričević
             Direktor / CEO
 
