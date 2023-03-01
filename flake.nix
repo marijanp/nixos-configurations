@@ -14,7 +14,7 @@
     feedback.follows = "smos/feedback";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, splitpkgs, agenix, ... }@inputs: {
+  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, agenix, ... }: {
     nixosConfigurations = {
       split = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -121,6 +121,7 @@
         }).config;
         specialArgs = { inherit inputs; hostName = "split-qemu-image"; };
       };
+
     nixConfig = {
       extra-substituters = [ "https://smos.cachix.org" ];
       extra-trusted-public-keys = [ "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM=" ];
