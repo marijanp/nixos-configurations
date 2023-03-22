@@ -72,6 +72,7 @@
     gopass-jsonapi
     hledger
     niv
+    obsidian
     okular
     qemu
     rclone
