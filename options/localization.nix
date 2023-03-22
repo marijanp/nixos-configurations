@@ -1,5 +1,5 @@
 { config, pkgs, lib, ... }:
 {
   i18n.defaultLocale = "en_US.UTF-8";
-  time.timeZone = "Europe/Berlin";
+  time.timeZone = "Europe/Zagreb";
 }
