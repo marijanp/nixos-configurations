@@ -19,7 +19,7 @@ xmonadConfig = def {
   , terminal = "alacritty"
   , normalBorderColor = "#c8d6e5"
   , focusedBorderColor = "#64FFDA"
-  , workspaces = ["1:term","2:web","3:code","4:chat"] ++ (show <$> [5..9])
+  , workspaces = ["1:web","2:code","3:chat"] ++ (show <$> [5..9])
   , layoutHook = smartBorders layoutHookConfig
   , manageHook = manageHookConfig
   }
@@ -37,9 +37,9 @@ xmonadConfig = def {
   ]
 
 manageHookConfig = composeAll [
-    className =? "firefox"            --> doShift "2:web"
-  , className =? "alacritty"          --> doShift "1:term"
-  , className =? "Element"            --> doShift "4:chat"
+    className =? "firefox"            --> doShift "1:web"
+  , className =? "alacritty"          --> doShift "2:code"
+  , className =? "Element"            --> doShift "3:chat"
   , className =? "control"            --> doFloat
   , className =? "error"              --> doFloat
   , className =? "file_progress"      --> doFloat
