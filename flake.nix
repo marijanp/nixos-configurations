@@ -25,7 +25,7 @@
             ./users/marijan/base.nix
             ./environments/work.nix
             ./services/yubikey.nix
-            agenix.nixosModule
+            agenix.nixosModules.age
             home-manager.nixosModules.home-manager
             ({ pkgs, ... }: {
               system.stateVersion = "22.05";
@@ -52,7 +52,7 @@
             ./users/marijan/base.nix
             ./environments/work.nix
             ./services/yubikey.nix
-            agenix.nixosModule
+            agenix.nixosModules.age
             home-manager.nixosModules.home-manager
             ({ pkgs, ... }: {
               system.stateVersion = "22.11";

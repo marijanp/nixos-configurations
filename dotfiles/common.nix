@@ -74,7 +74,7 @@
   };
 
   home.packages = with pkgs; [
-    agenix.defaultPackage.${pkgs.system}
+    agenix.packages.${pkgs.system}.agenix
     age-plugin-yubikey
     curl
     gnupg
