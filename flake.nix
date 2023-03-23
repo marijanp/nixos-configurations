@@ -14,6 +14,11 @@
     feedback.follows = "smos/feedback";
   };
 
+  nixConfig = {
+    extra-substituters = [ "https://smos.cachix.org" ];
+    extra-trusted-public-keys = [ "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM=" ];
+  };
+
   outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, agenix, ... }: {
     nixosConfigurations = {
       split = nixpkgs.lib.nixosSystem {
@@ -121,11 +126,5 @@
         }).config;
         specialArgs = { inherit inputs; hostName = "split-qemu-image"; };
       };
-
-    nixConfig = {
-      extra-substituters = [ "https://smos.cachix.org" ];
-      extra-trusted-public-keys = [ "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM=" ];
-      #allow-import-from-derivation = "true"; # needed for callCabal2Nix
-    };
   };
 }
