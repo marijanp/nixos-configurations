@@ -76,6 +76,7 @@
     okular
     qemu
     rclone
+    signal-desktop
     xclip
     xsecurelock
     # xmonad related
