@@ -8,7 +8,7 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      switch-yubi = ''gpg-connect-agent "scd serialno" "learn --force" /bye'';
+      switch-yubi = "gpg-connect-agent 'scd serialno' 'learn --force' /bye";
       lg = "lazygit";
     } //
     lib.optionalAttrs osConfig.hardware.bluetooth.enable (
