@@ -9,6 +9,7 @@
       (modulesPath + "/installer/scan/not-detected.nix")
       ./networking.nix
       ./bluetooth.nix
+      ./dock.nix
     ];
 
   hardware.opengl.enable = true;
@@ -16,13 +17,15 @@
 
   # tweaks which make work on a HiDPI screen more pleasant
   services.xserver = {
-    dpi = 180;
+    dpi = 255;
+    resolutions = [{ x = 2880; y = 1800; }];
+    upscaleDefaultCursor = true;
     libinput.touchpad.disableWhileTyping = true;
     libinput.touchpad.tapping = false;
   };
   environment.variables = {
     GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
+    GDK_DPI_SCALE = "0.4";
   };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
