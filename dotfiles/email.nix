@@ -56,7 +56,7 @@
         signature = {
           text = ''
             Marijan Petričević
-            Direktor / CEO
+            Direktor / Principal
 
             Epilentio d.o.o
             https://www.epilentio.hr/
