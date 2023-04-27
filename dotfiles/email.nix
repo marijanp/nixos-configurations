@@ -87,6 +87,30 @@
           tls.enable = true;
         };
       };
+
+      ventures = rec {
+        inherit realName gpg;
+        address = "petricevic@split.ventures";
+        userName = address;
+        maildir.path = "${address}";
+        passwordCommand =
+          "gopass show epilentio/email/petricevic@split.ventures";
+
+        thunderbird = {
+          enable = true;
+          profiles = [ "personal" ];
+        };
+
+        imap = {
+          host = "imap.ionos.de";
+          port = 993;
+        };
+
+        smtp = {
+          host = "smtp.ionos.de";
+          port = 465;
+        };
+      };
     };
 
 }
