@@ -111,6 +111,29 @@
           port = 465;
         };
       };
+      deliverdesk = rec {
+        inherit realName gpg;
+        address = "marijan@deliverdesk.de";
+        userName = address;
+        maildir.path = "${address}";
+        passwordCommand =
+          "gopass show email/marijan@deliverdesk.de";
+
+        thunderbird = {
+          enable = true;
+          profiles = [ "personal" ];
+        };
+
+        imap = {
+          host = "imap.ionos.de";
+          port = 993;
+        };
+
+        smtp = {
+          host = "smtp.ionos.de";
+          port = 465;
+        };
+      };
     };
 
 }
