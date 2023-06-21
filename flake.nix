@@ -12,6 +12,8 @@
     smos.url = "github:NorfairKing/smos";
     feedback.url = "github:NorfairKing/feedback";
     feedback.follows = "smos/feedback";
+    nixinate.url = "github:MatthewCroughan/nixinate";
+    nixinate.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   nixConfig = {
@@ -20,6 +22,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, agenix, ... }: {
+    apps = inputs.nixinate.nixinate.x86_64-linux self;
     nixosConfigurations = {
       split = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -50,29 +53,28 @@
 
       splitpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules =
-          [
-            nixos-hardware.nixosModules.lenovo-thinkpad-z13
-            ./machines/splitpad/hardware-configuration.nix
-            ./users/marijan/base.nix
-            ./environments/work.nix
-            ./services/yubikey.nix
-            ./services/printing.nix
-            agenix.nixosModules.age
-            home-manager.nixosModules.home-manager
-            ({ pkgs, ... }: {
-              system.stateVersion = "22.11";
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.marijan = {
-                imports = [
-                  ./users/marijan/home.nix
-                  ./dotfiles/work.nix
-                ];
-              };
-              home-manager.extraSpecialArgs = { inherit agenix inputs; };
-            })
-          ];
+        modules = [
+          nixos-hardware.nixosModules.lenovo-thinkpad-z13
+          ./machines/splitpad/hardware-configuration.nix
+          ./users/marijan/base.nix
+          ./environments/work.nix
+          ./services/yubikey.nix
+          ./services/printing.nix
+          agenix.nixosModules.age
+          home-manager.nixosModules.home-manager
+          ({ pkgs, ... }: {
+            system.stateVersion = "22.11";
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.marijan = {
+              imports = [
+                ./users/marijan/home.nix
+                ./dotfiles/work.nix
+              ];
+            };
+            home-manager.extraSpecialArgs = { inherit agenix inputs; };
+          })
+        ];
         specialArgs = { inherit inputs; hostName = "splitpad"; };
       };
 
