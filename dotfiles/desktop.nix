@@ -73,7 +73,9 @@
     hledger
     niv
     obsidian
+    obs-studio
     okular
+    pavucontrol
     qemu
     rclone
     signal-desktop
