@@ -76,22 +76,31 @@
         specialArgs = { inherit inputs; hostName = "splitpad"; };
       };
 
-      splitberry = {
+      splitberry = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
         modules = [
-          nixpkgs.nixosModules.notDetected
+          nixos-hardware.nixosModules.raspberry-pi-4
+          ./machines/splitberry/hardware-configuration.nix
+          ./machines/splitberry/networking.nix
+          ./users/marijan/base.nix
+          ./environments/common.nix
+          {
+            _module.args.nixinate = {
+              host = "192.168.1.77";
+              sshUser = "marijan";
+              buildOn = "remote"; # valid args are "local" or "remote"
+              substituteOnTarget = false; # if buildOn is "local" then it will substitute on the target, "-s"
+              hermetic = false;
+            };
+          }
           ({ pkgs, ... }: {
-            system.stateVersion = "22.05";
-            imports = [
-              ./machines/splitberry/hardware-configuration.nix
-              ./users/marijan/base.nix
-              ./environments/common.nix
-              ./services/nastavi.nix
-            ];
+            system.stateVersion = "22.11";
           })
         ];
         specialArgs = { inherit inputs; hostName = "splitberry"; };
       };
     };
+
     qemu-image =
       let
         system = "x86_64-linux";
