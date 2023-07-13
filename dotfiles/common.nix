@@ -10,6 +10,7 @@
     shellAliases = {
       switch-yubi = "gpg-connect-agent 'scd serialno' 'learn --force' /bye";
       lg = "lazygit";
+      nc = "sudo nixos-container";
     } //
     lib.optionalAttrs osConfig.hardware.bluetooth.enable (
       let
