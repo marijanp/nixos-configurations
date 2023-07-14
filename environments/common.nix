@@ -33,7 +33,7 @@
       };
       hinting = {
         enable = true;
-        style = "hintmedium";
+        style = "medium";
       };
       subpixel = {
         rgba = "vrgb";
