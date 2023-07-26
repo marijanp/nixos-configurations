@@ -58,6 +58,7 @@
       vim-nix
       haskell-vim
       purescript-vim
+      rust-vim
       # snippets
       luasnip
       cmp_luasnip
@@ -87,6 +88,15 @@
           }
           require'lspconfig'.purescriptls.setup{
             capabilities = capabilities
+          }
+          require'lspconfig'.rust_analyzer.setup{
+            settings = {
+              ['rust-analyzer'] = {
+                diagnostics = {
+                  enable = false;
+                }
+              }
+            }
           }
         '';
       }
