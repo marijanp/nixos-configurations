@@ -54,11 +54,31 @@
           }
         '';
       }
+      # cool lsp stuff
+      {
+        plugin = lsp_lines-nvim;
+        type = "lua";
+        config = ''
+          require'lsp_lines'.setup()
+        '';
+      }
       # languages
-      vim-nix
-      haskell-vim
       purescript-vim
-      rust-vim
+      {
+        plugin = nvim-treesitter.withAllGrammars;
+        type = "lua";
+        config = ''
+          require'nvim-treesitter.configs'.setup({
+            highlight = {
+              enable = true,
+            },
+            endwise = {
+              enable = true,
+            },
+          })
+        '';
+      }
+      nvim-treesitter-endwise
       # snippets
       luasnip
       cmp_luasnip
