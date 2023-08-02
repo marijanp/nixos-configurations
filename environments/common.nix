@@ -16,12 +16,12 @@
   };
 
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       roboto
       roboto-mono
       noto-fonts-emoji
     ];
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
     fontconfig = {
       enable = true;
       antialias = true;
