@@ -34,9 +34,9 @@
         xmobar
       ];
       enableContribAndExtras = true;
-      config = ./xmonad/xmonad.hs;
     };
   };
+  home.file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;
 
   programs.xmobar = {
     enable = true;
