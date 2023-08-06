@@ -14,8 +14,13 @@
     };
   };
 
-  programs.alacritty.enable = true;
-  home.file."${config.xdg.configHome}/alacritty/alacritty.yml".source = ./alacritty/alacritty.yml;
+  programs.kitty = {
+    enable = true;
+    font.name = "Roboto Mono";
+    font.size = 20;
+    theme = "Nord";
+    shellIntegration.enableBashIntegration = true;
+  };
 
   # allows startx to start xmonad, because home-manager puts
   # all xsession related stuff in .xsession
@@ -44,7 +49,7 @@
 
   programs.rofi = {
     enable = true;
-    terminal = "alacritty";
+    terminal = "kitty";
     theme = ./rofi/nord.rasi;
   };
 

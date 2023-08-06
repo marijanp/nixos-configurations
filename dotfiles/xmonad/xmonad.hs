@@ -16,7 +16,7 @@ main = xmonad . ewmhFullscreen . ewmh . xmobarProp $ xmonadConfig
 
 xmonadConfig = def {
     modMask = mod4Mask
-  , terminal = "alacritty"
+  , terminal = "kitty"
   , normalBorderColor = "#c8d6e5"
   , focusedBorderColor = "#64FFDA"
   , workspaces = ["1:web","2:code","3:chat"] ++ (show <$> [5..9])
@@ -38,8 +38,9 @@ xmonadConfig = def {
 
 manageHookConfig = composeAll [
     className =? "firefox"            --> doShift "1:web"
-  , className =? "alacritty"          --> doShift "2:code"
+  , className =? "kitty"              --> doShift "2:code"
   , className =? "Element"            --> doShift "3:chat"
+  , className =? "signal-desktop"     --> doShift "3:chat"
   , className =? "control"            --> doFloat
   , className =? "error"              --> doFloat
   , className =? "file_progress"      --> doFloat
