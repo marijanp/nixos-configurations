@@ -76,6 +76,7 @@
     gopass
     gopass-jsonapi
     hledger
+    mumble
     niv
     obsidian
     obs-studio
