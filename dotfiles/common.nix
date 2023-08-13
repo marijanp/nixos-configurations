@@ -9,9 +9,10 @@
     enable = true;
     shellAliases = {
       switch-yubi = "gpg-connect-agent 'scd serialno' 'learn --force' /bye";
-      lg = "lazygit";
       nc = "sudo nixos-container";
     } //
+    lib.optionalAttrs config.programs.lazygit.enable { lg = "lazygit"; }
+    //
     lib.optionalAttrs osConfig.hardware.bluetooth.enable (
       let
         roamAddress = "F0:F6:C1:30:24:FA";
