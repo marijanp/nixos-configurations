@@ -63,7 +63,7 @@
           agenix.nixosModules.age
           home-manager.nixosModules.home-manager
           ({ pkgs, ... }: {
-            system.stateVersion = "22.11";
+            system.stateVersion = "23.11";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.marijan = {
