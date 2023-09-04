@@ -7,8 +7,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-    splitpkgs.url = "git+ssh://git@github.com/marijanp/splitpkgs.git";
-    splitpkgs.inputs.nixpkgs.follows = "nixpkgs";
     smos.url = "github:NorfairKing/smos";
     feedback.url = "github:NorfairKing/feedback";
     feedback.follows = "smos/feedback";
