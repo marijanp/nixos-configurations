@@ -83,7 +83,6 @@
     ripgrep
     tmate
     unzip
-    wget
     zip
   ];
 }

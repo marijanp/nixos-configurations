@@ -50,6 +50,7 @@
   programs.rofi = {
     enable = true;
     terminal = "kitty";
+    font = "Roboto Mono 20";
     theme = ./rofi/nord.rasi;
   };
 
@@ -61,8 +62,10 @@
   };
 
   # see https://github.com/nix-community/nix-direnv
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
+  programs.direnv = {
+    enable = true;
+    knix-direnv.enable = true;
+  };
 
   programs.smos = {
     enable = true;
@@ -77,7 +80,6 @@
     gopass-jsonapi
     hledger
     mumble
-    niv
     obsidian
     obs-studio
     okular
@@ -86,14 +88,14 @@
     rclone
     signal-desktop
     xclip
-    xsecurelock
     # xmonad related
-    pamixer
     alsa-utils
     brightnessctl
-    xob
+    pamixer
     scrot
     optipng
+    xob
+    xsecurelock
   ];
 
 }
