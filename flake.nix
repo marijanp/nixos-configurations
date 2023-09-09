@@ -98,41 +98,5 @@
         specialArgs = { inherit inputs; hostName = "splitberry"; };
       };
     };
-
-    qemu-image =
-      let
-        system = "x86_64-linux";
-        pkgs = nixpkgs.legacyPackages.${system};
-        lib = pkgs.lib;
-      in
-      import "${nixpkgs}/nixos/lib/make-disk-image.nix" {
-        inherit pkgs lib;
-        format = "qcow2";
-        diskSize = "20000";
-        config = (import "${nixpkgs}/nixos/lib/eval-config.nix" {
-          inherit pkgs system;
-          modules = [
-            nixpkgs.nixosModules.notDetected
-            home-manager.nixosModules.home-manager
-            "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
-            ({ pkgs, ... }: {
-              fileSystems."/".device = "/dev/disk/by-label/nixos";
-              boot.loader.grub.device = "/dev/vda";
-              boot.loader.timeout = 0;
-              users.extraUsers.root.password = "";
-              system.stateVersion = "22.05";
-              imports = [
-                ./users/marijan/base.nix
-                ./environments/common.nix
-              ];
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.marijan = import ./dotfiles/common.nix;
-              home-manager.extraSpecialArgs = { inherit agenix; };
-            })
-          ];
-        }).config;
-        specialArgs = { inherit inputs; hostName = "split-qemu-image"; };
-      };
   };
 }
