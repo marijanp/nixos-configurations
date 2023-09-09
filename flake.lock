@@ -690,10 +690,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "feedback": [
-          "smos",
-          "feedback"
-        ],
         "home-manager": "home-manager_2",
         "nixinate": "nixinate",
         "nixos-hardware": "nixos-hardware",
