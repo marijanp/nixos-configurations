@@ -1,5 +1,11 @@
 {
   description = "marijanp's NixOS system configurations";
+
+  nixConfig = {
+    extra-substituters = [ "https://smos.cachix.org" ];
+    extra-trusted-public-keys = [ "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM=" ];
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
@@ -10,11 +16,6 @@
     smos.url = "github:NorfairKing/smos";
     nixinate.url = "github:MatthewCroughan/nixinate";
     nixinate.inputs.nixpkgs.follows = "nixpkgs";
-  };
-
-  nixConfig = {
-    extra-substituters = [ "https://smos.cachix.org" ];
-    extra-trusted-public-keys = [ "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM=" ];
   };
 
   outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, agenix, ... }: {

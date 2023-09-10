@@ -1,4 +1,4 @@
-{ pkgs, lib, agenix, ... }:
+{ pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
     nil
