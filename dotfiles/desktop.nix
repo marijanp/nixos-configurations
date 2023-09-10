@@ -6,6 +6,8 @@
     inputs.smos.homeManagerModules.x86_64-linux.default
   ];
 
+  programs.bash.shellAliases = { rclone = "rclone --config ${osConfig.age.secrets.rclone-drive-config.path}"; };
+
   gtk = {
     enable = true;
     theme = {
@@ -64,7 +66,7 @@
   # see https://github.com/nix-community/nix-direnv
   programs.direnv = {
     enable = true;
-    knix-direnv.enable = true;
+    nix-direnv.enable = true;
   };
 
   programs.smos = {

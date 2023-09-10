@@ -68,7 +68,7 @@
                 ./dotfiles/work.nix
               ];
             };
-            home-manager.extraSpecialArgs = { inherit agenix inputs; };
+            home-manager.extraSpecialArgs = { inherit inputs; };
           })
         ];
         specialArgs = { inherit inputs; hostName = "splitpad"; };

@@ -1,4 +1,4 @@
-{ pkgs, config, lib, agenix, osConfig, ... }:
+{ pkgs, config, lib, osConfig, inputs, ... }:
 {
 
   imports = [
@@ -76,7 +76,7 @@
   };
 
   home.packages = with pkgs; [
-    agenix.packages.${pkgs.system}.agenix
+    inputs.agenix.packages.${pkgs.system}.agenix
     age-plugin-yubikey
     curl
     gnupg
