@@ -4,7 +4,9 @@ vnoremap jk <Esc>l:w<CR>
 "To record a macro do : qq <your-sequence-here> q -> select lines in visual mode -> press 'q' to apply
 vnoremap q :normal ^@q<CR>
 "opens the file tree
-nnoremap <C-Z> :Lex<CR>:vertical resize 40<CR><C-C>
+let g:netrw_winsize = 20
+nnoremap <leader>dd :Lexplore %:p:h<CR>
+nnoremap <Leader>dc :Lexplore<CR>
 "fast search for last opened files
 noremap <C-B> :ls t<CR>:b<Space>
 "allow copy pasting to system clipboard using Y and P
