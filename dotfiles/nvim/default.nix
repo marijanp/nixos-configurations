@@ -103,6 +103,9 @@
               }
             }
           }
+          require'lspconfig'.elmls.setup{
+            capabilities = capabilities
+          }
           require'lspconfig'.nil_ls.setup{
             capabilities = capabilities
           }
