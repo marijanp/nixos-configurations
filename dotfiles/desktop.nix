@@ -6,8 +6,6 @@
     inputs.smos.homeManagerModules.x86_64-linux.default
   ];
 
-  programs.bash.shellAliases = { rclone = "rclone --config ${osConfig.age.secrets.rclone-drive-config.path}"; };
-
   gtk = {
     enable = true;
     theme = {
