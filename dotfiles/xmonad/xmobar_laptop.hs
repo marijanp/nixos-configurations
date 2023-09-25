@@ -31,6 +31,6 @@ Config {
   ]
 , sepChar = "%"
 , alignSep = "}{"
-, template = "%XMonadLog% }{  %battery% | %bright% | %default:Master% | %multicpu% | %memory% | %date% "
+, template = "%XMonadLog% }{ %multicpu% | %memory% | %battery% | %bright% | %default:Master% |  %date% "
 }
 
