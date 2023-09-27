@@ -4,4 +4,5 @@ let
 in
 {
   "rclone-drive-config.age".publicKeys = marijan.keys ++ localhost.keys;
+  "smos-google-calendar-source.age".publicKeys = marijan.keys ++ localhost.keys;
 }

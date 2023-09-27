@@ -70,6 +70,17 @@
   programs.smos = {
     enable = true;
     workflowDir = "${config.home.homeDirectory}/smos-workflow";
+    backup.enable = true;
+    calendar = {
+      enable = true;
+      sources = [
+        {
+          name = "Google";
+          destination = "calendar/google.smos";
+          source-file = osConfig.age.secrets.smos-google-calendar-source.path;
+        }
+      ];
+    };
   };
 
   home.packages = with pkgs; [
