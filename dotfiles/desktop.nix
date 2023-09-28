@@ -84,6 +84,7 @@
   };
 
   home.packages = with pkgs; [
+    arandr
     cachix
     element-desktop
     firefox
