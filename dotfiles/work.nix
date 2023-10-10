@@ -8,7 +8,7 @@
     enable = true;
     extensions = [
       { id = "lpfcbjknijpeeillifnkikgncikgfhdo"; } # nami wallet
-      { id = "djhndpllfiibmcdbnmaaahkhchcoijce"; } # casper signer
+      { id = "abkahkcbhngaebpcgfmhkoioedceoigp"; } # casper wallet
     ];
   };
 }
