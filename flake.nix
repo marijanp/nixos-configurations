@@ -25,6 +25,10 @@
         system = "x86_64-linux";
         modules =
           [
+            nixos-hardware.nixosModules.common-pc
+            nixos-hardware.nixosModules.common-cpu-amd
+            nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+            nixos-hardware.nixosModules.common-pc-ssd
             nixpkgs.nixosModules.notDetected
             ./machines/split/hardware-configuration.nix
             ./users/marijan/base.nix
@@ -33,7 +37,7 @@
             agenix.nixosModules.age
             home-manager.nixosModules.home-manager
             ({ pkgs, ... }: {
-              system.stateVersion = "22.05";
+              system.stateVersion = "23.11";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.marijan = {
@@ -42,7 +46,7 @@
                   ./dotfiles/work.nix
                 ];
               };
-              home-manager.extraSpecialArgs = { inherit agenix; };
+              home-manager.extraSpecialArgs = { inherit inputs; };
             })
           ];
         specialArgs = { inherit inputs; hostName = "split"; };

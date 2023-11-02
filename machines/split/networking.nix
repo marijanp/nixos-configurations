@@ -1,20 +1,11 @@
-{ pkgs, config, ... }:
-{
+{ pkgs, config, ... }: {
 
   networking = {
     interfaces = {
-      eno1.useDHCP = true;
-      wlp3s0u1 = {
-        useDHCP = false;
-        ipv4.addresses = [{
-          address = "192.168.1.190";
-          prefixLength = 24;
-        }];
-      };
+      wlp13s0.useDHCP = true;
     };
-    defaultGateway = "192.168.1.1";
     wireless = {
-      interfaces = [ "wlp3s0u1" ];
+      interfaces = [ "wlp13s0" ];
     };
   };
 
