@@ -101,6 +101,9 @@
               }
             }
           }
+          require'lspconfig'.typst_lsp.setup{
+            capabilities = capabilities
+          }
           require'lspconfig'.elmls.setup{
             capabilities = capabilities
           }
