@@ -49,9 +49,7 @@
         plugin = indent-blankline-nvim;
         type = "lua";
         config = ''
-          require("indent_blankline").setup {
-            show_current_context = true,
-          }
+          require'ibl'.setup()
         '';
       }
       # cool lsp stuff
