@@ -79,6 +79,11 @@
           destination = "calendar/google.smos";
           source-file = osConfig.age.secrets.smos-google-calendar-source.path;
         }
+        {
+          name = "platonic";
+          destination = "calendar/platonic-google.smos";
+          source-file = osConfig.age.secrets.smos-platonic-google-calendar-source.path;
+        }
       ];
     };
   };

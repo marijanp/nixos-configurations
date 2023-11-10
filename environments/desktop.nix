@@ -10,6 +10,11 @@
     owner = "marijan";
   };
 
+  age.secrets.smos-platonic-google-calendar-source = {
+    file = ../secrets/smos-platonic-google-calendar-source.age;
+    owner = "marijan";
+  };
+
   programs.dconf.enable = true;
   services.xserver = {
     enable = true;

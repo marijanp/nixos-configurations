@@ -7,4 +7,5 @@ in
 {
   "rclone-drive-config.age".publicKeys = marijan.keys ++ system.keys;
   "smos-google-calendar-source.age".publicKeys = marijan.keys ++ system.keys;
+  "smos-platonic-google-calendar-source.age".publicKeys = marijan.keys ++ system.keys;
 }
