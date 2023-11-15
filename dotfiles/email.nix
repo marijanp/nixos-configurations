@@ -21,7 +21,7 @@
         userName = address;
         maildir.path = "${address}";
         passwordCommand =
-          "gopass show websites/google.com/marijan.petricevic94@gmail.com/mail-app-password";
+          "gopass show email/marijan.petricevic94@gmail.com-mail-app-password";
         flavor = "gmail.com";
 
         thunderbird = {
@@ -36,7 +36,7 @@
         userName = address;
         maildir.path = "${address}";
         passwordCommand =
-          "gopass show websites/platonics.systems/marijan.petricevic@platonic.systems/mail-app-password";
+          "gopass show email/marijan.petricevic@platonic.systems-mail-app-password";
         flavor = "gmail.com";
 
         thunderbird = {
@@ -132,6 +132,21 @@
         smtp = {
           host = "smtp.ionos.de";
           port = 465;
+        };
+      };
+
+      casper = rec {
+        inherit realName gpg;
+        address = "marijan@casper.network";
+        userName = address;
+        maildir.path = "${address}";
+        passwordCommand =
+          "gopass show email/marijan@casper.network-mail-app-password";
+        flavor = "gmail.com";
+
+        thunderbird = {
+          enable = true;
+          profiles = [ "personal" ];
         };
       };
     };
