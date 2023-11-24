@@ -1,25 +1,19 @@
 Config {
   overrideRedirect = False
-, font     = "Roboto Mono 20"
-, bgColor  = "#325D79"
-, fgColor  = "#EFEEEE"
+, font     = "Roboto Mono 10"
+, bgColor  = "#3b4252"
+, fgColor  = "#d8dee9"
 , allDesktops = True
-, position = TopH 40
+, position = TopH 20
 , commands = [
     Run XMonadLog
-  , Run DynNetwork ["--template", "Down: <rx> kB/s Up: <tx> kB/s"
-                   ,"--High",     "400"
-                   ,"--Low",      "10"
-                   ,"--high",     "#bbc2cf"
-                   ,"--low",      "#bbc2cf"
-                   ] 10
-  , Run Volume "default" "Master" [ ] 10
+  , Run Volume      "default" "Master" [ ] 10
   , Run MultiCpu    [ "--template" , "CPU: <total0>% <total1>% <total2>% <total3>%" ] 10
   , Run Memory      ["--template", "RAM: <usedratio>%"] 10
-  , Run Date      "%a %b %_d %k:%M" "date" 60
+  , Run Date        "%a %b %_d %k:%M" "date" 60
   ]
 , sepChar = "%"
 , alignSep = "}{"
-, template = "%XMonadLog% }{ %dynnetwork% | %default:Master% | %multicpu% | %memory% | %date% "
+, template = "%XMonadLog% }{ %multicpu% | %memory% | %default:Master% |  %date% "
 }
 
