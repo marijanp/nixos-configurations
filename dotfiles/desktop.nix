@@ -94,6 +94,7 @@
   };
 
   home.packages = with pkgs; [
+    inputs.feedback.packages.x86_64-linux.default
     arandr
     cachix
     element-desktop

@@ -2,8 +2,14 @@
   description = "marijanp's NixOS system configurations";
 
   nixConfig = {
-    extra-substituters = [ "https://smos.cachix.org" ];
-    extra-trusted-public-keys = [ "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM=" ];
+    extra-substituters = [
+      "https://smos.cachix.org"
+      "https://feedback.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM="
+      "feedback.cachix.org-1:8PNDEJ4GTCbsFUwxVWE/ulyoBMDqqL23JA44yB0j1jI="
+    ];
   };
 
   inputs = {
@@ -14,6 +20,7 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     smos.url = "github:NorfairKing/smos";
+    feedback.url = "github:norfairking/feedback";
     nixinate.url = "github:MatthewCroughan/nixinate";
     nixinate.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -29,7 +36,6 @@
             nixos-hardware.nixosModules.common-cpu-amd
             nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
             nixos-hardware.nixosModules.common-pc-ssd
-            nixpkgs.nixosModules.notDetected
             ./machines/split/hardware-configuration.nix
             ./users/marijan/base.nix
             ./environments/work.nix
