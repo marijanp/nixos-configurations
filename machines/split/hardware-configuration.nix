@@ -11,13 +11,18 @@
       ./bluetooth.nix
     ];
 
+  hardware.opengl.enable = true;
+
   services.xserver = {
     dpi = 90;
     resolutions = [{ x = 1920; y = 1080; }];
   };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
@@ -47,6 +52,5 @@
   # networking.interfaces.enp12s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp13s0.useDHCP = lib.mkDefault true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
