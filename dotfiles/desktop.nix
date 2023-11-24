@@ -84,6 +84,11 @@
           destination = "calendar/platonic-google.smos";
           source-file = osConfig.age.secrets.smos-platonic-google-calendar-source.path;
         }
+        {
+          name = "casper";
+          destination = "calendar/casper-google.smos";
+          source-file = osConfig.age.secrets.smos-casper-google-calendar-source.path;
+        }
       ];
     };
   };

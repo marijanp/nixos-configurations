@@ -15,6 +15,11 @@
     owner = "marijan";
   };
 
+  age.secrets.smos-casper-google-calendar-source = {
+    file = ../secrets/smos-casper-google-calendar-source.age;
+    owner = "marijan";
+  };
+
   programs.dconf.enable = true;
   services.xserver = {
     enable = true;
