@@ -20,6 +20,11 @@
     owner = "marijan";
   };
 
+  age.secrets.smos-sync-password = {
+    file = ../secrets/smos-sync-password.age;
+    owner = "marijan";
+  };
+
   programs.dconf.enable = true;
   services.xserver = {
     enable = true;

@@ -9,4 +9,5 @@ in
   "smos-google-calendar-source.age".publicKeys = marijan.keys ++ system.keys;
   "smos-platonic-google-calendar-source.age".publicKeys = marijan.keys ++ system.keys;
   "smos-casper-google-calendar-source.age".publicKeys = marijan.keys ++ system.keys;
+  "smos-sync-password.age".publicKeys = marijan.keys ++ system.keys;
 }

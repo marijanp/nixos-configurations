@@ -91,6 +91,12 @@
         }
       ];
     };
+    sync = {
+      enable = true;
+      username = "marijan";
+      password-file = osConfig.age.secrets.smos-sync-password.path;
+      server-url = "api.smos.online";
+    };
   };
 
   home.packages = with pkgs; [
