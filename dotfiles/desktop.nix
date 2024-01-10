@@ -17,7 +17,10 @@
   programs.kitty = {
     enable = true;
     font.name = "Roboto Mono";
-    font.size = 20;
+    font.size =
+      if osConfig.networking.hostName == "splitpad"
+      then 20
+      else 10;
     theme = "Nord";
     shellIntegration.enableBashIntegration = true;
   };
@@ -35,6 +38,8 @@
       ];
       enableContribAndExtras = true;
     };
+    numlock.enable = true;
+    initExtra = lib.optionalString (osConfig.networking.hostName == "split") "xrandr --output HDMI-0 --primary --mode 1920x1080 --pos 0x0 --output DP-0 --mode 1920x1080 --pos 1920x0";
   };
   home.file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;
 
@@ -50,7 +55,10 @@
   programs.rofi = {
     enable = true;
     terminal = "kitty";
-    font = "Roboto Mono 20";
+    font =
+      if osConfig.networking.hostName == "splitpad"
+      then "Roboto Mono 20"
+      else "Roboto Mono 10";
     theme = ./rofi/nord.rasi;
   };
 
