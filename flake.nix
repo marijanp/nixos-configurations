@@ -40,6 +40,7 @@
             ./users/marijan/base.nix
             ./environments/work.nix
             ./services/yubikey.nix
+            ./services/printing.nix
             agenix.nixosModules.age
             home-manager.nixosModules.home-manager
             ({ pkgs, ... }: {
