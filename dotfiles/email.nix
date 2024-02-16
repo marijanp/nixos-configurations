@@ -65,7 +65,7 @@
             Trgovački sud / Court of Registry: Split
             MBS / Commercial Register No. 060406392
             Sjedište / Registered Office: Ulica Gospe od Zdravlja 34, 21260 Proložac, HR
-            Direktor/ CEO: Marijan Petričević
+            Direktor / Principal: Marijan Petričević
           '';
           showSignature = "append";
         };
