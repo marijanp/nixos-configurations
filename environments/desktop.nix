@@ -28,7 +28,7 @@
   programs.dconf.enable = true;
   services.xserver = {
     enable = true;
-    xkbOptions = "eurosign:e";
+    xkb.options = "eurosign:e";
     displayManager.startx.enable = true;
   };
 }
