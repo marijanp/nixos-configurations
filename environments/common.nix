@@ -10,6 +10,10 @@
     ../services/avahi.nix
   ];
 
+  programs.bash.promptInit = ''
+    PS1="\[\e[36m\]\u@\H\[\e[m\] | 📅 \d ⌚️ \A\n[\w]\$ "
+  '';
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;

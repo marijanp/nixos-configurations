@@ -25,9 +25,6 @@
         disconnect-roam = "bluetoothctl disconnect ${roamAddress}";
       }
     );
-    profileExtra = ''
-      export PS1="\[\e[36m\]\u@\H\[\e[m\] | 📅 \d ⌚️ \A\n[\w]\$ "
-    '';
   };
 
   home.file.".inputrc".text = ''
