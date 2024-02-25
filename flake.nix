@@ -21,12 +21,9 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     smos.url = "github:NorfairKing/smos";
     feedback.url = "github:norfairking/feedback";
-    nixinate.url = "github:MatthewCroughan/nixinate";
-    nixinate.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, agenix, ... }: {
-    apps = inputs.nixinate.nixinate.x86_64-linux self;
     nixosConfigurations = {
       split = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -94,15 +91,6 @@
           ./machines/splitberry/networking.nix
           ./users/marijan/base.nix
           ./environments/common.nix
-          {
-            _module.args.nixinate = {
-              host = "192.168.1.77";
-              sshUser = "marijan";
-              buildOn = "remote"; # valid args are "local" or "remote"
-              substituteOnTarget = false; # if buildOn is "local" then it will substitute on the target, "-s"
-              hermetic = false;
-            };
-          }
           ({ pkgs, ... }: {
             system.stateVersion = "22.11";
           })
