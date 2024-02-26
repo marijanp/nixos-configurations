@@ -35,7 +35,7 @@
   };
 
   console = {
-    font = "ter-v24n";
+    font = "ter-v32n";
     keyMap = "us";
     packages = with pkgs; [ terminus_font ];
   };
