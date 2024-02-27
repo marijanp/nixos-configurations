@@ -6,7 +6,7 @@
     '';
 
     settings = {
-      trusted-users = [ "root" "marijan" ];
+      trusted-users = [ "root" "@wheel" "marijan" ];
       sandbox = true;
       trusted-substituters = [
         "https://split.cachix.org"
