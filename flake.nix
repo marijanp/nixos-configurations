@@ -24,6 +24,8 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, agenix, ... }: {
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+
     nixosConfigurations = {
       split = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
