@@ -29,32 +29,33 @@
     nixosConfigurations = {
       split = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules =
-          [
-            nixos-hardware.nixosModules.common-pc
-            nixos-hardware.nixosModules.common-cpu-amd
-            nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-            nixos-hardware.nixosModules.common-pc-ssd
-            ./machines/split/hardware-configuration.nix
-            ./users/marijan/base.nix
-            ./environments/work.nix
-            ./services/yubikey.nix
-            ./services/printing.nix
-            agenix.nixosModules.age
-            home-manager.nixosModules.home-manager
-            ({ pkgs, ... }: {
-              system.stateVersion = "23.11";
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.marijan = {
+        modules = [
+          nixos-hardware.nixosModules.common-pc
+          nixos-hardware.nixosModules.common-cpu-amd
+          nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+          nixos-hardware.nixosModules.common-pc-ssd
+          ./machines/split/hardware-configuration.nix
+          ./users/marijan/base.nix
+          ./environments/work.nix
+          ./services/yubikey.nix
+          ./services/printing.nix
+          agenix.nixosModules.age
+          home-manager.nixosModules.home-manager
+          {
+            system.stateVersion = "23.11";
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs; };
+              users.marijan = {
                 imports = [
                   ./users/marijan/home.nix
                   ./dotfiles/work.nix
                 ];
               };
-              home-manager.extraSpecialArgs = { inherit inputs; };
-            })
-          ];
+            };
+          }
+        ];
         specialArgs = { inherit inputs; hostName = "split"; };
       };
 
@@ -69,18 +70,20 @@
           ./services/printing.nix
           agenix.nixosModules.age
           home-manager.nixosModules.home-manager
-          ({ pkgs, ... }: {
+          {
             system.stateVersion = "23.11";
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.marijan = {
-              imports = [
-                ./users/marijan/home.nix
-                ./dotfiles/work.nix
-              ];
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs; };
+              users.marijan = {
+                imports = [
+                  ./users/marijan/home.nix
+                  ./dotfiles/work.nix
+                ];
+              };
             };
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          })
+          }
         ];
         specialArgs = { inherit inputs; hostName = "splitpad"; };
       };
