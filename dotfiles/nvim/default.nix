@@ -1,7 +1,6 @@
 { pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
-    nixd
   ];
 
   programs.neovim = {
@@ -105,9 +104,6 @@
             capabilities = capabilities
           }
           require'lspconfig'.elmls.setup{
-            capabilities = capabilities
-          }
-          require'lspconfig'.nixd.setup{
             capabilities = capabilities
           }
           require'lspconfig'.purescriptls.setup{
