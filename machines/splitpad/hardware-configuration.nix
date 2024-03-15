@@ -41,6 +41,8 @@
     packages = with pkgs; [ terminus_font ];
   };
 
+  # use systemd instead of stage 1 script
+  boot.initrd.systemd.enable = true;
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" "thinkpad_acpi" ];
