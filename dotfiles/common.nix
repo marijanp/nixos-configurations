@@ -63,16 +63,16 @@
     };
   };
 
-  programs.vim = {
-    enable = true;
-    extraConfig = builtins.readFile ./vim/.vimrc;
-  };
-
   programs.lazygit = {
-    enable = true;
+    enable = config.programs.git.enable;
     settings = {
       git.autoFetch = false;
     };
+  };
+
+  programs.vim = {
+    enable = true;
+    extraConfig = builtins.readFile ./vim/.vimrc;
   };
 
   home.packages = with pkgs; [
