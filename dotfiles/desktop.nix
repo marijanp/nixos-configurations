@@ -129,13 +129,12 @@
     rclone
     signal-desktop
     xclip
-    # xmonad related
+  ] ++ lib.optionals (config.xsession.windowManager.xmonad.enable) [
     alsa-utils
     brightnessctl
     pamixer
     scrot
     optipng
-    xob
     xsecurelock
   ];
 
