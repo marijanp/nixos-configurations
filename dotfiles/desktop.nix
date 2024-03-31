@@ -119,7 +119,7 @@
     mumble
     obsidian
     obs-studio
-    okular
+    evince
     pavucontrol
     qemu
     rclone
