@@ -27,7 +27,10 @@
 
   # allows startx to start xmonad, because home-manager puts
   # all xsession related stuff in .xsession
-  home.file.".xinitrc".text = ". ${config.home.homeDirectory}/.xsession";
+  home.file.".xinitrc" = {
+    enable = config.xsession.windowManager.xmonad.enable && osConfig.services.xserver.displayManager.startx.enable;
+    text = ". ${config.home.homeDirectory}/.xsession";
+  };
 
   xsession = {
     enable = true;
