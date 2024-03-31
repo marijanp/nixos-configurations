@@ -47,13 +47,14 @@
   home.file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;
 
   programs.xmobar = {
-    enable = true;
+    enable = config.xsession.windowManager.xmonad.enable;
     extraConfig = builtins.readFile (
       if osConfig.networking.hostName == "splitpad"
       then ./xmonad/xmobar_laptop.hs
       else ./xmonad/xmobar.hs
     );
   };
+
 
   programs.rofi = {
     enable = true;
