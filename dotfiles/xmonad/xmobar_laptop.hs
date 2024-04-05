@@ -9,7 +9,7 @@ Config {
     Run XMonadLog
   , Run Brightness  ["--template", "Br: <percent>%"
                     , "--"
-                    , "-D", "/sys/class/backlight/amdgpu_bl0"] 10
+                    , "-D", "/sys/class/backlight/amdgpu_bl1"] 10
   , Run Battery     [ "--template" , "<acstatus>"
                     , "--Low"      , "15"        -- units: %
                     , "--High"     , "80"        -- units: %
