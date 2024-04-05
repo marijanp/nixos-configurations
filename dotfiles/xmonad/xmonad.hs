@@ -19,7 +19,7 @@ xmonadConfig = def {
   , terminal = "kitty"
   , normalBorderColor = "#c8d6e5"
   , focusedBorderColor = "#64FFDA"
-  , workspaces = ["1:web","2:code","3:chat"] ++ (show <$> [5..9])
+  , workspaces = ["1:web","2:code","3:chat"] ++ (show <$> [4..9])
   , layoutHook = smartBorders layoutHookConfig
   , manageHook = manageHookConfig
   }
