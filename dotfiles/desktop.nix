@@ -8,9 +8,14 @@
 
   gtk = {
     enable = true;
+    font.name = "Roboto";
     theme = {
-      package = pkgs.arc-theme;
-      name = "Arc-Dark";
+      package = pkgs.nordic;
+      name = "Nordic-darker";
+    };
+    iconTheme = {
+      package = pkgs.arc-icon-theme;
+      name = "Arc";
     };
   };
 
