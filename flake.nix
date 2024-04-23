@@ -62,7 +62,7 @@
       splitpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          nixos-hardware.nixosModules.lenovo-thinkpad-z13
+          nixos-hardware.nixosModules.lenovo-thinkpad-z13-gen1
           ./machines/splitpad/hardware-configuration.nix
           ./users/marijan/base.nix
           ./environments/work.nix
