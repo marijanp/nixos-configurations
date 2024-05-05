@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     nixd
@@ -70,13 +70,9 @@
             highlight = {
               enable = true,
             },
-            endwise = {
-              enable = true,
-            },
           })
         '';
       }
-      nvim-treesitter-endwise
       # snippets
       luasnip
       cmp_luasnip
