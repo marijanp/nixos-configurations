@@ -20,9 +20,13 @@
     dpi = 255;
     resolutions = [{ x = 2880; y = 1800; }];
     upscaleDefaultCursor = true;
-    libinput.touchpad.disableWhileTyping = true;
-    libinput.touchpad.tapping = false;
   };
+
+  services.libinput.touchpad = {
+    disableWhileTyping = true;
+    tapping = false;
+  };
+
   environment.variables = {
     GDK_SCALE = "2";
     GDK_DPI_SCALE = "0.4";
