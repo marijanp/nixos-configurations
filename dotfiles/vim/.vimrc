@@ -1,7 +1,7 @@
 inoremap jk <Esc>l:w<CR>
 vnoremap jk <Esc>l:w<CR>
-"after recording a macro to q, select the lines in visual mode and apply the macro.
 "To record a macro do : qq <your-sequence-here> q -> select lines in visual mode -> press 'q' to apply
+"after recording a macro to q, select the lines in visual mode and apply the macro.
 vnoremap q :normal ^@q<CR>
 "opens the file tree
 let g:netrw_winsize = 20
