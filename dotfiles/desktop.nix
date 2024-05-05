@@ -117,6 +117,8 @@
   };
 
   home.packages = with pkgs; [
+    inputs.agenix.packages.${pkgs.system}.agenix
+    age-plugin-yubikey
     inputs.feedback.packages.x86_64-linux.default
     arandr
     cachix

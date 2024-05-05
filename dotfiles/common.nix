@@ -76,8 +76,6 @@
   };
 
   home.packages = with pkgs; [
-    inputs.agenix.packages.${pkgs.system}.agenix
-    age-plugin-yubikey
     curl
     gnupg
     ripgrep
