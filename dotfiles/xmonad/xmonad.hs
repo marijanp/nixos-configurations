@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Util.EZConfig (additionalKeysP)
+import XMonad.Util.SpawnOnce (spawnOnce)
 
 import XMonad.Hooks.EwmhDesktops (ewmhFullscreen, ewmh)
 
@@ -21,6 +22,8 @@ xmonadConfig = def {
   , focusedBorderColor = "#64FFDA"
   , workspaces = ["1:web","2:code","3:chat"] ++ (show <$> [4..9])
   , layoutHook = smartBorders layoutHookConfig
+  , startupHook = do spawnOnce "firefox"
+                     spawnOnce "kitty"
   , manageHook = manageHookConfig
   }
   `additionalKeysP`
