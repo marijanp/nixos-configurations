@@ -1,4 +1,4 @@
-{ pkgs, config, lib, osConfig, inputs, ... }:
+{ pkgs, config, lib, osConfig, ... }:
 {
 
   imports = [
@@ -77,9 +77,7 @@
 
   home.packages = with pkgs; [
     curl
-    gnupg
     ripgrep
-    tmate
     unzip
     zip
   ];

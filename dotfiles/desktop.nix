@@ -135,6 +135,7 @@
     qemu
     rclone
     signal-desktop
+    upterm
     xclip
   ] ++ lib.optionals (config.xsession.windowManager.xmonad.enable) [
     alsa-utils
