@@ -1,4 +1,4 @@
-{ pkgs, config, hostName, ... }:
+{ hostName, ... }:
 {
   networking = {
     inherit hostName;

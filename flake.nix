@@ -23,7 +23,7 @@
     feedback.url = "github:norfairking/feedback";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, agenix, ... }: {
+  outputs = inputs@{ nixpkgs, nixos-hardware, home-manager, agenix, ... }: {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
     nixosConfigurations = {
@@ -96,9 +96,9 @@
           ./machines/splitberry/networking.nix
           ./users/marijan/base.nix
           ./environments/common.nix
-          ({ pkgs, ... }: {
+          {
             system.stateVersion = "22.11";
-          })
+          }
         ];
         specialArgs = { inherit inputs; hostName = "splitberry"; };
       };
