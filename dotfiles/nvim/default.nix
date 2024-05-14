@@ -46,6 +46,15 @@
         config = "let g:rainbow_active = 1";
       }
       {
+        plugin = telescope-nvim;
+        config = ''
+          nnoremap <leader>tf <cmd>Telescope find_files<cr>
+          nnoremap <leader>tg <cmd>Telescope live_grep<cr>
+          nnoremap <leader>tb <cmd>Telescope buffers<cr>
+          nnoremap <leader>th <cmd>Telescope help_tags<cr>
+        '';
+      }
+      {
         plugin = indent-blankline-nvim;
         type = "lua";
         config = ''
