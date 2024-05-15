@@ -1,16 +1,14 @@
 import XMonad
-import XMonad.Util.EZConfig (additionalKeysP)
-import XMonad.Util.SpawnOnce (spawnOnce)
-
+import XMonad.Actions.Volume (raiseVolume, lowerVolume, toggleMute)
 import XMonad.Hooks.EwmhDesktops (ewmhFullscreen, ewmh)
-
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
-
 import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Util.EZConfig (additionalKeysP)
+import XMonad.Util.SpawnOnce (spawnOnce)
 
-import XMonad.Actions.Volume (raiseVolume, lowerVolume, toggleMute)
+
 
 main :: IO ()
 main = xmonad . ewmhFullscreen . ewmh . xmobarProp $ xmonadConfig
@@ -19,6 +17,7 @@ xmonadConfig = def {
     modMask = mod4Mask
   , terminal = "kitty"
   , normalBorderColor = "#c8d6e5"
+  , focusFollowsMouse = True
   , focusedBorderColor = "#64FFDA"
   , workspaces = ["1:web","2:code","3:chat"] ++ (show <$> [4..9])
   , layoutHook = smartBorders layoutHookConfig
