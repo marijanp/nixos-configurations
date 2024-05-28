@@ -1,5 +1,4 @@
 { pkgs, config, ... }: {
-
   networking = {
     interfaces = {
       wlp1s0.useDHCP = true;
@@ -9,5 +8,5 @@
     };
   };
 
-  imports = [ ../../options/wireless.nix ];
+  networking.networkmanager.enable = true;
 }
