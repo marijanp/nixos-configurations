@@ -38,6 +38,14 @@
       })
     '';
     plugins = with pkgs.vimPlugins; [
+      {
+        plugin = nightfox-nvim;
+        type = "lua";
+        config = ''
+          require('nightfox')
+          vim.cmd.colorscheme("nordfox")
+        '';
+      }
       # utils
       vim-airline
       vim-signify # shows git diff
