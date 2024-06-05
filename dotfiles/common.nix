@@ -60,6 +60,8 @@
     };
     extraConfig = {
       init.defaultBranch = "main";
+      # remember and reuse resolved merge conflicts
+      rerere.enabled = true;
     };
   };
 
