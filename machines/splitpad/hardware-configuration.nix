@@ -12,7 +12,7 @@
       ./dock.nix
     ];
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   services.logind.lidSwitch = "suspend";
 
   # tweaks which make work on a HiDPI screen more pleasant
