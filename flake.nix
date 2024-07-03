@@ -97,7 +97,8 @@
           ./users/marijan/base.nix
           ./environments/common.nix
           {
-            system.stateVersion = "22.11";
+            system.stateVersion = "24.11";
+            services.tailscale.enable = true;
           }
         ];
         specialArgs = { inherit inputs; hostName = "splitberry"; };
