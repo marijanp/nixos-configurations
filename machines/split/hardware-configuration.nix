@@ -11,7 +11,7 @@
       ./bluetooth.nix
     ];
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   services.xserver = {
     dpi = 90;
