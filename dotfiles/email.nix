@@ -1,4 +1,4 @@
-{ config, pkgs, lib, osConfig, inputs, ... }:
+{ ... }:
 {
   programs.thunderbird = {
     enable = true;
@@ -11,7 +11,7 @@
   accounts.email.accounts =
     let
       realName = "Marijan Petričević";
-      gpg.key = "0xEFF1AB41802F3FA7";
+      gpg.key = "EFF1AB41802F3FA7";
     in
     {
       gmail = rec {
