@@ -132,7 +132,6 @@
     obs-studio
     evince
     pavucontrol
-    qemu
     rclone
     signal-desktop
     upterm
