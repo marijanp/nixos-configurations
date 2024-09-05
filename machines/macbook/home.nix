@@ -1,29 +1,42 @@
-let
-  sources = import ./nix/sources.nix;
-  nixpkgs = import sources.nixpkgs { };
-in
-{ pkgs ? nixpkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
-    ../../dotfiles/vscodium.nix
     ../../dotfiles/common.nix
   ];
-  nix.package = pkgs.nixVersions.nix_2_9;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
-  fonts.fontconfig.enable = true;
+
   programs.home-manager.enable = true;
-  home.username = "marijan";
-  home.homeDirectory = "/Users/marijan";
-  home.stateVersion = "22.05";
-  home.packages = with pkgs; [
-    cachix
-    gopass
-    gopass-jsonapi
-    hledger
-    niv
-    qemu
-    roboto-mono
-  ];
+
+  home = {
+    username = "marijan";
+    homeDirectory = "/Users/marijan";
+    packages = with pkgs; [
+      roboto
+      roboto-mono
+      noto-fonts-emoji
+    ];
+  };
+
+  programs.bash.bashrcExtra = ''
+    PS1="\[\e[36m\]\u@\H\[\e[m\] | 📅 \d ⌚️ \A\n[\w]\$ "
+  '';
+
+  nix = {
+    package = pkgs.nixVersions.latest;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
+  fonts = {
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        serif = [ "Roboto" ];
+        sansSerif = [ "Roboto" ];
+        monospace = [ "Roboto Mono" ];
+        emoji = [ "Noto Color Emoji" "Noto Emoji" ];
+      };
+    };
+  };
+
 }

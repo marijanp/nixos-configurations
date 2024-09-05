@@ -104,5 +104,17 @@
         specialArgs = { inherit inputs; hostName = "splitberry"; };
       };
     };
+
+    homeConfigurations = {
+      splitbook = home-manager.lib.homeManagerConfiguration {
+        pkgs = inputs.nixpkgs.legacyPackages."x86_64-darwin";
+        modules = [
+          ./machines/macbook/home.nix
+          {
+            home.stateVersion = "24.11";
+          }
+        ];
+      };
+    };
   };
 }

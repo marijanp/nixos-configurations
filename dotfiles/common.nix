@@ -13,7 +13,8 @@
     } //
     lib.optionalAttrs config.programs.lazygit.enable { lg = "lazygit"; }
     //
-    lib.optionalAttrs osConfig.hardware.bluetooth.enable (
+
+    lib.optionalAttrs (pkgs.stdenv.isLinux && osConfig.hardware.bluetooth.enable) (
       let
         roamAddress = "F0:F6:C1:30:24:FA";
         airpodsAddress = "7C:C1:80:4F:7D:85";
