@@ -39,6 +39,7 @@
           ./environments/work.nix
           ./services/yubikey.nix
           ./services/printing.nix
+          ./services/prometheus.nix
           agenix.nixosModules.age
           home-manager.nixosModules.home-manager
           {
