@@ -2,7 +2,10 @@
 
   networking = {
     interfaces = {
-      wlp13s0.useDHCP = true;
+      wlp13s0 = {
+        useDHCP = true;
+        wakeOnLan.enable = true;
+      };
     };
     wireless = {
       interfaces = [ "wlp13s0" ];
