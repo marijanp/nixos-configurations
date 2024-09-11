@@ -19,7 +19,9 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.inputs.home-manager.follows = "home-manager";
     smos.url = "github:NorfairKing/smos";
+    smos.inputs.home-manager.follows = "home-manager";
     feedback.url = "github:norfairking/feedback";
   };
 
