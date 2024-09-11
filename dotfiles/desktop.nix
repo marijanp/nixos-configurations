@@ -129,7 +129,7 @@
     hledger
     mumble
     obsidian
-    obs-studio
+    # obs-studio
     evince
     pavucontrol
     rclone
