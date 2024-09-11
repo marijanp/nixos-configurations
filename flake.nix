@@ -97,6 +97,7 @@
           ./machines/splitberry/networking.nix
           ./users/marijan/base.nix
           ./environments/common.nix
+          ./services/prometheus.nix
           {
             system.stateVersion = "24.11";
             services.tailscale.enable = true;
