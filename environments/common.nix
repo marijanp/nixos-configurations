@@ -26,7 +26,11 @@
           name = "send-push-notification";
           runtimeInputs = with pkgs; [ curl coreutils ];
           text = ''
-            curl -d "$(date) - ${config.networking.hostName} online 🚀"  https://ntfy.marijan.pro/host-online
+            curl \
+              -H "Title: ${config.networking.hostName} online" \
+              -H "Tags: artificial_satellite" \
+              -d "$(date)" \
+              https://ntfy.marijan.pro/host-online
           '';
         });
     };
