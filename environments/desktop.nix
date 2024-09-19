@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 {
   imports = [
     ./common.nix
@@ -14,11 +14,6 @@
 
   age.secrets.smos-platonic-google-calendar-source = {
     file = ../secrets/smos-platonic-google-calendar-source.age;
-    owner = "marijan";
-  };
-
-  age.secrets.smos-casper-google-calendar-source = {
-    file = ../secrets/smos-casper-google-calendar-source.age;
     owner = "marijan";
   };
 

@@ -22,15 +22,5 @@
         --output eDP-1 --auto \
         --output DP-1 --off
     '';
-    switch-to-casper = ''
-      ${pkgs.xorg.xrandr}/bin/xrandr --dpi ${builtins.toString config.services.xserver.dpi} \
-        --output eDP-1 --auto \
-        --output DP-1 --mode 2560x1440 --scale 2x2 --pos 2880x0
-    '';
-    switch-from-casper = ''
-      ${pkgs.xorg.xrandr}/bin/xrandr --dpi ${builtins.toString config.services.xserver.dpi} \
-        --output eDP-1 --auto \
-        --output DP-1 --off
-    '';
   };
 }

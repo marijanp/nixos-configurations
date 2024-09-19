@@ -111,21 +111,6 @@
           port = 465;
         };
       };
-
-      casper = rec {
-        inherit realName gpg;
-        address = "marijan@casper.network";
-        userName = address;
-        maildir.path = "${address}";
-        passwordCommand =
-          "gopass show email/marijan@casper.network-mail-app-password";
-        flavor = "gmail.com";
-
-        thunderbird = {
-          enable = true;
-          profiles = [ "personal" ];
-        };
-      };
     };
 
 }
