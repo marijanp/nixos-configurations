@@ -49,10 +49,7 @@
       # utils
       vim-airline
       vim-signify # shows git diff
-      {
-        plugin = rainbow;
-        config = "let g:rainbow_active = 1";
-      }
+      rainbow-delimiters-nvim
       {
         plugin = telescope-nvim;
         config = ''
