@@ -26,7 +26,7 @@
       if osConfig.networking.hostName == "splitpad"
       then 20
       else 10;
-    theme = "Nord";
+    themeFile = "Nord";
     shellIntegration.enableBashIntegration = true;
   };
 
