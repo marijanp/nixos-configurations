@@ -46,6 +46,7 @@ manageHookConfig = composeAll [
   , className =? "kitty"              --> doShift "2:code"
   , className =? "Element"            --> doShift "3:chat"
   , className =? "signal-desktop"     --> doShift "3:chat"
+  , className =? "game"            --> doFloat
   , className =? "control"            --> doFloat
   , className =? "error"              --> doFloat
   , className =? "file_progress"      --> doFloat
