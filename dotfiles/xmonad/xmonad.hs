@@ -41,6 +41,7 @@ xmonadConfig = def {
 -- Get class name by running xprop WM_CLASS and clicking on the respective window
 manageHookConfig = composeAll [
     className =? "firefox" <&&> resource =? "Alert" --> doFloat
+  , className =? "thunderbird" <&&> resource =? "Alert" --> doFloat
   , className =? "firefox"            --> doShift "1:web"
   , className =? "kitty"              --> doShift "2:code"
   , className =? "Element"            --> doShift "3:chat"
