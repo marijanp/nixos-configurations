@@ -80,6 +80,7 @@
 
   home.packages = with pkgs; [
     curl
+    nom
     ripgrep
     unzip
     zip
