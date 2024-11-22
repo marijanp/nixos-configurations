@@ -117,7 +117,9 @@
     inputs.feedback.packages.x86_64-linux.default
     arandr
     cachix
+    cryptsetup
     element-desktop
+    evince
     firefox
     gopass
     gopass-jsonapi
@@ -125,7 +127,6 @@
     mumble
     obsidian
     # obs-studio
-    evince
     pavucontrol
     rclone
     signal-desktop
