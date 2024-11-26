@@ -22,9 +22,13 @@ set number relativenumber "show hybrid line numbers
 set encoding=utf-8
 set ignorecase            "include matching uppercase words with lowercase search term
 set smartcase             "include only uppercase words with uppercase search term
+set noswapfile            "disable swap files
 syntax on
 colorscheme default
 filetype plugin indent on "enable the listed plugins in this file
+
+"switch to last buffer
+nnoremap <leader><leader> <c-^>
 
 if has('nvim')
     " Neovim specific commands
