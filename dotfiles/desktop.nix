@@ -88,26 +88,26 @@
     enable = true;
     workflowDir = "${config.home.homeDirectory}/smos-workflow";
     backup.enable = true;
-    calendar = {
-      enable = true;
-      sources = [
-        {
-          name = "Google";
-          destination = "calendar/google.smos";
-          source-file = osConfig.age.secrets.smos-google-calendar-source.path;
-        }
-        {
-          name = "platonic";
-          destination = "calendar/platonic-google.smos";
-          source-file = osConfig.age.secrets.smos-platonic-google-calendar-source.path;
-        }
-      ];
-    };
-    sync = {
-      enable = true;
-      username = "marijan";
-      password-file = osConfig.age.secrets.smos-sync-password.path;
-      server-url = "api.smos.online";
+    config = {
+      calendar = {
+        sources = [
+          {
+            name = "Google";
+            destination = "calendar/google.smos";
+            source-file = osConfig.age.secrets.smos-google-calendar-source.path;
+          }
+          {
+            name = "platonic";
+            destination = "calendar/platonic-google.smos";
+            source-file = osConfig.age.secrets.smos-platonic-google-calendar-source.path;
+          }
+        ];
+      };
+      sync = {
+        username = "marijan";
+        password-file = osConfig.age.secrets.smos-sync-password.path;
+        server-url = "api.smos.online";
+      };
     };
   };
 
