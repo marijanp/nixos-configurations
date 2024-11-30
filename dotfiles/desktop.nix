@@ -119,7 +119,6 @@
     cachix
     cryptsetup
     element-desktop
-    evince
     firefox
     gopass
     gopass-jsonapi
