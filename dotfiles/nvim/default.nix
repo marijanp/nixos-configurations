@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     nixd
+    tinymist
   ];
 
   programs.neovim = {
@@ -111,7 +112,7 @@
               }
             }
           }
-          require'lspconfig'.typst_lsp.setup{
+          require'lspconfig'.tinymist.setup{
             capabilities = capabilities
           }
           require'lspconfig'.elmls.setup{
