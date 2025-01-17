@@ -76,7 +76,6 @@
         '';
       }
       # languages
-      purescript-vim
       {
         plugin = nvim-treesitter.withAllGrammars;
         type = "lua";
@@ -115,17 +114,12 @@
           require'lspconfig'.tinymist.setup{
             capabilities = capabilities
           }
-          require'lspconfig'.elmls.setup{
-            capabilities = capabilities
-          }
           require'lspconfig'.nixd.setup{
             capabilities = capabilities
           }
-          require'lspconfig'.purescriptls.setup{
-            capabilities = capabilities
-          }
           require'lspconfig'.rust_analyzer.setup{
-            settings = {
+            capabilities = capabilities
+          , settings = {
               ['rust-analyzer'] = {
                 checkOnSave = {
                   command = "clippy"
