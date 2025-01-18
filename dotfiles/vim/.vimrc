@@ -18,7 +18,7 @@ set expandtab             "use spaces instead of tab
 set shiftwidth=2          "autoindent with 2 spaces
 set autoindent
 set smartindent
-set number relativenumber "show hybrid line numbers
+set number                "show absolute line numbers
 set encoding=utf-8
 set ignorecase            "include matching uppercase words with lowercase search term
 set smartcase             "include only uppercase words with uppercase search term
@@ -27,7 +27,7 @@ syntax on
 colorscheme default
 filetype plugin indent on "enable the listed plugins in this file
 
-"switch to last buffer
+"switch to last buffer using \\
 nnoremap <leader><leader> <c-^>
 
 if has('nvim')
