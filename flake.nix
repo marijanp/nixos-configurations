@@ -45,7 +45,7 @@
           agenix.nixosModules.age
           home-manager.nixosModules.home-manager
           {
-            system.stateVersion = "24.11";
+            system.stateVersion = "23.11";
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
@@ -74,7 +74,7 @@
           agenix.nixosModules.age
           home-manager.nixosModules.home-manager
           {
-            system.stateVersion = "24.11";
+            system.stateVersion = "22.11";
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
@@ -101,7 +101,7 @@
           ./environments/common.nix
           ./services/prometheus.nix
           {
-            system.stateVersion = "24.11";
+            system.stateVersion = "22.11";
             services.tailscale.enable = true;
           }
         ];
@@ -115,7 +115,7 @@
         modules = [
           ./machines/macbook/home.nix
           {
-            home.stateVersion = "24.11";
+            home.stateVersion = "24.05";
           }
         ];
       };
