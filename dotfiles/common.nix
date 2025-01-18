@@ -81,7 +81,8 @@
 
   home.packages = with pkgs; [
     curl
-    nom
+    niv
+    nix-output-monitor
     ripgrep
     unzip
     zip
