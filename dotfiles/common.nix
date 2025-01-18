@@ -84,6 +84,7 @@
     niv
     nix-output-monitor
     ripgrep
+    tree
     unzip
     zip
   ];
