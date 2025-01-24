@@ -7,7 +7,7 @@
 
   hardware.keyboard.zsa.enable = true;
 
-  programs.localsend.enable = true;
+  programs.kdeconnect.enable = true;
 
   age.secrets.smos-google-calendar-source = {
     file = ../secrets/smos-google-calendar-source.age;
