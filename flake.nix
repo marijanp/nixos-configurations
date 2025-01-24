@@ -53,7 +53,7 @@
               users.marijan = {
                 imports = [
                   ./users/marijan/home.nix
-                  ./dotfiles/work.nix
+                  ./dotfiles/desktop.nix
                 ];
               };
             };
@@ -82,7 +82,7 @@
               users.marijan = {
                 imports = [
                   ./users/marijan/home.nix
-                  ./dotfiles/work.nix
+                  ./dotfiles/desktop.nix
                 ];
               };
             };
