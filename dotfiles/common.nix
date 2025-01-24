@@ -81,6 +81,7 @@
 
   home.packages = with pkgs; [
     curl
+    jq
     niv
     nix-output-monitor
     ripgrep
