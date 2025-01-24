@@ -38,7 +38,7 @@
           nixos-hardware.nixosModules.common-pc-ssd
           ./machines/split/hardware-configuration.nix
           ./users/marijan/base.nix
-          ./environments/work.nix
+          ./environments/desktop.nix
           ./services/yubikey.nix
           ./services/printing.nix
           ./services/prometheus.nix
@@ -68,7 +68,7 @@
           nixos-hardware.nixosModules.lenovo-thinkpad-z13-gen1
           ./machines/splitpad/hardware-configuration.nix
           ./users/marijan/base.nix
-          ./environments/work.nix
+          ./environments/desktop.nix
           ./services/yubikey.nix
           ./services/printing.nix
           agenix.nixosModules.age
