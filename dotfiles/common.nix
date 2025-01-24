@@ -9,7 +9,7 @@
     enable = true;
     shellAliases = {
       switch-yubi = "gpg-connect-agent 'scd serialno' 'learn --force' /bye";
-      nc = "sudo nixos-container";
+      nixcon = "sudo nixos-container";
       nrn = "nix repl --file '<nixpkgs>'";
     } //
     lib.optionalAttrs config.programs.lazygit.enable { lg = "lazygit"; }
