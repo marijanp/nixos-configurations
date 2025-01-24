@@ -102,7 +102,6 @@
           ./services/prometheus.nix
           {
             system.stateVersion = "22.11";
-            services.tailscale.enable = true;
           }
         ];
         specialArgs = { inherit inputs; hostName = "splitberry"; };

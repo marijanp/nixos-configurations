@@ -9,6 +9,8 @@
     ../services/ssh.nix
     ../services/avahi.nix
   ];
+  
+  services.tailscale.enable = true;
 
   systemd.services."notify-host-online" = {
     description = "notify-host-online";
