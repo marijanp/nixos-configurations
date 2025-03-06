@@ -5,6 +5,15 @@
     profiles.personal = {
       isDefault = true;
       withExternalGnupg = true;
+      feedAccounts.feeds = {};
+    };
+    settings = {
+      "privacy.donottrackheader.enabled" = true; # Send DNT: 1 header
+      "mail.identity.default.reply_on_top" = true;
+      "mail.identity.default.auto_quote" = false;
+      "intl.date_time.pattern_override.date_short" = "yyyy-MM-dd"; # ISO 8601
+      "intl.date_time.pattern_override.time_short" = "HH:mm";
+      "intl.date_time.pattern_override.connector_short" = "{1} {0}"; # Space between date and time
     };
   };
 
