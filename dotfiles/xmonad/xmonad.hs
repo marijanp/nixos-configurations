@@ -28,7 +28,7 @@ xmonadConfig = def {
   `additionalKeysP`
   [ ("M-f", spawn "firefox")
   , ("M-d", spawn "rofi -show run -theme nord")
-  , ("M-S-l", spawn "xsecurelock") -- Mod + Shift + l
+  , ("M-S-l", spawn "XSECURELOCK_PAM_SERVICE=xsecurelock xsecurelock") -- Mod + Shift + l
   , ("<XF86AudioRaiseVolume>", raiseVolume 2 >> pure ())
   , ("<XF86AudioLowerVolume>", lowerVolume 2 >> pure ())
   , ("<XF86AudioMute>", toggleMute >> pure ())

@@ -77,6 +77,7 @@
     inactiveInterval = 5;
     xautolock.enable = false;
   };
+  systemd.user.services.xss-lock.Service.Environment = "XSECURELOCK_PAM_SERVICE=xsecurelock";
 
   # see https://github.com/nix-community/nix-direnv
   programs.direnv = {
