@@ -4,7 +4,7 @@ Config {
 , bgColor  = "#3b4252"
 , fgColor  = "#d8dee9"
 , allDesktops = True
-, position = TopH 40
+, position = BottomH 40
 , commands = [
     Run XMonadLog
   , Run Brightness  ["--template", "Br: <percent>%"
