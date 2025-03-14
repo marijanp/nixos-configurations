@@ -74,10 +74,10 @@
   services.screen-locker = {
     enable = true;
     lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
+    lockCmdEnv = [ "XSECURELOCK_PAM_SERVICE=xsecurelock" ];
     inactiveInterval = 5;
     xautolock.enable = false;
   };
-  systemd.user.services.xss-lock.Service.Environment = "XSECURELOCK_PAM_SERVICE=xsecurelock";
 
   # see https://github.com/nix-community/nix-direnv
   programs.direnv = {
