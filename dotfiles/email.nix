@@ -120,21 +120,5 @@
           port = 465;
         };
       };
-
-      supercede = rec {
-        inherit realName gpg;
-        address = "marijan@supercede.com";
-        userName = address;
-        maildir.path = "${address}";
-        passwordCommand =
-          "gopass show email/marijan@supercede.com-mail-app-password";
-        flavor = "gmail.com";
-
-        thunderbird = {
-          enable = true;
-          profiles = [ "personal" ];
-        };
-      };
     };
-
 }
