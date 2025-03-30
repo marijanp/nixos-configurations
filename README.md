@@ -2,43 +2,45 @@
 
 All deployable NixOS configurations can be found in the `flake.nix`.
 
-Each configuration in the `flake.nix` plugs together
-- `hardware` specific configurations from the `machines` subdirectory
-- `user` specific configurations from the `dotfiles` directory
-- `system` specific configurations from the `environments` directory,
-  which in turn plugs together configurations from the `services`, and `options` directory
+Use `nix flake show` to display them.
 
-In the following sections I describe what each subdirectory should contain.
+Each NixOS configuration exposed in the `flake.nix` assembles different configuration files from different directories together.
+
+The directories contain configuration files for affecting different aspects of the system:
+- The `machines` directory contains hardware specific configuration files for the different target hosts
+- The `dotfiles` directory contains home-manager configuration files affecting a specific user
+- The `environments` directory contains NixOS system configuration files that assemble configurations from the `services`, and `options` depending on the use of the final system.
+
+In the following sections I describe what each subdirectory contains.
 
 ## The `machines` directory
 
 The `machines` directory contains a subdirectory for every physical machine running NixOS.
 
-Each of those machine directories contains the
-- generated `hardware-configuration.nix`
-- hardware specific configurations like `bluetooth` and `networking`
+Each of those machine directories contains
+- the generated `hardware-configuration.nix`
+- hardware specific configuration files like `bluetooth.nix` and `networking.nix`
 
 ## The `dotfiles` directory
 
-The `dotfiles` directory contains configurations for `user` application configurations like `nvim`, `git`, etc. and the following files that combine these `user` application configurations depending on the usage `environment`.
+The `dotfiles` directory contains configurations for *user* applications and services like `nvim`, `git`, etc.. It also contains the following files which assmble these configurations depending on the use of the final system.
 
-- `common` unifies all `user` application configurations that can be used on any machine.
-- `desktop` unifies all `user` application configurations that can be used on machines with a desktop.
-- `work` contains `user` applications that are only used for work.
+- `common.nix` unifies all *user* application configurations that can be used on any machine.
+- `desktop.nix` unifies all *user* application configurations that can be used on machines with a desktop.
+- `work.nix` contains *user* applications that are only used for work.
 
 ## The `environments` directory
 
-The `environments` directory unifies `system` related configurations from the `services`, `options`, etc. directory depending on the environment
+The `environments` directory contains NixOS *system* configuration files that assemble configurations from the `services`, and `options` depending on the use of the final system:
 
-- `common` unifies all `system` configurations that can be used on any machine.
-- `desktop` unifies all `system` configurations that can be used on machines with a desktop.
-- `work` contains `system` configurations that are only used for work.
+- `common.nix` unifies all *system* configuration files that can be used on any machine.
+- `desktop.nix` unifies all *system* configurations that can be used on machines with a desktop.
+- `work.nix` contains *system* configurations that are only used for work.
 
 ## The `options` directory
 
-This directory contains all `system` configurations from the `options` category.
+This directory contains all *system* configurations which are not services.
 
 ## The `services` directory
 
-This directory contains all `system` configurations from the `services` category.
-
+This directory contains all *system* service configurations.

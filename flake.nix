@@ -22,102 +22,117 @@
     agenix.inputs.home-manager.follows = "home-manager";
     smos.url = "github:NorfairKing/smos";
     smos.inputs.home-manager.follows = "home-manager";
-    feedback.url = "github:norfairking/feedback";
+    feedback.url = "github:NorfairKing/feedback";
   };
 
-  outputs = inputs@{ nixpkgs, nixos-hardware, home-manager, agenix, ... }: {
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, agenix, smos, feedback }:
+    let
+      customOverlay =
+        final: prev: {
+          feedback = feedback.packages.x86_64-linux.default;
+          inherit (agenix.packages.x86_64-linux) agenix;
+        };
+    in
+    {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
-    nixosConfigurations = {
-      split = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          nixos-hardware.nixosModules.common-pc
-          nixos-hardware.nixosModules.common-cpu-amd
-          nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-          nixos-hardware.nixosModules.common-pc-ssd
-          ./machines/split/hardware-configuration.nix
-          ./users/marijan/base.nix
-          ./environments/desktop.nix
-          ./services/yubikey.nix
-          ./services/printing.nix
-          ./services/prometheus.nix
-          agenix.nixosModules.age
-          home-manager.nixosModules.home-manager
-          {
-            system.stateVersion = "23.11";
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
-              users.marijan = {
-                imports = [
-                  ./users/marijan/home.nix
-                  ./dotfiles/desktop.nix
-                ];
+      nixosConfigurations = {
+        split = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { nixpkgsSrc = nixpkgs; hostName = "split"; };
+
+          modules = [
+            nixos-hardware.nixosModules.common-pc
+            nixos-hardware.nixosModules.common-cpu-amd
+            nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+            nixos-hardware.nixosModules.common-pc-ssd
+            ./machines/split/hardware-configuration.nix
+            ./users/marijan/base.nix
+            ./environments/desktop.nix
+            ./services/yubikey.nix
+            ./services/printing.nix
+            ./services/prometheus.nix
+            agenix.nixosModules.age
+            home-manager.nixosModules.home-manager
+            {
+              system.stateVersion = "23.11";
+              nixpkgs.overlays = [ customOverlay ];
+
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.marijan = {
+                  imports = [
+                    smos.homeManagerModules.x86_64-linux.default
+                    ./users/marijan/home.nix
+                    ./dotfiles/desktop.nix
+                  ];
+                };
               };
-            };
-          }
-        ];
-        specialArgs = { inherit inputs; hostName = "split"; };
+            }
+          ];
+        };
+
+        splitpad = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { nixpkgsSrc = nixpkgs; hostName = "splitpad"; };
+
+          modules = [
+            nixos-hardware.nixosModules.lenovo-thinkpad-z13-gen1
+            ./machines/splitpad/hardware-configuration.nix
+            ./users/marijan/base.nix
+            ./environments/desktop.nix
+            ./services/yubikey.nix
+            ./services/printing.nix
+            agenix.nixosModules.age
+            home-manager.nixosModules.home-manager
+            {
+              system.stateVersion = "22.11";
+              nixpkgs.overlays = [ customOverlay ];
+
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.marijan = {
+                  imports = [
+                    smos.homeManagerModules.x86_64-linux.default
+                    ./users/marijan/home.nix
+                    ./dotfiles/desktop.nix
+                  ];
+                };
+              };
+            }
+          ];
+        };
+
+        splitberry = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          specialArgs = { nixpkgsSrc = nixpkgs; hostName = "splitberry"; };
+
+          modules = [
+            nixos-hardware.nixosModules.raspberry-pi-4
+            ./machines/splitberry/hardware-configuration.nix
+            ./machines/splitberry/networking.nix
+            ./users/marijan/base.nix
+            ./environments/common.nix
+            ./services/prometheus.nix
+            {
+              system.stateVersion = "22.11";
+            }
+          ];
+        };
       };
 
-      splitpad = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          nixos-hardware.nixosModules.lenovo-thinkpad-z13-gen1
-          ./machines/splitpad/hardware-configuration.nix
-          ./users/marijan/base.nix
-          ./environments/desktop.nix
-          ./services/yubikey.nix
-          ./services/printing.nix
-          agenix.nixosModules.age
-          home-manager.nixosModules.home-manager
-          {
-            system.stateVersion = "22.11";
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
-              users.marijan = {
-                imports = [
-                  ./users/marijan/home.nix
-                  ./dotfiles/desktop.nix
-                ];
-              };
-            };
-          }
-        ];
-        specialArgs = { inherit inputs; hostName = "splitpad"; };
-      };
-
-      splitberry = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          nixos-hardware.nixosModules.raspberry-pi-4
-          ./machines/splitberry/hardware-configuration.nix
-          ./machines/splitberry/networking.nix
-          ./users/marijan/base.nix
-          ./environments/common.nix
-          ./services/prometheus.nix
-          {
-            system.stateVersion = "22.11";
-          }
-        ];
-        specialArgs = { inherit inputs; hostName = "splitberry"; };
+      homeConfigurations = {
+        splitbook = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-darwin";
+          modules = [
+            ./machines/macbook/home.nix
+            {
+              home.stateVersion = "24.05";
+            }
+          ];
+        };
       };
     };
-
-    homeConfigurations = {
-      splitbook = home-manager.lib.homeManagerConfiguration {
-        pkgs = inputs.nixpkgs.legacyPackages."x86_64-darwin";
-        modules = [
-          ./machines/macbook/home.nix
-          {
-            home.stateVersion = "24.05";
-          }
-        ];
-      };
-    };
-  };
 }

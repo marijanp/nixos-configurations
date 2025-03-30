@@ -1,4 +1,4 @@
-{ inputs, pkgs,... }:
+{ nixpkgsSrc, pkgs, ... }:
 {
   nix = {
     package = pkgs.nixVersions.latest;
@@ -18,7 +18,7 @@
       ];
     };
 
-    registry.nixpkgs.flake = inputs.nixpkgs; # pin nix flake registry, to avoid downloading the latest all the time
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    registry.nixpkgs.flake = nixpkgsSrc; # pin nix flake registry, to avoid downloading the latest all the time
+    nixPath = [ "nixpkgs=${nixpkgsSrc}" ];
   };
 }

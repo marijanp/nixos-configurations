@@ -286,13 +286,13 @@
       "locked": {
         "lastModified": 1734624247,
         "narHash": "sha256-VYH91i0rg9ZaZaUWhGYp1nHw2EAfBUUhs5EBdrGwVBw=",
-        "owner": "norfairking",
+        "owner": "NorfairKing",
         "repo": "feedback",
         "rev": "6bfb06e3b02db51e6a5341252a9940aab442371e",
         "type": "github"
       },
       "original": {
-        "owner": "norfairking",
+        "owner": "NorfairKing",
         "repo": "feedback",
         "type": "github"
       }
@@ -684,11 +684,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1742578646,
-        "narHash": "sha256-GiQ40ndXRnmmbDZvuv762vS+gew1uDpFwOfgJ8tLiEs=",
+        "lastModified": 1743014863,
+        "narHash": "sha256-jAIUqsiN2r3hCuHji80U7NNEafpIMBXiwKlSrjWMlpg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "94c4dbe77c0740ebba36c173672ca15a7926c993",
+        "rev": "bd3bac8bfb542dbde7ffffb6987a1a1f9d41699f",
         "type": "github"
       },
       "original": {

@@ -1,9 +1,8 @@
-{ config, pkgs, lib, osConfig, inputs, ... }:
+{ config, pkgs, lib, osConfig, ... }:
 {
   imports = [
     ./common.nix
     ./email.nix
-    inputs.smos.homeManagerModules.x86_64-linux.default
   ];
 
   gtk = {
@@ -113,14 +112,14 @@
   };
 
   home.packages = with pkgs; [
-    inputs.agenix.packages.${pkgs.system}.agenix
+    agenix
     age-plugin-yubikey
-    inputs.feedback.packages.x86_64-linux.default
     arandr
     cachix
     cryptsetup
     element-desktop
     firefox
+    feedback
     gopass
     gopass-jsonapi
     hledger

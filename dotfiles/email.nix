@@ -5,7 +5,7 @@
     profiles.personal = {
       isDefault = true;
       withExternalGnupg = true;
-      feedAccounts.feeds = {};
+      feedAccounts.feeds = { };
     };
     settings = {
       "privacy.donottrackheader.enabled" = true; # Send DNT: 1 header
