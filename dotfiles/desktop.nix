@@ -111,34 +111,6 @@
     };
   };
 
-  home.packages = with pkgs; [
-    agenix
-    age-plugin-yubikey
-    arandr
-    cachix
-    cryptsetup
-    element-desktop
-    firefox
-    feedback
-    gopass
-    gopass-jsonapi
-    hledger
-    mumble
-    obsidian
-    # obs-studio
-    pavucontrol
-    rclone
-    signal-desktop
-    upterm
-    xclip
-  ] ++ lib.optionals (config.xsession.windowManager.xmonad.enable) [
-    alsa-utils
-    brightnessctl
-    pamixer
-    scrot
-    optipng
-    xsecurelock
-  ];
   programs.firefox = {
     enable = true;
     profiles.default = {
@@ -168,5 +140,49 @@
       ];
     };
   };
+
+  home.packages =
+    let
+      element =
+        if osConfig.networking.hostName == "splitpad"
+        then
+          pkgs.runCommandNoCCLocal
+            "element-hidpi"
+            { nativeBuildInputs = [ pkgs.makeWrapper ]; } ''
+            mkdir -p $out/bin
+            makeWrapper ${pkgs.element-desktop}/bin/element-desktop $out/bin/element-desktop \
+              --add-flags "--force-device-scale-factor=2"
+          ''
+        else pkgs.element-desktop;
+    in
+    with pkgs; [
+      agenix
+      age-plugin-yubikey
+      arandr
+      cachix
+      cryptsetup
+      dino
+      element
+      feedback
+      gopass
+      gopass-jsonapi
+      hledger
+      mumble
+      obsidian
+      # obs-studio
+      pavucontrol
+      rclone
+      steam
+      signal-desktop
+      upterm
+      xclip
+    ] ++ lib.optionals (config.xsession.windowManager.xmonad.enable) [
+      alsa-utils
+      brightnessctl
+      pamixer
+      scrot
+      optipng
+      xsecurelock
+    ];
 
 }
