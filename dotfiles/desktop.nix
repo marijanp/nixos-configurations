@@ -46,7 +46,9 @@
       enableContribAndExtras = true;
     };
     numlock.enable = true;
-    initExtra = lib.optionalString (osConfig.networking.hostName == "split") "xrandr --output HDMI-0 --primary --mode 1920x1080 --pos 0x0 --output DP-0 --mode 1920x1080 --pos 1920x0";
+    initExtra = lib.optionalString (osConfig.networking.hostName == "split") ''
+      xrandr --output HDMI-0 --primary --mode 1920x1080 --pos 0x0 --output DP-0 --mode 1920x1080 --pos 1920x0
+    '';
   };
   home.file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;
 
