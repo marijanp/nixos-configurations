@@ -25,7 +25,7 @@
     feedback.url = "github:NorfairKing/feedback";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, agenix, smos, feedback }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, agenix, smos, feedback }:
     let
       customOverlay =
         final: prev: {
@@ -56,7 +56,10 @@
             home-manager.nixosModules.home-manager
             {
               system.stateVersion = "23.11";
-              nixpkgs.overlays = [ customOverlay ];
+              nixpkgs.overlays = [
+                customOverlay
+                nur.overlays.default
+              ];
 
               home-manager = {
                 useGlobalPkgs = true;
@@ -88,7 +91,10 @@
             home-manager.nixosModules.home-manager
             {
               system.stateVersion = "22.11";
-              nixpkgs.overlays = [ customOverlay ];
+              nixpkgs.overlays = [
+                customOverlay
+                nur.overlays.default
+              ];
 
               home-manager = {
                 useGlobalPkgs = true;
