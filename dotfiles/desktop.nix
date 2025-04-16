@@ -8,76 +8,99 @@
   gtk = {
     enable = true;
     font.name = "Roboto";
+    font.size = 10;
     theme = {
       package = pkgs.nordic;
       name = "Nordic-darker";
     };
     iconTheme = {
-      package = pkgs.arc-icon-theme;
-      name = "Arc";
+      package = pkgs.paper-icon-theme;
+      name = "Paper";
     };
+  };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    name = "Paper";
+    package = pkgs.paper-icon-theme;
+    size = 24;
   };
 
   programs.kitty = {
     enable = true;
     font.name = "Roboto Mono";
-    font.size =
-      if osConfig.networking.hostName == "splitpad"
-      then 20
-      else 10;
+    font.size = 10;
     themeFile = "Nord";
     shellIntegration.enableBashIntegration = true;
   };
 
-  # allows startx to start xmonad, because home-manager puts
-  # all xsession related stuff in .xsession
-  home.file.".xinitrc" = {
-    enable = config.xsession.windowManager.xmonad.enable && osConfig.services.xserver.displayManager.startx.enable;
-    text = ". ${config.home.homeDirectory}/.xsession";
+  home.sessionVariables = {
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "river";
+    XDG_CURRENT_DESKTOP = "river";
+    GDK_BACKEND = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
+    NIXOS_OZONE_WL = "1";
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
-  xsession = {
+  wayland.windowManager.river = {
     enable = true;
-    windowManager.xmonad = {
-      enable = true;
-      extraPackages = hsPkgs: with hsPkgs; [
-        xmobar
-      ];
-      enableContribAndExtras = true;
+    systemd.enable = true;
+    systemd.extraCommands = [
+      "systemctl --user stop river-session.target"
+      "systemctl --user start river-session.target"
+      "systemctl --user start swayidle.target"
+    ];
+    extraSessionVariables = {
+      XDG_SESSION_TYPE = "wayland";
+      MOZ_ENABLE_WAYLAND = "1";
+      NIXOS_OZONE_WL = "1";
     };
-    numlock.enable = true;
-    initExtra = lib.optionalString (osConfig.networking.hostName == "split") ''
-      xrandr --output HDMI-0 --primary --mode 1920x1080 --pos 0x0 --output DP-0 --mode 1920x1080 --pos 1920x0
-    '';
-  };
-  home.file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;
-
-  programs.xmobar = {
-    enable = config.xsession.windowManager.xmonad.enable;
-    extraConfig = builtins.readFile (
-      if osConfig.networking.hostName == "splitpad"
-      then ./xmonad/xmobar_laptop.hs
-      else ./xmonad/xmobar.hs
-    );
+    settings = import ./river/settings.nix;
   };
 
+  programs.waybar = {
+    enable = config.wayland.windowManager.river.enable;
+    settings = import ./waybar/settings.nix;
+    style = lib.readFile ./waybar/style.css;
+  };
+
+  services.swayidle =
+    let
+      lockCmd = "${lib.getExe pkgs.waylock} -fork-on-lock -init-color 0x2e3440 -input-color 0x5e81ac -input-alt-color 0x81a1c1 -fail-color 0xbf616a";
+    in
+    {
+      enable = true;
+      events = [
+        { event = "before-sleep"; command = lockCmd; }
+        { event = "lock"; command = lockCmd; }
+      ];
+      timeouts = [
+        { timeout = 3 * 60; command = lockCmd; }
+        { timeout = 5 * 60; command = "${pkgs.systemd}/bin/systemctl suspend"; }
+      ];
+    };
+
+  services.mako = {
+    enable = true;
+    font = "Roboto Mono 10";
+    iconPath = "${pkgs.paper-icon-theme}/share/icons/Paper";
+    maxIconSize = 32;
+    textColor = "#d8dee9";
+    backgroundColor = "#2e3440";
+    progressColor = "#4c566a";
+    defaultTimeout = 8 * 1000;
+  };
 
   programs.rofi = {
     enable = true;
+    package = pkgs.rofi-wayland;
     terminal = "kitty";
-    font =
-      if osConfig.networking.hostName == "splitpad"
-      then "Roboto Mono 20"
-      else "Roboto Mono 10";
+    font = "Roboto Mono 10";
     theme = ./rofi/nord.rasi;
-  };
-
-  services.screen-locker = {
-    enable = true;
-    lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
-    lockCmdEnv = [ "XSECURELOCK_PAM_SERVICE=xsecurelock" ];
-    inactiveInterval = 5;
-    xautolock.enable = false;
   };
 
   # see https://github.com/nix-community/nix-direnv
@@ -120,7 +143,8 @@
       settings = {
         "sidebar.revamp" = true;
         "sidebar.verticalTabs" = true;
-        "browser.download.dir" = "${config.home.homeDirectory}/downloads";
+        "browser.download.dir" = "${config.home.homeDirectory}/Downloads";
+        "browser.ml.chat.enabled" = false;
         # Fully disable Pocket. See
         # https://www.reddit.com/r/linux/comments/zabm2a.
         "extensions.pocket.enabled" = false;
@@ -144,27 +168,13 @@
   };
 
   home.packages =
-    let
-      element =
-        if osConfig.networking.hostName == "splitpad"
-        then
-          pkgs.runCommandNoCCLocal
-            "element-hidpi"
-            { nativeBuildInputs = [ pkgs.makeWrapper ]; } ''
-            mkdir -p $out/bin
-            makeWrapper ${pkgs.element-desktop}/bin/element-desktop $out/bin/element-desktop \
-              --add-flags "--force-device-scale-factor=2"
-          ''
-        else pkgs.element-desktop;
-    in
     with pkgs; [
       agenix
       age-plugin-yubikey
-      arandr
       cachix
       cryptsetup
       dino
-      element
+      element-desktop
       feedback
       gopass
       gopass-jsonapi
@@ -175,16 +185,18 @@
       pavucontrol
       rclone
       steam
-      signal-desktop
+      signal-desktop-bin
       upterm
-      xclip
-    ] ++ lib.optionals (config.xsession.windowManager.xmonad.enable) [
-      alsa-utils
+    ] ++ lib.optionals (config.wayland.windowManager.river.enable) [
+      wlr-randr
+      wdisplays # wayland arandr equivalent
+      wl-clipboard
+      rivercarro
+      waylock
       brightnessctl
       pamixer
-      scrot
       optipng
-      xsecurelock
+      slurp
+      grim
     ];
-
 }

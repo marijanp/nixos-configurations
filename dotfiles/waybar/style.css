@@ -1,0 +1,29 @@
+* {
+  font-family: "Roboto Mono";
+  font-size: 10px;
+  color: #d8dee9;
+  padding: 0 4px;
+  background: transparent;
+}
+
+#tags button.focused {
+  background: #4c566a;
+  border-bottom: 3px solid;
+  border-bottom-color: #e5e9f0;
+}
+
+#waybar {
+  background: #3b4252;
+}
+
+#battery.low {
+  color: #bf616a;
+}
+
+#battery.warning {
+  color: #d08770;
+}
+
+#battery.good, #battery.full {
+  color: #a3be8c;
+}

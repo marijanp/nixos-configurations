@@ -27,11 +27,6 @@
     tapping = false;
   };
 
-  environment.variables = {
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.4";
-  };
-
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader = {
     systemd-boot.enable = true;

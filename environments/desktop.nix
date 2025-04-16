@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./common.nix
@@ -25,9 +25,23 @@
   };
 
   programs.dconf.enable = true;
-  services.xserver = {
+  xdg.portal = {
     enable = true;
-    xkb.options = "eurosign:e";
-    displayManager.startx.enable = true;
+    wlr = {
+      enable = true;
+      settings = {
+        screencast = {
+          chooser_cmd = "${lib.getExe pkgs.slurp} -f %o -or";
+          chooser_type = "simple";
+        };
+      };
+    };
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config = {
+      common.default = [ "wlr" "gtk" ];
+      river.default = [ "wlr" "gtk" ];
+    };
   };
 }

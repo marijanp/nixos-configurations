@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }: {
   hardware.gpgSmartcards.enable = true;
   services.pcscd.enable = true;
   security.pam = {
@@ -11,7 +11,7 @@
     services = {
       login.u2fAuth = true;
       sudo.u2fAuth = true;
-      xsecurelock.u2fAuth = config.services.xserver.enable;
+      waylock.u2fAuth = true;
     };
   };
   services.udev.packages = [ pkgs.yubikey-personalization ];
