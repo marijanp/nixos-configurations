@@ -145,6 +145,8 @@
         "sidebar.verticalTabs" = true;
         "browser.download.dir" = "${config.home.homeDirectory}/Downloads";
         "browser.ml.chat.enabled" = false;
+        "layout.css.grid-template-masonry-value.enabled" = true;
+        "network.http.http2.websockets" = false; # firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1655372
         # Fully disable Pocket. See
         # https://www.reddit.com/r/linux/comments/zabm2a.
         "extensions.pocket.enabled" = false;
