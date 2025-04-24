@@ -9,18 +9,11 @@
       (modulesPath + "/installer/scan/not-detected.nix")
       ./networking.nix
       ./bluetooth.nix
-      ./dock.nix
     ];
 
   hardware.graphics.enable = true;
-  services.logind.lidSwitch = "suspend";
 
-  # tweaks which make work on a HiDPI screen more pleasant
-  services.xserver = {
-    dpi = 255;
-    resolutions = [{ x = 2880; y = 1800; }];
-    upscaleDefaultCursor = true;
-  };
+  services.logind.lidSwitch = "suspend";
 
   services.libinput.touchpad = {
     disableWhileTyping = true;
