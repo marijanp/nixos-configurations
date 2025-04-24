@@ -14,11 +14,6 @@
   hardware.graphics.enable = true;
   hardware.nvidia.open = true;
 
-  services.xserver = {
-    dpi = 90;
-    resolutions = [{ x = 1920; y = 1080; }];
-  };
-
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader = {
     systemd-boot.enable = true;
