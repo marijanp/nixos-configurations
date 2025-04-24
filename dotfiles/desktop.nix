@@ -59,12 +59,18 @@
       MOZ_ENABLE_WAYLAND = "1";
       NIXOS_OZONE_WL = "1";
     };
-    settings = import ./river/settings.nix;
+    settings = import ./river/settings.nix {
+      inherit lib;
+      isLaptop = osConfig.networking.hostName == "splitpad";
+    };
   };
 
   programs.waybar = {
     enable = config.wayland.windowManager.river.enable;
-    settings = import ./waybar/settings.nix;
+    settings = import ./waybar/settings.nix {
+      inherit lib;
+      isLaptop = osConfig.networking.hostName == "splitpad";
+    };
     style = lib.readFile ./waybar/style.css;
   };
 

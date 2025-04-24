@@ -1,11 +1,21 @@
-{
+{ lib, isLaptop }: {
   mainBar = {
     output = [ "eDP-1" ];
     layer = "top";
     position = "bottom";
     modules-left = [ "river/tags" ];
     modules-center = [ "river/window" ];
-    modules-right = [ "river/layout" "cpu" "memory" "battery" "backlight" "pulseaudio" "clock" ];
+    modules-right = [
+      "river/layout"
+      "cpu"
+      "memory"
+    ] ++ lib.optionals isLaptop [
+      "battery"
+      "backlight"
+    ] ++ [
+      "pulseaudio"
+      "clock"
+    ];
     "river/tags" = {
       num-tags = 4;
       tag-labels = [ "web" "code" "chat" "other" ];
