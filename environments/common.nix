@@ -26,7 +26,7 @@
       ExecStart =
         lib.getExe (pkgs.writeShellApplication {
           name = "send-push-notification";
-          runtimeInputs = with pkgs; [ curl coreutils ];
+          runtimeInputs = with pkgs; [ curl ];
           text = ''
             curl \
               -H "Title: ${config.networking.hostName} online" \
