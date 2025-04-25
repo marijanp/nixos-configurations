@@ -2,11 +2,9 @@
 {
   nix = {
     package = pkgs.nixVersions.latest;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
 
     settings = {
+      experimental-features = [ "nix-command" "flakes" ];
       trusted-users = [ "root" "@wheel" "marijan" ];
       sandbox = true;
       trusted-substituters = [
