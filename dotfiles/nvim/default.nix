@@ -112,6 +112,9 @@
               }
             }
           }
+          require'lspconfig'.ocamllsp.setup{
+            capabilities = capabilities
+          }
           require'lspconfig'.tinymist.setup{
             capabilities = capabilities
           }
