@@ -92,13 +92,15 @@
 
   services.mako = {
     enable = true;
-    font = "Roboto Mono 10";
-    iconPath = "${pkgs.paper-icon-theme}/share/icons/Paper";
-    maxIconSize = 32;
-    textColor = "#d8dee9";
-    backgroundColor = "#2e3440";
-    progressColor = "#4c566a";
-    defaultTimeout = 8 * 1000;
+    settings = {
+      font = "Roboto Mono 10";
+      icon-path = "${pkgs.paper-icon-theme}/share/icons/Paper";
+      max-icon-size = 32;
+      text-color = "#d8dee9";
+      background-color = "#2e3440";
+      progress-color = "#4c566a";
+      default-timeout = 8 * 1000;
+    };
   };
 
   programs.rofi = {
