@@ -4,11 +4,9 @@
   nixConfig = {
     extra-substituters = [
       "https://smos.cachix.org"
-      "https://feedback.cachix.org"
     ];
     extra-trusted-public-keys = [
       "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM="
-      "feedback.cachix.org-1:8PNDEJ4GTCbsFUwxVWE/ulyoBMDqqL23JA44yB0j1jI="
     ];
   };
 
@@ -24,14 +22,12 @@
     agenix.inputs.home-manager.follows = "home-manager";
     smos.url = "github:NorfairKing/smos";
     smos.inputs.home-manager.follows = "home-manager";
-    feedback.url = "github:NorfairKing/feedback";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, agenix, smos, feedback }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, agenix, smos }:
     let
       customOverlay =
         final: prev: {
-          feedback = feedback.packages.x86_64-linux.default;
           inherit (agenix.packages.x86_64-linux) agenix;
         };
     in

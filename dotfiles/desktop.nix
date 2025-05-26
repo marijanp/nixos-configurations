@@ -185,7 +185,6 @@
       cryptsetup
       dino
       element-desktop
-      feedback
       gopass
       gopass-jsonapi
       hledger
@@ -197,6 +196,7 @@
       steam
       signal-desktop-bin
       upterm
+      watchexec
     ] ++ lib.optionals (config.wayland.windowManager.river.enable) [
       wlr-randr
       wdisplays # wayland arandr equivalent
