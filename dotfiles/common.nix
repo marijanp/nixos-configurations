@@ -64,6 +64,8 @@
       init.defaultBranch = "main";
       # remember and reuse resolved merge conflicts
       rerere.enabled = true;
+      # On push sets the remote automatically to avoid setting --set-upstream manually
+      push.autoSetupRemote = true;
     };
   };
 
