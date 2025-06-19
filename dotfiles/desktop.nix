@@ -189,6 +189,8 @@
       gopass-jsonapi
       hledger
       mumble
+      nix-tree
+      nix-diff
       obsidian
       # obs-studio
       pavucontrol
