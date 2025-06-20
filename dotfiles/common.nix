@@ -64,6 +64,7 @@
       init.defaultBranch = "main";
       # remember and reuse resolved merge conflicts
       rerere.enabled = true;
+      # shows the diff when writing a commit message
       # On push sets the remote automatically to avoid setting --set-upstream manually
       push.autoSetupRemote = true;
     };
