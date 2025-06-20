@@ -65,6 +65,9 @@
       # remember and reuse resolved merge conflicts
       rerere.enabled = true;
       # shows the diff when writing a commit message
+      commit.verbose = true;
+      pull.rebase = true;
+      rebase.updateRefs = true;
       # On push sets the remote automatically to avoid setting --set-upstream manually
       push.autoSetupRemote = true;
     };
