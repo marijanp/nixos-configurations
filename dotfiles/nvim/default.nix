@@ -67,6 +67,21 @@
           require'ibl'.setup()
         '';
       }
+      # format on save
+      {
+        plugin = neoformat;
+        type = "lua";
+        config = ''
+          vim.g.neoformat_enable_nix = { 'nixfmt', 'nixpkgs-fmt'}
+          vim.g.neoformat_enable_ocaml = { 'topiary', 'ocamlformat' }
+          vim.cmd([[
+            augroup fmt
+              autocmd!
+              autocmd BufWritePre * undojoin | Neoformat
+            augroup END
+          ]])
+        '';
+      }
       # cool lsp stuff
       {
         plugin = lsp_lines-nvim;
