@@ -89,6 +89,7 @@
     curl
     jq
     niv
+    npins
     nix-output-monitor
     ripgrep
     tree
