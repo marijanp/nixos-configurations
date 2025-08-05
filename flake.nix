@@ -94,6 +94,11 @@
                 nur.overlays.default
               ];
 
+              networking.extraHosts = ''
+                127.0.0.1 laganinix.local
+                127.0.0.1 agent.laganinix.local
+              '';
+
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
