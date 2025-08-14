@@ -23,102 +23,114 @@
       gpg.key = "EFF1AB41802F3FA7";
     in
     {
-      gmail = rec {
-        inherit realName gpg;
-        primary = true;
-        address = "marijan.petricevic94@gmail.com";
-        userName = address;
-        maildir.path = "${address}";
-        passwordCommand =
-          "gopass show email/marijan.petricevic94@gmail.com-mail-app-password";
-        flavor = "gmail.com";
+      gmail =
+        let
+          address = "marijan.petricevic94@gmail.com";
+        in
+        {
+          inherit address realName gpg;
+          primary = true;
+          userName = address;
+          maildir.path = "${address}";
+          passwordCommand =
+            "gopass show email/marijan.petricevic94@gmail.com-mail-app-password";
+          flavor = "gmail.com";
 
-        thunderbird = {
-          enable = true;
-          profiles = [ "personal" ];
-        };
-      };
-
-      platonic = rec {
-        inherit realName gpg;
-        address = "marijan.petricevic@platonic.systems";
-        userName = address;
-        maildir.path = "${address}";
-        passwordCommand =
-          "gopass show email/marijan.petricevic@platonic.systems-mail-app-password";
-        flavor = "gmail.com";
-
-        thunderbird = {
-          enable = true;
-          profiles = [ "personal" ];
-        };
-      };
-
-      epilentio = rec {
-        inherit realName gpg;
-        address = "petricevic@epilentio.hr";
-        userName = address;
-        maildir.path = "${address}";
-        passwordCommand =
-          "gopass show epilentio/email/petricevic@epilentio.hr";
-
-        signature = {
-          text = ''
-            Marijan Petričević
-            Direktor / Principal
-
-            Epilentio d.o.o
-            https://www.epilentio.hr/
-
-            OIB / Personal ID: 34933283965
-            Trgovački sud / Court of Registry: Split
-            MBS / Commercial Register No. 060406392
-            Sjedište / Registered Office: Ulica Gospe od Zdravlja 34, 21260 Proložac, HR
-            Direktor / Principal: Marijan Petričević
-          '';
-          showSignature = "append";
+          thunderbird = {
+            enable = true;
+            profiles = [ "personal" ];
+          };
         };
 
-        thunderbird = {
-          enable = true;
-          profiles = [ "personal" ];
+      platonic =
+        let
+          address = "marijan.petricevic@platonic.systems";
+        in
+        {
+          inherit address realName gpg;
+          userName = address;
+          maildir.path = "${address}";
+          passwordCommand =
+            "gopass show email/marijan.petricevic@platonic.systems-mail-app-password";
+          flavor = "gmail.com";
+
+          thunderbird = {
+            enable = true;
+            profiles = [ "personal" ];
+          };
         };
 
-        imap = {
-          host = "mail.privateemail.com";
-          port = 993;
-          tls.enable = true;
+      epilentio =
+        let
+          address = "petricevic@epilentio.hr";
+        in
+        {
+          inherit address realName gpg;
+          userName = address;
+          maildir.path = "${address}";
+          passwordCommand =
+            "gopass show epilentio/email/petricevic@epilentio.hr";
+
+          signature = {
+            text = ''
+              Marijan Petričević
+              Direktor / Principal
+
+              Epilentio d.o.o
+              https://www.epilentio.hr/
+
+              OIB / Personal ID: 34933283965
+              Trgovački sud / Court of Registry: Split
+              MBS / Commercial Register No. 060406392
+              Sjedište / Registered Office: Ulica Gospe od Zdravlja 34, 21260 Proložac, HR
+              Direktor / Principal: Marijan Petričević
+            '';
+            showSignature = "append";
+          };
+
+          thunderbird = {
+            enable = true;
+            profiles = [ "personal" ];
+          };
+
+          imap = {
+            host = "mail.privateemail.com";
+            port = 993;
+            tls.enable = true;
+          };
+
+          smtp = {
+            host = "mail.privateemail.com";
+            port = 465;
+            tls.enable = true;
+          };
         };
 
-        smtp = {
-          host = "mail.privateemail.com";
-          port = 465;
-          tls.enable = true;
-        };
-      };
+      ventures =
+        let
+          address = "petricevic@split.ventures";
+        in
+        {
+          inherit address realName gpg;
+          userName = address;
+          maildir.path = "${address}";
+          passwordCommand =
+            "gopass show epilentio/email/petricevic@split.ventures";
 
-      ventures = rec {
-        inherit realName gpg;
-        address = "petricevic@split.ventures";
-        userName = address;
-        maildir.path = "${address}";
-        passwordCommand =
-          "gopass show epilentio/email/petricevic@split.ventures";
+          thunderbird = {
+            enable = true;
+            profiles = [ "personal" ];
+          };
 
-        thunderbird = {
-          enable = true;
-          profiles = [ "personal" ];
-        };
+          imap = {
+            host = "imap.ionos.de";
+            port = 993;
+          };
 
-        imap = {
-          host = "imap.ionos.de";
-          port = 993;
+          smtp = {
+            host = "smtp.ionos.de";
+            port = 465;
+          };
         };
-
-        smtp = {
-          host = "smtp.ionos.de";
-          port = 465;
-        };
-      };
     };
 }
