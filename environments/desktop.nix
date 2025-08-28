@@ -38,10 +38,11 @@
     };
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
     ];
     config = {
-      common.default = [ "wlr" "gtk" ];
-      river.default = [ "wlr" "gtk" ];
+      common.default = [ "gtk" "wlr" ];
+      river.default = [ "gtk" "wlr" ];
     };
   };
 }
