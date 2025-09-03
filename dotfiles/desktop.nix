@@ -48,6 +48,7 @@
 
   wayland.windowManager.river = {
     enable = true;
+    package = pkgs.river-classic;
     systemd.enable = true;
     systemd.extraCommands = [
       "systemctl --user stop river-session.target"
