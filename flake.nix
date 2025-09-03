@@ -89,6 +89,7 @@
             home-manager.nixosModules.home-manager
             {
               system.stateVersion = "22.11";
+              services.tailscale.useRoutingFeatures = "client";
               nixpkgs.overlays = [
                 customOverlay
                 nur.overlays.default
@@ -127,6 +128,8 @@
             ./services/prometheus.nix
             {
               system.stateVersion = "22.11";
+              services.tailscale.useRoutingFeatures = "server";
+              services.tailscale.extraUpFlags = [ "--advertise-exit-node" "--exit-node" ];
             }
           ];
         };
