@@ -126,11 +126,15 @@
             ./users/marijan/base.nix
             ./environments/common.nix
             ./services/prometheus.nix
-            {
+            ./services/printing.nix
+            ({config, ...}: {
               system.stateVersion = "22.11";
-              services.tailscale.useRoutingFeatures = "server";
-              services.tailscale.extraUpFlags = [ "--advertise-exit-node" "--exit-node" ];
-            }
+              services.tailscale = {
+                useRoutingFeatures = "server";
+                extraUpFlags = [ "--advertise-exit-node" "--exit-node" ];
+              };
+              networking.firewall.interfaces.${config.services.tailscale.interfaceName}.allowedTCPPorts = [ 631 ];
+            })
           ];
         };
       };
