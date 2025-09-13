@@ -13,7 +13,7 @@
 
   hardware.graphics.enable = true;
 
-  services.logind.lidSwitch = "suspend";
+  services.logind.settings.Login.HandleLidSwitch = "suspend";
 
   services.libinput.touchpad = {
     disableWhileTyping = true;
