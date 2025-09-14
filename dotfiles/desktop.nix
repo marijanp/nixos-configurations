@@ -106,7 +106,7 @@
 
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
     terminal = "kitty";
     font = "Roboto Mono 10";
     theme = ./rofi/nord.rasi;
