@@ -37,7 +37,7 @@
       nixosConfigurations = {
         split = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { nixpkgsSrc = nixpkgs; hostName = "split"; };
+          specialArgs = { nixpkgsSrc = nixpkgs; };
 
           modules = [
             nixos-hardware.nixosModules.common-pc
@@ -54,6 +54,7 @@
             home-manager.nixosModules.home-manager
             {
               system.stateVersion = "23.11";
+              networking.hostName = "split";
               nixpkgs.overlays = [
                 customOverlay
                 nur.overlays.default
@@ -76,7 +77,7 @@
 
         splitpad = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { nixpkgsSrc = nixpkgs; hostName = "splitpad"; };
+          specialArgs = { nixpkgsSrc = nixpkgs; };
 
           modules = [
             nixos-hardware.nixosModules.lenovo-thinkpad-z13-gen1
@@ -89,6 +90,7 @@
             home-manager.nixosModules.home-manager
             {
               system.stateVersion = "22.11";
+              networking.hostName = "splitpad";
               services.tailscale.useRoutingFeatures = "client";
               nixpkgs.overlays = [
                 customOverlay
@@ -117,7 +119,7 @@
 
         splitberry = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = { nixpkgsSrc = nixpkgs; hostName = "splitberry"; };
+          specialArgs = { nixpkgsSrc = nixpkgs; };
 
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-4
@@ -129,6 +131,7 @@
             ./services/printing.nix
             ({config, ...}: {
               system.stateVersion = "22.11";
+              networking.hostName = "splitberry";
               services.tailscale = {
                 useRoutingFeatures = "server";
                 extraUpFlags = [ "--advertise-exit-node" "--exit-node" ];
