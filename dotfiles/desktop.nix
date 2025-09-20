@@ -203,6 +203,7 @@
     ] ++ lib.optionals (config.wayland.windowManager.river.enable) [
       wlr-randr
       wdisplays # wayland arandr equivalent
+      wl-mirror
       wl-clipboard
       rivercarro
       waylock
