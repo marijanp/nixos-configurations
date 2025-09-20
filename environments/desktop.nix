@@ -9,21 +9,6 @@
 
   programs.kdeconnect.enable = true;
 
-  age.secrets.smos-google-calendar-source = {
-    file = ../secrets/smos-google-calendar-source.age;
-    owner = "marijan";
-  };
-
-  age.secrets.smos-platonic-google-calendar-source = {
-    file = ../secrets/smos-platonic-google-calendar-source.age;
-    owner = "marijan";
-  };
-
-  age.secrets.smos-sync-password = {
-    file = ../secrets/smos-sync-password.age;
-    owner = "marijan";
-  };
-
   programs.dconf.enable = true;
   xdg.portal = {
     enable = true;

@@ -118,33 +118,6 @@
     nix-direnv.enable = true;
   };
 
-  programs.smos = {
-    enable = true;
-    workflowDir = "${config.home.homeDirectory}/smos-workflow";
-    backup.enable = true;
-    config = {
-      calendar = {
-        sources = [
-          {
-            name = "Google";
-            destination = "calendar/google.smos";
-            source-file = osConfig.age.secrets.smos-google-calendar-source.path;
-          }
-          {
-            name = "platonic";
-            destination = "calendar/platonic-google.smos";
-            source-file = osConfig.age.secrets.smos-platonic-google-calendar-source.path;
-          }
-        ];
-      };
-      sync = {
-        username = "marijan";
-        password-file = osConfig.age.secrets.smos-sync-password.path;
-        server-url = "api.smos.online";
-      };
-    };
-  };
-
   programs.firefox = {
     enable = true;
     profiles.default = {

@@ -3,10 +3,8 @@
 
   nixConfig = {
     extra-substituters = [
-      "https://smos.cachix.org"
     ];
     extra-trusted-public-keys = [
-      "smos.cachix.org-1:YOs/tLEliRoyhx7PnNw36cw2Zvbw5R0ASZaUlpUv+yM="
     ];
   };
 
@@ -20,11 +18,9 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.home-manager.follows = "home-manager";
-    smos.url = "github:NorfairKing/smos";
-    smos.inputs.home-manager.follows = "home-manager";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, agenix, smos }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, agenix }:
     let
       customOverlay =
         final: prev: {
@@ -65,7 +61,6 @@
                 useUserPackages = true;
                 users.marijan = {
                   imports = [
-                    smos.homeManagerModules.x86_64-linux.default
                     ./users/marijan/home.nix
                     ./dotfiles/desktop.nix
                   ];
@@ -107,7 +102,6 @@
                 useUserPackages = true;
                 users.marijan = {
                   imports = [
-                    smos.homeManagerModules.x86_64-linux.default
                     ./users/marijan/home.nix
                     ./dotfiles/desktop.nix
                   ];
