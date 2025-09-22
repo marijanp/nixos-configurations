@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 {
-  imports = [ ../../options/wireless.nix ];
+  networking.networkmanager.enable = true;
   networking = {
     wireless = {
       interfaces = [ "wlan0" ];
