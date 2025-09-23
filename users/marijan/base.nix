@@ -11,6 +11,8 @@
         "video"
       ] ++ lib.optionals config.networking.networkmanager.enable [
         "networkmanager"
+      ] ++ lib.optionals config.services.printing.enable [
+        "lpadmin"
       ];
 
       openssh.authorizedKeys.keys = [
