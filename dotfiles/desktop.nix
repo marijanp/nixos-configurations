@@ -153,7 +153,7 @@
 
   home.packages =
     with pkgs; [
-      agenix
+      agenix-cli
       age-plugin-yubikey
       cachix
       cryptsetup

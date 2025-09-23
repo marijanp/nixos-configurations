@@ -15,18 +15,9 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
-    agenix.inputs.home-manager.follows = "home-manager";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, agenix }:
-    let
-      customOverlay =
-        final: prev: {
-          inherit (agenix.packages.x86_64-linux) agenix;
-        };
-    in
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur }:
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
@@ -46,13 +37,11 @@
             ./services/yubikey.nix
             ./services/printing.nix
             ./services/prometheus.nix
-            agenix.nixosModules.age
             home-manager.nixosModules.home-manager
             {
               system.stateVersion = "23.11";
               networking.hostName = "split";
               nixpkgs.overlays = [
-                customOverlay
                 nur.overlays.default
               ];
 
@@ -81,14 +70,12 @@
             ./environments/desktop.nix
             ./services/yubikey.nix
             ./services/printing.nix
-            agenix.nixosModules.age
             home-manager.nixosModules.home-manager
             {
               system.stateVersion = "22.11";
               networking.hostName = "splitpad";
               services.tailscale.useRoutingFeatures = "client";
               nixpkgs.overlays = [
-                customOverlay
                 nur.overlays.default
               ];
 
