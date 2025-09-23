@@ -35,7 +35,6 @@
             ./users/marijan/base.nix
             ./environments/desktop.nix
             ./services/yubikey.nix
-            ./services/printing.nix
             ./services/prometheus.nix
             home-manager.nixosModules.home-manager
             {
@@ -69,7 +68,6 @@
             ./users/marijan/base.nix
             ./environments/desktop.nix
             ./services/yubikey.nix
-            ./services/printing.nix
             home-manager.nixosModules.home-manager
             {
               system.stateVersion = "22.11";
@@ -110,14 +108,16 @@
             ./environments/common.nix
             ./services/prometheus.nix
             ./services/printing.nix
-            ({config, ...}: {
+            {
               system.stateVersion = "22.11";
               networking.hostName = "splitberry";
               services.tailscale = {
                 useRoutingFeatures = "server";
                 extraUpFlags = [ "--advertise-exit-node" "--exit-node" ];
               };
-              networking.firewall.interfaces.${config.services.tailscale.interfaceName}.allowedTCPPorts = [ 631 ];
+            }
+          ];
+        };
             })
           ];
         };
