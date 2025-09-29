@@ -118,6 +118,25 @@
             }
           ];
         };
+
+        split3d = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          specialArgs = { nixpkgsSrc = nixpkgs; };
+
+          modules = [
+            nixos-hardware.nixosModules.raspberry-pi-3
+            ./machines/splitberry/networking.nix
+            ./machines/split3d/camera.nix
+            ./users/marijan/base.nix
+            ./environments/common.nix
+            ./services/prometheus.nix
+            ./services/klipper
+            ({ modulesPath, ...}: {
+              imports = [
+                (modulesPath + "/installer/sd-card/sd-image-aarch64-installer.nix")
+              ];
+              system.stateVersion = "25.11";
+              networking.hostName = "split3d";
             })
           ];
         };
