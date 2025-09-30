@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 {
   services.klipper = {
     enable = true;
@@ -27,14 +27,13 @@
     settings = {
       authorization = {
         cors_domains = [
-          "3d.marijan.pro"
+          "http://3d.marijan.pro"
+          "http://split3d"
         ];
         trusted_clients = [
           "127.0.0.1/32"
           "100.64.0.0/10" # tailscale
-          #"100.79.80.19"
-          "100.97.129.110"
-          "fd7a:115c:a1e0::e601:816e"
+          "fd7a:115c:a1e0::/64"
         ];
       };
     };
