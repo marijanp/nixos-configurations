@@ -50,11 +50,6 @@
     enable = true;
     package = pkgs.river-classic;
     systemd.enable = true;
-    systemd.extraCommands = [
-      "systemctl --user stop river-session.target"
-      "systemctl --user start river-session.target"
-      "systemctl --user start swayidle.target"
-    ];
     extraSessionVariables = {
       XDG_SESSION_TYPE = "wayland";
       MOZ_ENABLE_WAYLAND = "1";
