@@ -176,7 +176,6 @@
       rivercarro
       waylock
       brightnessctl
-      pamixer
       optipng
       slurp
       grim

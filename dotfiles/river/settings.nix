@@ -28,10 +28,10 @@
       "Super+Shift L".spawn = "'loginctl lock-session'";
 
       # multimedia
-      "None XF86AudioRaiseVolume".spawn = "'pamixer --increase 2'";
-      "None XF86AudioLowerVolume".spawn = "'pamixer --decrease 2'";
-      "None XF86AudioMute".spawn = "'pamixer --toggle-mute'";
-      "None XF86AudioMicMute".spawn = "'amixer set Capture toggle'";
+      "None XF86AudioRaiseVolume".spawn = "'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+'";
+      "None XF86AudioLowerVolume".spawn = "'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-'";
+      "None XF86AudioMute".spawn = "'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'";
+      "None XF86AudioMicMute".spawn = "'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'";
       "None XF86MonBrightnessUp".spawn = "'brightnessctl set +5%'";
       "None XF86MonBrightnessDown".spawn = "'brightnessctl set 5%-'";
       "None Print".spawn = "'grim -g \"$(slurp)\"'";
