@@ -10,6 +10,8 @@
     ../services/avahi.nix
   ];
 
+  environment.systemPackages = [ pkgs.kitty.terminfo ];
+
   services.tailscale.enable = true;
 
   systemd.services."notify-host-online" = {
