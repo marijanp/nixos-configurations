@@ -15,9 +15,11 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
+    wayland-pipewire-idle-inhibit.url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
+    wayland-pipewire-idle-inhibit.flake = false;
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, wayland-pipewire-idle-inhibit }:
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
@@ -87,6 +89,7 @@
                 useUserPackages = true;
                 users.marijan = {
                   imports = [
+                    (import "${wayland-pipewire-idle-inhibit}/modules/home-manager.nix")
                     ./users/marijan/home.nix
                     ./dotfiles/desktop.nix
                   ];
