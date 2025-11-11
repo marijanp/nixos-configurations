@@ -54,13 +54,9 @@
 
   programs.git = {
     enable = true;
-    userName = "Marijan Petričević";
-    userEmail = "marijan.petricevic94@gmail.com";
-    signing = {
-      key = "0xEFF1AB41802F3FA7";
-      signByDefault = true;
-    };
-    extraConfig = {
+    settings = {
+      user.name = "Marijan Petričević";
+      user.email = "marijan.petricevic94@gmail.com";
       init.defaultBranch = "main";
       # remember and reuse resolved merge conflicts
       rerere.enabled = true;
@@ -70,6 +66,10 @@
       rebase.updateRefs = true;
       # On push sets the remote automatically to avoid setting --set-upstream manually
       push.autoSetupRemote = true;
+    };
+    signing = {
+      key = "0xEFF1AB41802F3FA7";
+      signByDefault = true;
     };
   };
 
