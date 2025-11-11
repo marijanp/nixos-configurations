@@ -6,7 +6,7 @@
     allowFrom = [ "all" ];
     listenAddresses = [
       "0.0.0.0:631"
-     ];
+    ];
     defaultShared = true;
     browsing = true;
   };
