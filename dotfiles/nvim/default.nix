@@ -22,7 +22,7 @@
       nnoremap <silent> <leader>ls <cmd>lua vim.lsp.buf.signature_help()<CR>
       nnoremap <silent> <leader>lq <cmd>lua vim.diagnostic.setloclist()<CR>
     '';
-    extraLuaConfig = ''
+    extraLuaConfig = /* lua */ ''
       vim.diagnostic.config({
         virtual_text = false,
         update_in_insert = true,
@@ -37,12 +37,41 @@
           prefix = "",
         },
       })
+      -- lsp
+      vim.lsp.config('*', {
+        capabilities = capabilities
+      })
+      vim.lsp.enable('ocamllsp')
+      vim.lsp.enable('tinymist')
+      vim.lsp.enable('nixd')
+      vim.lsp.enable('hls')
+      vim.lsp.config('hls', {
+        cmd = { "haskell-language-server", "--lsp" },
+        settings = {
+          haskell = {
+            formattingProvider = "fourmolu"
+          }
+        }
+      })
+      vim.lsp.enable('rust-analyzer')
+      vim.lsp.config('rust_analyzer', {
+        settings = {
+          ['rust-analyzer'] = {
+            checkOnSave = {
+              command = "clippy"
+            },
+            diagnostics = {
+              enable = false;
+            }
+          }
+        }
+      })
     '';
     plugins = with pkgs.vimPlugins; [
       {
         plugin = nightfox-nvim;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           require('nightfox')
           vim.cmd.colorscheme("nordfox")
         '';
@@ -63,7 +92,7 @@
       {
         plugin = indent-blankline-nvim;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           require'ibl'.setup()
         '';
       }
@@ -71,7 +100,7 @@
       {
         plugin = neoformat;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           vim.g.neoformat_enable_nix = { 'nixfmt', 'nixpkgs-fmt'}
           vim.g.neoformat_enable_ocaml = { 'topiary', 'ocamlformat' }
           vim.cmd([[
@@ -83,10 +112,11 @@
         '';
       }
       # cool lsp stuff
+      nvim-lspconfig
       {
         plugin = lsp_lines-nvim;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           require'lsp_lines'.setup()
           vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
         '';
@@ -95,7 +125,7 @@
       {
         plugin = nvim-treesitter.withAllGrammars;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           require'nvim-treesitter.configs'.setup({
             highlight = {
               enable = true,
@@ -112,44 +142,6 @@
         plugin = nvim-cmp;
         type = "lua";
         config = builtins.readFile ./cmp.lua;
-      }
-      # lsp
-      {
-        plugin = nvim-lspconfig;
-        type = "lua";
-        config = ''
-          require'lspconfig'.hls.setup{
-            cmd = { "haskell-language-server", "--lsp" }
-          , capabilities = capabilities
-          , settings = {
-              haskell = {
-                formattingProvider = "fourmolu"
-              }
-            }
-          }
-          require'lspconfig'.ocamllsp.setup{
-            capabilities = capabilities
-          }
-          require'lspconfig'.tinymist.setup{
-            capabilities = capabilities
-          }
-          require'lspconfig'.nixd.setup{
-            capabilities = capabilities
-          }
-          require'lspconfig'.rust_analyzer.setup{
-            capabilities = capabilities
-          , settings = {
-              ['rust-analyzer'] = {
-                checkOnSave = {
-                  command = "clippy"
-                },
-                diagnostics = {
-                  enable = false;
-                }
-              }
-            }
-          }
-        '';
       }
     ];
   };
