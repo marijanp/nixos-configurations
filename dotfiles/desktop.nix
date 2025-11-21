@@ -152,14 +152,12 @@
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
         gopass-bridge
-        #nordvpn-proxy
       ];
     };
   };
 
   home.packages =
     with pkgs; [
-      agenix-cli
       age-plugin-yubikey
       cachix
       cryptsetup
