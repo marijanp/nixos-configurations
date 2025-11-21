@@ -81,8 +81,8 @@
         { event = "lock"; command = lockCmd; }
       ];
       timeouts = [
-        { timeout = 3 * 60; command = lockCmd; }
-        { timeout = 5 * 60; command = "${pkgs.systemd}/bin/systemctl suspend"; }
+        { timeout = 5 * 60; command = lockCmd; }
+        { timeout = 8 * 60; command = "${pkgs.systemd}/bin/systemctl suspend"; }
       ];
     };
 
@@ -105,7 +105,7 @@
       text-color = "#d8dee9";
       background-color = "#2e3440";
       progress-color = "#4c566a";
-      default-timeout = 8 * 1000;
+      default-timeout = 5 * 1000;
     };
   };
 
