@@ -32,6 +32,7 @@
     font.size = 10;
     themeFile = "Nord";
     shellIntegration.enableBashIntegration = true;
+    enableGitIntegration = true;
   };
 
   home.sessionVariables = {
