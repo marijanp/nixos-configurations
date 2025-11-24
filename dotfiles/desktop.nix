@@ -45,6 +45,7 @@
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     _JAVA_AWT_WM_NONREPARENTING = "1";
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${config.home.homeDirectory}/.steam/root/compatibilitytools.d/";
   };
 
   wayland.windowManager.river = {
@@ -173,7 +174,6 @@
       # obs-studio
       pavucontrol
       rclone
-      steam
       signal-desktop-bin
       upterm
       watchexec
