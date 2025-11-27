@@ -125,6 +125,19 @@
     nix-direnv.enable = true;
   };
 
+  xdg.desktopEntries.firefox = {
+      name = "Firefox";
+      exec = "${lib.getExe config.programs.firefox.package} %U";
+      mimeType = [
+        "text/html"
+        "application/xhtml+xml"
+        "x-scheme-handler/http"
+        "x-scheme-handler/https"
+      ];
+      categories = [ "Network" "WebBrowser" ];
+      terminal = false;
+  };
+
   programs.firefox = {
     enable = true;
     profiles.default = {
