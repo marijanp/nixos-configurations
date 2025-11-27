@@ -134,7 +134,7 @@
             ./environments/common.nix
             ./services/prometheus.nix
             ./services/klipper
-            ({ modulesPath, ...}: {
+            ({ modulesPath, ... }: {
               imports = [
                 (modulesPath + "/installer/sd-card/sd-image-aarch64-installer.nix")
               ];
