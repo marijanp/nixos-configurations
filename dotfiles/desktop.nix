@@ -165,6 +165,7 @@
       };
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
+        sponsorblock
         gopass-bridge
       ];
     };
