@@ -78,10 +78,10 @@
     in
     {
       enable = true;
-      events = [
-        { event = "before-sleep"; command = lockCmd; }
-        { event = "lock"; command = lockCmd; }
-      ];
+      events = {
+        "before-sleep" = lockCmd;
+        "lock" = lockCmd;
+      };
       timeouts = [
         { timeout = 5 * 60; command = lockCmd; }
         { timeout = 8 * 60; command = "${pkgs.systemd}/bin/systemctl suspend"; }
