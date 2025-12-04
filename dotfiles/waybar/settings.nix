@@ -3,8 +3,8 @@
     output = [ "eDP-1" ];
     layer = "top";
     position = "bottom";
-    modules-left = [ "river/tags" ];
-    modules-center = [ "river/window" ];
+    modules-left = [ "river/tags" "river/window" ];
+    modules-center = [ ];
     modules-right = [
       "river/layout"
       "cpu"
@@ -15,6 +15,7 @@
     ] ++ [
       "pulseaudio"
       "clock"
+      "idle_inhibitor"
     ];
     "river/tags" = {
       num-tags = 4;
@@ -34,7 +35,7 @@
     };
     memory = {
       interval = 1;
-      format = "RAM: {used:0.1f}G ({percentage}%)";
+      format = "MEM: {used:0.1f}G ({percentage}%)";
     };
     battery = {
       interval = 20;
@@ -42,21 +43,37 @@
         low = 15;
         high = 80;
       };
-      format = "{capacity}% {time}";
-      format-charging = "Charging {capacity}%";
-      format-plugged = "Charged";
+      format = "{icon}: {capacity}% {time}";
+      format-full = "{icon}";
+      format-charging = "🔌{icon}: {capacity}% {time}";
+      format-discharging = "{icon}: {capacity}% {time}";
+      format-icons = ["🪫" "🔋"];
     };
     backlight = {
       device = "amdgpu_bl1";
-      format = "Br: {percent}%";
+      format = "☀️: {percent}%";
     };
     pulseaudio = {
-      format = "Vol: {volume}% {icon}";
-      format-muted = "Muted";
+      format = "{icon}: {volume}%";
+      format-muted = "{icon}";
+      format-bluetooth = "{icon}: {volume}% 🔗 {desc}";
+      format-icons = {
+        default = "🔊";
+        default-muted = "🔇";
+        headphones = "🎧";
+      };
+      on-click = "pavucontrol";
     };
     clock = {
       interval = 60;
       format = "{:%a, %d. %b - %H:%M}";
+    };
+    idle_inhibitor = {
+      format = "{icon}";
+      format-icons = {
+          activated = "🕹️";
+          deactivated = "💤";
+      };
     };
   };
 }

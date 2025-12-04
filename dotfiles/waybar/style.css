@@ -1,19 +1,19 @@
 * {
   font-family: "Roboto Mono";
   font-size: 10px;
-  color: #d8dee9;
+  color: #e5e9f0;
   padding: 0 4px;
   background: transparent;
 }
 
 #tags button.focused {
-  background: #4c566a;
+  background: #2e3440;
   border-bottom: 3px solid;
   border-bottom-color: #e5e9f0;
 }
 
 #waybar {
-  background: #3b4252;
+  background: #000000;
 }
 
 #battery.low {
