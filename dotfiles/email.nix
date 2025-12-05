@@ -77,12 +77,12 @@
               Direktor / Principal
 
               Epilentio d.o.o
-              https://www.epilentio.hr/
+              https://epilentio.hr/
 
               OIB / Personal ID: 34933283965
               Trgovački sud / Court of Registry: Split
               MBS / Commercial Register No. 060406392
-              Sjedište / Registered Office: Ulica Gospe od Zdravlja 34, 21260 Proložac, HR
+              Sjedište / Registered Office: Put svetog Roka 56 D, 21315 Jesenice, HR
               Direktor / Principal: Marijan Petričević
             '';
             showSignature = "append";
