@@ -10,8 +10,8 @@
     font.name = "Roboto";
     font.size = 10;
     theme = {
-      package = pkgs.nordic;
-      name = "Nordic-darker";
+      package = pkgs.flat-remix-gtk;
+      name = "Flat-Remix-GTK-Cyan-Darkest-Solid";
     };
     iconTheme = {
       package = pkgs.paper-icon-theme;
@@ -30,9 +30,10 @@
     enable = true;
     font.name = "Roboto Mono";
     font.size = 10;
-    themeFile = "Nord";
+    themeFile = "Carbonfox";
     shellIntegration.enableBashIntegration = true;
     enableGitIntegration = true;
+    settings.background = "#000000";
   };
 
   home.sessionVariables = {
