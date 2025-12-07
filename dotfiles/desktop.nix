@@ -94,7 +94,7 @@
     systemdTarget = "river-session.target";
     settings = {
       verbosity = "INFO";
-      media_minimum_duration = 10;
+      media_minimum_duration = 5;
       idle_inhibitor = "wayland";
     };
   };
