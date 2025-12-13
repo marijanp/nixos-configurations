@@ -33,7 +33,7 @@
             curl \
               -H "Title: ${config.networking.hostName} online" \
               -H "Tags: artificial_satellite" \
-              -d "$(date)" \
+              -d "$(date -u)" \
               https://ntfy.marijan.pro/host-online
           '';
         });
