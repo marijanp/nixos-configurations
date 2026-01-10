@@ -112,6 +112,7 @@
             ./machines/splitberry/networking.nix
             ./users/marijan/base.nix
             ./environments/common.nix
+            ./services/adguard.nix
             ./services/prometheus.nix
             ./services/printing.nix
             {
