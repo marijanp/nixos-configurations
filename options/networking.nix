@@ -2,6 +2,12 @@
 {
   networking = {
     enableIPv6 = true;
-    nameservers = [ "9.9.9.9" "8.8.8.8" "8.8.4.4" ];
+    nameservers = [
+      # quad9
+      "9.9.9.9"
+      "149.112.112.112"
+      "2620:fe::fe"
+      "2620:fe::9"
+    ];
   };
 }
