@@ -127,15 +127,16 @@
           vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
         '';
       }
-      # languages
+      # syntax highlighting
       {
         plugin = nvim-treesitter.withAllGrammars;
         type = "lua";
         config = /* lua */ ''
-          require'nvim-treesitter.configs'.setup({
-            highlight = {
-              enable = true,
-            },
+          vim.api.nvim_create_autocmd('FileType', {
+            pattern = '*',
+            callback = function()
+              pcall(vim.treesitter.start)
+            end,
           })
         '';
       }
