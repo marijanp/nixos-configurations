@@ -79,6 +79,8 @@
                 nur.overlays.default
               ];
 
+              services.printing.enable = true;
+
               networking.extraHosts = ''
                 127.0.0.1 laganinix.local
                 127.0.0.1 agent.laganinix.local
