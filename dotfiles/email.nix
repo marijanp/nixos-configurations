@@ -28,7 +28,7 @@
           address = "marijan.petricevic94@gmail.com";
         in
         {
-          inherit address realName gpg;
+          inherit address realName;
           primary = true;
           userName = address;
           maildir.path = "${address}";
@@ -47,7 +47,7 @@
           address = "marijan.petricevic@platonic.systems";
         in
         {
-          inherit address realName gpg;
+          inherit address realName;
           userName = address;
           maildir.path = "${address}";
           passwordCommand =
@@ -65,7 +65,7 @@
           address = "petricevic@epilentio.hr";
         in
         {
-          inherit address realName gpg;
+          inherit address realName;
           userName = address;
           maildir.path = "${address}";
           passwordCommand =
@@ -111,7 +111,7 @@
           address = "petricevic@split.ventures";
         in
         {
-          inherit address realName gpg;
+          inherit address realName;
           userName = address;
           maildir.path = "${address}";
           passwordCommand =
