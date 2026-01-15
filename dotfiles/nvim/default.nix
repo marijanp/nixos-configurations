@@ -66,6 +66,7 @@
           }
         }
       })
+      vim.lsp.enable('clangd')
     '';
     plugins = with pkgs.vimPlugins; [
       {
