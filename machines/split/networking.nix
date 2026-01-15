@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ ... }: {
 
   networking = {
     interfaces = {
@@ -12,6 +12,4 @@
       interfaces = [ "wlp13s0" ];
     };
   };
-
-  imports = [ ../../options/wireless.nix ];
 }
