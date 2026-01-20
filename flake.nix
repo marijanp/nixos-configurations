@@ -40,6 +40,7 @@
             ./environments/desktop.nix
             ./services/yubikey.nix
             ./services/prometheus.nix
+            ./services/ollama.nix
             home-manager.nixosModules.home-manager
             {
               system.stateVersion = "23.11";
