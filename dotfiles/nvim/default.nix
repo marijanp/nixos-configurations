@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
     nixd
@@ -150,8 +150,24 @@
         plugin = nvim-cmp;
         type = "lua";
         config = builtins.readFile ./cmp.lua;
+
+      }
+    ] ++ lib.optionals config.programs.opencode.enable [
+      {
+        plugin = opencode-nvim;
+        type = "lua";
+        config = /* lua */ ''
+          vim.keymap.set({ "n", "x" }, "<leader>aa", function() require("opencode").select() end, { desc = "Execute AI action" })
+          vim.keymap.set({ "n", "x" }, "<leader>ap", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask/prompt AI" })
+          vim.keymap.set({ "n", "t" }, "<leader>ac", function() require("opencode").toggle() end, { desc = "Toggle AI chat" })
+
+          vim.keymap.set({ "n", "x" }, "ar", function() return require("opencode").operator("@this ") end, { expr = true, desc = "AI range operator" })
+          vim.keymap.set("n", "<leader>al", function() return require("opencode").operator("@this ") .. "_" end, { expr = true, desc = "AI Line operator" })
+
+          vim.keymap.set("n", "<leader>au", function() require("opencode").command("session.half.page.up") end, { desc = "AI chat page up" })
+          vim.keymap.set("n", "<leader>ad", function() require("opencode").command("session.half.page.down") end, { desc = "AI chat page down" })
+        '';
       }
     ];
   };
 }
-

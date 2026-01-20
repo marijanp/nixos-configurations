@@ -17,9 +17,11 @@
     nur.inputs.nixpkgs.follows = "nixpkgs";
     wayland-pipewire-idle-inhibit.url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
     wayland-pipewire-idle-inhibit.flake = false;
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, wayland-pipewire-idle-inhibit }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, wayland-pipewire-idle-inhibit, sops-nix }:
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
@@ -71,8 +73,9 @@
             ./users/marijan/base.nix
             ./environments/desktop.nix
             ./services/yubikey.nix
+            sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
-            {
+            ({ config, ...}: {
               system.stateVersion = "22.11";
               networking.hostName = "splitpad";
               services.tailscale.useRoutingFeatures = "client";
@@ -87,6 +90,18 @@
                 127.0.0.1 agent.laganinix.local
               '';
 
+              sops = {
+                defaultSopsFile = ./secrets/common.yaml;
+                age = {
+                  sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+                  keyFile = "/var/lib/sops-nix/key.txt";
+                  generateKey = true; # derives the keyFile from the private ssh key if it doesn't exist
+                };
+                secrets.opencode-zen-api-key = {
+                  owner = config.users.users.marijan.name;
+                };
+              };
+
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -95,10 +110,11 @@
                     (import "${wayland-pipewire-idle-inhibit}/modules/home-manager.nix")
                     ./users/marijan/home.nix
                     ./dotfiles/desktop.nix
+                    ./dotfiles/opencode.nix
                   ];
                 };
               };
-            }
+            })
           ];
         };
 
