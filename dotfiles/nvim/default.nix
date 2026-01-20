@@ -109,6 +109,7 @@
         type = "lua";
         config = /* lua */ ''
           vim.g.neoformat_enable_nix = { 'nixfmt', 'nixpkgs-fmt'}
+          vim.g.neoformat_enable_c = { 'clang-format' }
           vim.g.neoformat_enable_ocaml = { 'topiary', 'ocamlformat' }
           vim.cmd([[
             augroup fmt
