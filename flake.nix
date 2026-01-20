@@ -65,7 +65,7 @@
                 useUserPackages = true;
                 users.marijan = {
                   imports = [
-                    (import "${wayland-pipewire-idle-inhibit}/modules/home-manager.nix")
+                    "${wayland-pipewire-idle-inhibit}/modules/home-manager.nix"
                     ./users/marijan/home.nix
                     ./dotfiles/desktop.nix
                   ];
@@ -124,7 +124,7 @@
                   useUserPackages = true;
                   users.marijan = {
                     imports = [
-                      (import "${wayland-pipewire-idle-inhibit}/modules/home-manager.nix")
+                      "${wayland-pipewire-idle-inhibit}/modules/home-manager.nix"
                       ./users/marijan/home.nix
                       ./dotfiles/desktop.nix
                       ./dotfiles/opencode.nix
