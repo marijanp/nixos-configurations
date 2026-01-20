@@ -32,8 +32,7 @@
           primary = true;
           userName = address;
           maildir.path = "${address}";
-          passwordCommand =
-            "gopass show email/marijan.petricevic94@gmail.com-mail-app-password";
+          passwordCommand = "gopass show email/marijan.petricevic94@gmail.com-mail-app-password";
           flavor = "gmail.com";
 
           thunderbird = {
@@ -50,8 +49,7 @@
           inherit address realName;
           userName = address;
           maildir.path = "${address}";
-          passwordCommand =
-            "gopass show email/marijan.petricevic@platonic.systems-mail-app-password";
+          passwordCommand = "gopass show email/marijan.petricevic@platonic.systems-mail-app-password";
           flavor = "gmail.com";
 
           thunderbird = {
@@ -68,8 +66,7 @@
           inherit address realName;
           userName = address;
           maildir.path = "${address}";
-          passwordCommand =
-            "gopass show epilentio/email/petricevic@epilentio.hr";
+          passwordCommand = "gopass show epilentio/email/petricevic@epilentio.hr";
 
           signature = {
             text = ''
@@ -114,8 +111,7 @@
           inherit address realName;
           userName = address;
           maildir.path = "${address}";
-          passwordCommand =
-            "gopass show epilentio/email/petricevic@split.ventures";
+          passwordCommand = "gopass show epilentio/email/petricevic@split.ventures";
 
           thunderbird = {
             enable = true;

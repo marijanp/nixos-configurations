@@ -21,14 +21,25 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, wayland-pipewire-idle-inhibit, sops-nix }:
+  outputs =
     {
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      self,
+      nixpkgs,
+      nixos-hardware,
+      home-manager,
+      nur,
+      wayland-pipewire-idle-inhibit,
+      sops-nix,
+    }:
+    {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
 
       nixosConfigurations = {
         split = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { nixpkgsSrc = nixpkgs; };
+          specialArgs = {
+            nixpkgsSrc = nixpkgs;
+          };
 
           modules = [
             nixos-hardware.nixosModules.common-pc
@@ -66,7 +77,9 @@
 
         splitpad = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { nixpkgsSrc = nixpkgs; };
+          specialArgs = {
+            nixpkgsSrc = nixpkgs;
+          };
 
           modules = [
             nixos-hardware.nixosModules.lenovo-thinkpad-z13-gen1
@@ -76,52 +89,58 @@
             ./services/yubikey.nix
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
-            ({ config, ...}: {
-              system.stateVersion = "22.11";
-              networking.hostName = "splitpad";
-              services.tailscale.useRoutingFeatures = "client";
-              nixpkgs.overlays = [
-                nur.overlays.default
-              ];
+            (
+              { config, ... }:
+              {
+                system.stateVersion = "22.11";
+                networking.hostName = "splitpad";
+                nixpkgs.overlays = [
+                  nur.overlays.default
+                ];
 
-              services.printing.enable = true;
+                services.tailscale.useRoutingFeatures = "client";
 
-              networking.extraHosts = ''
-                127.0.0.1 laganinix.local
-                127.0.0.1 agent.laganinix.local
-              '';
+                services.printing.enable = true;
 
-              sops = {
-                defaultSopsFile = ./secrets/common.yaml;
-                age = {
-                  sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-                  keyFile = "/var/lib/sops-nix/key.txt";
-                  generateKey = true; # derives the keyFile from the private ssh key if it doesn't exist
+                networking.extraHosts = ''
+                  127.0.0.1 laganinix.local
+                  127.0.0.1 agent.laganinix.local
+                '';
+
+                sops = {
+                  defaultSopsFile = ./secrets/common.yaml;
+                  age = {
+                    sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+                    keyFile = "/var/lib/sops-nix/key.txt";
+                    generateKey = true; # derives the keyFile from the private ssh key if it doesn't exist
+                  };
+                  secrets.opencode-zen-api-key = {
+                    owner = config.users.users.marijan.name;
+                  };
                 };
-                secrets.opencode-zen-api-key = {
-                  owner = config.users.users.marijan.name;
-                };
-              };
 
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.marijan = {
-                  imports = [
-                    (import "${wayland-pipewire-idle-inhibit}/modules/home-manager.nix")
-                    ./users/marijan/home.nix
-                    ./dotfiles/desktop.nix
-                    ./dotfiles/opencode.nix
-                  ];
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.marijan = {
+                    imports = [
+                      (import "${wayland-pipewire-idle-inhibit}/modules/home-manager.nix")
+                      ./users/marijan/home.nix
+                      ./dotfiles/desktop.nix
+                      ./dotfiles/opencode.nix
+                    ];
+                  };
                 };
-              };
-            })
+              }
+            )
           ];
         };
 
         splitberry = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = { nixpkgsSrc = nixpkgs; };
+          specialArgs = {
+            nixpkgsSrc = nixpkgs;
+          };
 
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-4
@@ -137,7 +156,10 @@
               networking.hostName = "splitberry";
               services.tailscale = {
                 useRoutingFeatures = "server";
-                extraUpFlags = [ "--advertise-exit-node" "--exit-node" ];
+                extraUpFlags = [
+                  "--advertise-exit-node"
+                  "--exit-node"
+                ];
               };
             }
           ];
@@ -145,7 +167,9 @@
 
         split3d = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = { nixpkgsSrc = nixpkgs; };
+          specialArgs = {
+            nixpkgsSrc = nixpkgs;
+          };
 
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-3
@@ -155,13 +179,16 @@
             ./environments/common.nix
             ./services/prometheus.nix
             ./services/klipper
-            ({ modulesPath, ... }: {
-              imports = [
-                (modulesPath + "/installer/sd-card/sd-image-aarch64-installer.nix")
-              ];
-              system.stateVersion = "25.11";
-              networking.hostName = "split3d";
-            })
+            (
+              { modulesPath, ... }:
+              {
+                imports = [
+                  (modulesPath + "/installer/sd-card/sd-image-aarch64-installer.nix")
+                ];
+                system.stateVersion = "25.11";
+                networking.hostName = "split3d";
+              }
+            )
           ];
         };
       };

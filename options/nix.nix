@@ -4,8 +4,15 @@
     package = pkgs.nixVersions.latest;
 
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = [ "root" "@wheel" "marijan" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [
+        "root"
+        "@wheel"
+        "marijan"
+      ];
       sandbox = true;
       trusted-substituters = [
         "https://split.cachix.org"

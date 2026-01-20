@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   home.packages = with pkgs; [
     nixd
@@ -68,107 +73,110 @@
       })
       vim.lsp.enable('clangd')
     '';
-    plugins = with pkgs.vimPlugins; [
-      {
-        plugin = nightfox-nvim;
-        type = "lua";
-        config = /* lua */ ''
-          require('nightfox').setup({
-            palettes = {
-              carbonfox = {
-                bg1 = "#000000", -- Black background
-              }
-            },
-          })
-          vim.cmd.colorscheme("carbonfox")
-        '';
-      }
-      # utils
-      vim-airline
-      vim-signify # shows git diff
-      rainbow-delimiters-nvim
-      {
-        plugin = telescope-nvim;
-        config = ''
-          nnoremap <leader>tf <cmd>Telescope find_files<cr>
-          nnoremap <leader>tg <cmd>Telescope live_grep<cr>
-          nnoremap <leader>tb <cmd>Telescope buffers<cr>
-          nnoremap <leader>th <cmd>Telescope help_tags<cr>
-        '';
-      }
-      {
-        plugin = indent-blankline-nvim;
-        type = "lua";
-        config = /* lua */ ''
-          require'ibl'.setup()
-        '';
-      }
-      # format on save
-      {
-        plugin = neoformat;
-        type = "lua";
-        config = /* lua */ ''
-          vim.g.neoformat_enable_nix = { 'nixfmt', 'nixpkgs-fmt'}
-          vim.g.neoformat_enable_c = { 'clang-format' }
-          vim.g.neoformat_enable_ocaml = { 'topiary', 'ocamlformat' }
-          vim.cmd([[
-            augroup fmt
-              autocmd!
-              autocmd BufWritePre * undojoin | Neoformat
-            augroup END
-          ]])
-        '';
-      }
-      # cool lsp stuff
-      nvim-lspconfig
-      {
-        plugin = lsp_lines-nvim;
-        type = "lua";
-        config = /* lua */ ''
-          require'lsp_lines'.setup()
-          vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
-        '';
-      }
-      # syntax highlighting
-      {
-        plugin = nvim-treesitter.withAllGrammars;
-        type = "lua";
-        config = /* lua */ ''
-          vim.api.nvim_create_autocmd('FileType', {
-            pattern = '*',
-            callback = function()
-              pcall(vim.treesitter.start)
-            end,
-          })
-        '';
-      }
-      # snippets
-      luasnip
-      cmp_luasnip
-      # completion
-      cmp-nvim-lsp # lsp completions
-      {
-        plugin = nvim-cmp;
-        type = "lua";
-        config = builtins.readFile ./cmp.lua;
+    plugins =
+      with pkgs.vimPlugins;
+      [
+        {
+          plugin = nightfox-nvim;
+          type = "lua";
+          config = /* lua */ ''
+            require('nightfox').setup({
+              palettes = {
+                carbonfox = {
+                  bg1 = "#000000", -- Black background
+                }
+              },
+            })
+            vim.cmd.colorscheme("carbonfox")
+          '';
+        }
+        # utils
+        vim-airline
+        vim-signify # shows git diff
+        rainbow-delimiters-nvim
+        {
+          plugin = telescope-nvim;
+          config = ''
+            nnoremap <leader>tf <cmd>Telescope find_files<cr>
+            nnoremap <leader>tg <cmd>Telescope live_grep<cr>
+            nnoremap <leader>tb <cmd>Telescope buffers<cr>
+            nnoremap <leader>th <cmd>Telescope help_tags<cr>
+          '';
+        }
+        {
+          plugin = indent-blankline-nvim;
+          type = "lua";
+          config = /* lua */ ''
+            require'ibl'.setup()
+          '';
+        }
+        # format on save
+        {
+          plugin = neoformat;
+          type = "lua";
+          config = /* lua */ ''
+            vim.g.neoformat_enable_nix = { 'nixfmt', 'nixpkgs-fmt'}
+            vim.g.neoformat_enable_c = { 'clang-format' }
+            vim.g.neoformat_enable_ocaml = { 'topiary', 'ocamlformat' }
+            vim.cmd([[
+              augroup fmt
+                autocmd!
+                autocmd BufWritePre * undojoin | Neoformat
+              augroup END
+            ]])
+          '';
+        }
+        # cool lsp stuff
+        nvim-lspconfig
+        {
+          plugin = lsp_lines-nvim;
+          type = "lua";
+          config = /* lua */ ''
+            require'lsp_lines'.setup()
+            vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
+          '';
+        }
+        # syntax highlighting
+        {
+          plugin = nvim-treesitter.withAllGrammars;
+          type = "lua";
+          config = /* lua */ ''
+            vim.api.nvim_create_autocmd('FileType', {
+              pattern = '*',
+              callback = function()
+                pcall(vim.treesitter.start)
+              end,
+            })
+          '';
+        }
+        # snippets
+        luasnip
+        cmp_luasnip
+        # completion
+        cmp-nvim-lsp # lsp completions
+        {
+          plugin = nvim-cmp;
+          type = "lua";
+          config = builtins.readFile ./cmp.lua;
 
-      }
-    ] ++ lib.optionals config.programs.opencode.enable [
-      {
-        plugin = opencode-nvim;
-        type = "lua";
-        config = /* lua */ ''
-          vim.keymap.set({ "n", "x" }, "<leader>aa", function() require("opencode").select() end, { desc = "Execute AI action" })
-          vim.keymap.set({ "n", "x" }, "<leader>ap", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask/prompt AI" })
-          vim.keymap.set({ "n", "t" }, "<leader>ac", function() require("opencode").toggle() end, { desc = "Toggle AI chat" })
+        }
+      ]
+      ++ lib.optionals config.programs.opencode.enable [
+        {
+          plugin = opencode-nvim;
+          type = "lua";
+          config = /* lua */ ''
+            vim.keymap.set({ "n", "x" }, "<leader>aa", function() require("opencode").select() end, { desc = "Execute AI action" })
+            vim.keymap.set({ "n", "x" }, "<leader>ap", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask/prompt AI" })
+            vim.keymap.set({ "n", "t" }, "<leader>ac", function() require("opencode").toggle() end, { desc = "Toggle AI chat" })
 
-          vim.keymap.set({ "n", "x" }, "ar", function() return require("opencode").operator("@this ") end, { expr = true, desc = "AI range operator" })
-          vim.keymap.set("n", "<leader>al", function() return require("opencode").operator("@this ") .. "_" end, { expr = true, desc = "AI Line operator" })
+            vim.keymap.set({ "n", "x" }, "ar", function() return require("opencode").operator("@this ") end, { expr = true, desc = "AI range operator" })
+            vim.keymap.set("n", "<leader>al", function() return require("opencode").operator("@this ") .. "_" end, { expr = true, desc = "AI Line operator" })
 
-          vim.keymap.set("n", "<leader>au", function() require("opencode").command("session.half.page.up") end, { desc = "AI chat page up" })
-          vim.keymap.set("n", "<leader>ad", function() require("opencode").command("session.half.page.down") end, { desc = "AI chat page down" })
-        '';
-      }
-    ];
+            vim.keymap.set("n", "<leader>au", function() require("opencode").command("session.half.page.up") end, { desc = "AI chat page up" })
+            vim.keymap.set("n", "<leader>ad", function() require("opencode").command("session.half.page.down") end, { desc = "AI chat page down" })
+          '';
+        }
+      ];
   };
 }

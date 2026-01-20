@@ -1,25 +1,36 @@
-{ lib, isLaptop }: {
+{ lib, isLaptop }:
+{
   mainBar = {
     output = [ "eDP-1" ];
     layer = "top";
     position = "bottom";
-    modules-left = [ "river/tags" "river/window" ];
+    modules-left = [
+      "river/tags"
+      "river/window"
+    ];
     modules-center = [ ];
     modules-right = [
       "river/layout"
       "cpu"
       "memory"
-    ] ++ lib.optionals isLaptop [
+    ]
+    ++ lib.optionals isLaptop [
       "battery"
       "backlight"
-    ] ++ [
+    ]
+    ++ [
       "pulseaudio"
       "clock"
       "idle_inhibitor"
     ];
     "river/tags" = {
       num-tags = 4;
-      tag-labels = [ "web" "code" "chat" "other" ];
+      tag-labels = [
+        "web"
+        "code"
+        "chat"
+        "other"
+      ];
     };
     "river/layout" = {
       format = "{}";
@@ -47,7 +58,10 @@
       format-full = "{icon}";
       format-charging = "🔌{icon}: {capacity}% {time}";
       format-discharging = "{icon}: {capacity}% {time}";
-      format-icons = ["🪫" "🔋"];
+      format-icons = [
+        "🪫"
+        "🔋"
+      ];
     };
     backlight = {
       device = "amdgpu_bl1";
@@ -71,8 +85,8 @@
     idle_inhibitor = {
       format = "{icon}";
       format-icons = {
-          activated = "🕹️";
-          deactivated = "💤";
+        activated = "🕹️";
+        deactivated = "💤";
       };
     };
   };

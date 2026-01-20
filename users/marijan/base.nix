@@ -9,9 +9,11 @@
       extraGroups = [
         "wheel"
         "video"
-      ] ++ lib.optionals config.networking.networkmanager.enable [
+      ]
+      ++ lib.optionals config.networking.networkmanager.enable [
         "networkmanager"
-      ] ++ lib.optionals config.services.printing.enable [
+      ]
+      ++ lib.optionals config.services.printing.enable [
         "lpadmin"
       ];
 

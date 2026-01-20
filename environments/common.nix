@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     ../options/networking.nix
@@ -25,8 +30,8 @@
       Type = "oneshot";
       Restart = "on-failure";
       RestartSec = 5;
-      ExecStart =
-        lib.getExe (pkgs.writeShellApplication {
+      ExecStart = lib.getExe (
+        pkgs.writeShellApplication {
           name = "send-push-notification";
           runtimeInputs = with pkgs; [ curl ];
           text = ''
@@ -36,7 +41,8 @@
               -d "$(date -u)" \
               https://ntfy.marijan.pro/host-online
           '';
-        });
+        }
+      );
     };
   };
 
@@ -63,7 +69,10 @@
         serif = [ "Roboto" ];
         sansSerif = [ "Roboto" ];
         monospace = [ "Roboto Mono" ];
-        emoji = [ "Noto Color Emoji" "Noto Emoji" ];
+        emoji = [
+          "Noto Color Emoji"
+          "Noto Emoji"
+        ];
       };
       hinting = {
         enable = true;

@@ -1,4 +1,10 @@
-{ config, pkgs, lib, osConfig, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
 {
   imports = [
     ./common.nix
@@ -84,8 +90,14 @@
         "lock" = lockCmd;
       };
       timeouts = [
-        { timeout = 5 * 60; command = lockCmd; }
-        { timeout = 8 * 60; command = "${pkgs.systemd}/bin/systemctl suspend"; }
+        {
+          timeout = 5 * 60;
+          command = lockCmd;
+        }
+        {
+          timeout = 8 * 60;
+          command = "${pkgs.systemd}/bin/systemctl suspend";
+        }
       ];
     };
 
@@ -127,16 +139,19 @@
   };
 
   xdg.desktopEntries.firefox = {
-      name = "Firefox";
-      exec = "${lib.getExe config.programs.firefox.package} %U";
-      mimeType = [
-        "text/html"
-        "application/xhtml+xml"
-        "x-scheme-handler/http"
-        "x-scheme-handler/https"
-      ];
-      categories = [ "Network" "WebBrowser" ];
-      terminal = false;
+    name = "Firefox";
+    exec = "${lib.getExe config.programs.firefox.package} %U";
+    mimeType = [
+      "text/html"
+      "application/xhtml+xml"
+      "x-scheme-handler/http"
+      "x-scheme-handler/https"
+    ];
+    categories = [
+      "Network"
+      "WebBrowser"
+    ];
+    terminal = false;
   };
 
   programs.firefox = {
@@ -162,7 +177,8 @@
         "extensions.pocket.site" = "0.0.0.0";
         "browser.newtabpage.activity-stream.pocketCta" = "";
         "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
-        "services.sync.prefs.sync.browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+        "services.sync.prefs.sync.browser.newtabpage.activity-stream.section.highlights.includePocket" =
+          false;
       };
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
@@ -173,7 +189,8 @@
   };
 
   home.packages =
-    with pkgs; [
+    with pkgs;
+    [
       age-plugin-yubikey
       cachix
       cryptsetup
@@ -192,7 +209,8 @@
       signal-desktop-bin
       upterm
       watchexec
-    ] ++ lib.optionals (config.wayland.windowManager.river.enable) [
+    ]
+    ++ lib.optionals (config.wayland.windowManager.river.enable) [
       wlr-randr
       wdisplays # wayland arandr equivalent
       wl-mirror

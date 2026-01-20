@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   hardware.gpgSmartcards.enable = true;
   services.pcscd.enable = true;
   security.pam = {

@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   networking = {
     interfaces = {
       wlp1s0.useDHCP = true;

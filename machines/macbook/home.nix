@@ -34,7 +34,10 @@
         serif = [ "Roboto" ];
         sansSerif = [ "Roboto" ];
         monospace = [ "Roboto Mono" ];
-        emoji = [ "Noto Color Emoji" "Noto Emoji" ];
+        emoji = [
+          "Noto Color Emoji"
+          "Noto Emoji"
+        ];
       };
     };
   };

@@ -8,6 +8,10 @@
   services.ustreamer = {
     enable = true;
     device = "/dev/video0";
-    extraArgs = [ "--resolution=1280x960" "--quality=100" "--desired-fps=10" ];
+    extraArgs = [
+      "--resolution=1280x960"
+      "--quality=100"
+      "--desired-fps=10"
+    ];
   };
 }

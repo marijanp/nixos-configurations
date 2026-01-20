@@ -35,8 +35,14 @@
       pkgs.xdg-desktop-portal-wlr
     ];
     config = {
-      common.default = [ "gtk" "wlr" ];
-      river.default = [ "gtk" "wlr" ];
+      common.default = [
+        "gtk"
+        "wlr"
+      ];
+      river.default = [
+        "gtk"
+        "wlr"
+      ];
     };
   };
 }
