@@ -2,6 +2,7 @@
 {
   imports = [
     ./common.nix
+    ../options/fonts.nix
     ../options/sound.nix
   ];
 
