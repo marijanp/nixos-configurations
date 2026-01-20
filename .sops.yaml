@@ -1,0 +1,14 @@
+keys:
+  - &users:
+    - &marijan age1yubikey1q0tpa48d03dy59jcsjsx5a8zv0p8msr89ut7xgr64x5ujgkrn0ceulx4zwv
+  - &hosts:
+    - &split age1jcj0dwa2skgypqyy7y0ufqcx9clslz0zunu3s2kee76aurg6ev7qd2a44l
+    - &splitpad age1luu7gmkpmzr3y0nv0c77g6qwac30u8lwpvzpevxs65q9yzjvxgdqefx22u
+
+creation_rules:
+  - path_regex: secrets/common.yaml$
+    key_groups:
+      - age:
+        - *marijan
+        - *split
+        - *splitpad
