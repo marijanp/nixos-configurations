@@ -88,6 +88,7 @@
             ./users/marijan/base.nix
             ./environments/desktop.nix
             ./services/yubikey.nix
+            ./services/steam.nix
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             (
