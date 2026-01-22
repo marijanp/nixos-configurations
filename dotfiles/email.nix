@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.thunderbird = {
     enable = true;
@@ -6,8 +6,13 @@
       isDefault = true;
       withExternalGnupg = true;
       feedAccounts.feeds = { };
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        pkgs.firefox-addons.croatian-dictionary
+        dictionary-german
+      ];
     };
     settings = {
+      "extensions.autoDisableScopes" = 0; # automatically enable all extensions
       "privacy.donottrackheader.enabled" = true; # Send DNT: 1 header
       "mail.identity.default.reply_on_top" = true;
       "mail.identity.default.auto_quote" = false;

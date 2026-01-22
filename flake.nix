@@ -58,6 +58,7 @@
               networking.hostName = "split";
               nixpkgs.overlays = [
                 nur.overlays.default
+                (import ./overlay.nix)
               ];
 
               home-manager = {
@@ -96,6 +97,7 @@
                 networking.hostName = "splitpad";
                 nixpkgs.overlays = [
                   nur.overlays.default
+                  (import ./overlay.nix)
                 ];
 
                 services.tailscale.useRoutingFeatures = "client";
