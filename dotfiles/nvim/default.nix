@@ -94,6 +94,8 @@
         vim-airline
         vim-signify # shows git diff
         rainbow-delimiters-nvim
+        # plenary-nvim is a propagatedBuildInput of telescope-nvim but since recent bump it has to be added explicitly
+        plenary-nvim
         {
           plugin = telescope-nvim;
           config = ''
