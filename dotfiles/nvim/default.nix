@@ -98,11 +98,15 @@
         plenary-nvim
         {
           plugin = telescope-nvim;
-          config = ''
-            nnoremap <leader>tf <cmd>Telescope find_files<cr>
-            nnoremap <leader>tg <cmd>Telescope live_grep<cr>
-            nnoremap <leader>tb <cmd>Telescope buffers<cr>
-            nnoremap <leader>th <cmd>Telescope help_tags<cr>
+          type = "lua";
+          config = /* lua */ ''
+            require('telescope').setup({})
+
+            local builtin = require('telescope.builtin')
+            vim.keymap.set('n', '<leader>tf', builtin.find_files, {})
+            vim.keymap.set('n', '<leader>tg', builtin.live_grep, {})
+            vim.keymap.set('n', '<leader>tb', builtin.buffers, {})
+            vim.keymap.set('n', '<leader>th', builtin.help_tags, {})
           '';
         }
         {
