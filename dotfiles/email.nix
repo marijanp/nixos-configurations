@@ -22,6 +22,23 @@
     };
   };
 
+  accounts.calendar.accounts = {
+    gmail = {
+      primary = true;
+      remote = {
+        userName = "marijan.petricevic94@gmail.com";
+        type = "caldav";
+        url = "https://apidata.googleusercontent.com/caldav/v2/marijan.petricevic94@gmail.com/events/";
+        passwordCommand = "gopass show email/marijan.petricevic94@gmail.com-mail-app-password";
+      };
+      thunderbird = {
+        enable = true;
+        profiles = [ "personal" ];
+        color = "#f44366";
+      };
+    };
+  };
+
   accounts.email.accounts =
     let
       realName = "Marijan Petričević";
