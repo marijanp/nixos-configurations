@@ -7,7 +7,7 @@
     port = 11434;
     syncModels = true;
     loadModels = [
-      "qwen3-coder:30b"
+      "qwen3-coder-next:q4_K_M"
     ];
   };
   networking.firewall.interfaces.${config.services.tailscale.interfaceName}.allowedTCPPorts = [
