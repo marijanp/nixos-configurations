@@ -19,8 +19,7 @@
       autoshare = false;
       autoupdate = true;
       plugin = [ "opencode-antigravity-auth@beta" ];
-
-      model = "opencode/grok-code";
+      model = "ollama/qwen3-coder-next";
       provider = {
         opencode = {
           options.apiKey = "{file:${osConfig.sops.secrets.opencode-zen-api-key.path}}";
@@ -29,9 +28,9 @@
           # The /v1 suffix is required by OpenCode for OpenAI-compatible APIs
           options.baseURL = "http://split:11434/v1";
           models = {
-            "qwen3-coder" = {
-              id = "qwen3-coder:30b";
-              name = "Qwen 3 Coder 30b (RTX 4090)";
+            "qwen3-coder-next" = {
+              id = "qwen3-coder-next:q4_K_M";
+              name = "Qwen 3 Coder Next (RTX 4090)";
               limit = {
                 context = 128000;
                 output = 65536;
