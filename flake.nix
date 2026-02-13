@@ -15,8 +15,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
-    wayland-pipewire-idle-inhibit.url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
-    wayland-pipewire-idle-inhibit.flake = false;
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -28,7 +26,6 @@
       nixos-hardware,
       home-manager,
       nur,
-      wayland-pipewire-idle-inhibit,
       sops-nix,
     }:
     {
@@ -66,7 +63,6 @@
                 useUserPackages = true;
                 users.marijan = {
                   imports = [
-                    "${wayland-pipewire-idle-inhibit}/modules/home-manager.nix"
                     ./users/marijan/home.nix
                     ./dotfiles/desktop.nix
                   ];
@@ -127,7 +123,6 @@
                   useUserPackages = true;
                   users.marijan = {
                     imports = [
-                      "${wayland-pipewire-idle-inhibit}/modules/home-manager.nix"
                       ./users/marijan/home.nix
                       ./dotfiles/desktop.nix
                       ./dotfiles/opencode.nix

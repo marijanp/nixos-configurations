@@ -101,16 +101,6 @@
       ];
     };
 
-  services.wayland-pipewire-idle-inhibit = {
-    enable = true;
-    systemdTarget = "river-session.target";
-    settings = {
-      verbosity = "INFO";
-      media_minimum_duration = 5;
-      idle_inhibitor = "wayland";
-    };
-  };
-
   services.mako = {
     enable = true;
     settings = {

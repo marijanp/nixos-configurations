@@ -99,8 +99,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
-        "sops-nix": "sops-nix",
-        "wayland-pipewire-idle-inhibit": "wayland-pipewire-idle-inhibit"
+        "sops-nix": "sops-nix"
       }
     },
     "sops-nix": {
@@ -120,22 +119,6 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
-        "type": "github"
-      }
-    },
-    "wayland-pipewire-idle-inhibit": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1770348283,
-        "narHash": "sha256-//G3QRfA5gF5ktos3D/mIxGb9nnEMBxlH1Pga2tNTFo=",
-        "owner": "rafaelrc7",
-        "repo": "wayland-pipewire-idle-inhibit",
-        "rev": "675a182a46cd82f9b3ec58abad3f6c5ee1537e98",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rafaelrc7",
-        "repo": "wayland-pipewire-idle-inhibit",
         "type": "github"
       }
     }
