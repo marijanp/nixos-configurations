@@ -27,7 +27,7 @@
       nnoremap <silent> <leader>ls <cmd>lua vim.lsp.buf.signature_help()<CR>
       nnoremap <silent> <leader>lq <cmd>lua vim.diagnostic.setloclist()<CR>
     '';
-    extraLuaConfig = /* lua */ ''
+    initLua = /* lua */ ''
       vim.diagnostic.config({
         virtual_text = false,
         update_in_insert = true,
