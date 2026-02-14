@@ -79,6 +79,7 @@
             ./services/steam.nix
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
+            ./services/syncthing
             (
               { config, ... }:
               {
@@ -107,6 +108,10 @@
                   };
                   secrets.opencode-zen-api-key = {
                     owner = config.users.users.marijan.name;
+                  };
+                  secrets.syncthing-password = {
+                    owner = config.services.syncthing.user;
+                    group = config.services.syncthing.group;
                   };
                 };
 
@@ -137,17 +142,35 @@
             ./services/adguard.nix
             ./services/prometheus.nix
             ./services/printing.nix
-            {
-              system.stateVersion = "22.11";
-              networking.hostName = "splitberry";
-              services.tailscale = {
-                useRoutingFeatures = "server";
-                extraUpFlags = [
-                  "--advertise-exit-node"
-                  "--exit-node"
-                ];
-              };
-            }
+            ./services/syncthing
+            sops-nix.nixosModules.sops
+            (
+              { config, ... }:
+              {
+                system.stateVersion = "22.11";
+                networking.hostName = "splitberry";
+                services.tailscale = {
+                  useRoutingFeatures = "server";
+                  extraUpFlags = [
+                    "--advertise-exit-node"
+                    "--exit-node"
+                  ];
+                };
+                sops = {
+                  defaultSopsFile = ./secrets/splitberry.yaml;
+                  age = {
+
+                    sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+                    keyFile = "/var/lib/sops-nix/key.txt";
+                    generateKey = true; # derives the keyFile from the private ssh key if it doesn't exist
+                  };
+                  secrets.syncthing-password = {
+                    owner = config.services.syncthing.user;
+                    group = config.services.syncthing.group;
+                  };
+                };
+              }
+            )
           ];
         };
 

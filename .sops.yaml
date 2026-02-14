@@ -4,6 +4,7 @@ keys:
   - &hosts:
     - &split age1jcj0dwa2skgypqyy7y0ufqcx9clslz0zunu3s2kee76aurg6ev7qd2a44l
     - &splitpad age1luu7gmkpmzr3y0nv0c77g6qwac30u8lwpvzpevxs65q9yzjvxgdqefx22u
+    - &splitberry age13p75306ukxcqwfkazty6jps20jxz6m4a3d7qdmj53ynwqg9q3uaqcz6fvy
 
 creation_rules:
   - path_regex: secrets/common.yaml$
@@ -12,3 +13,8 @@ creation_rules:
         - *marijan
         - *split
         - *splitpad
+  - path_regex: secrets/splitberry.yaml$
+    key_groups:
+      - age:
+        - *marijan
+        - *splitberry
