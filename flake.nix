@@ -34,10 +34,6 @@
       nixosConfigurations = {
         split = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = {
-            nixpkgsSrc = nixpkgs;
-          };
-
           modules = [
             nixos-hardware.nixosModules.common-pc
             nixos-hardware.nixosModules.common-cpu-amd
@@ -74,10 +70,6 @@
 
         splitpad = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = {
-            nixpkgsSrc = nixpkgs;
-          };
-
           modules = [
             nixos-hardware.nixosModules.lenovo-thinkpad-z13-gen1
             ./machines/splitpad/hardware-configuration.nix
@@ -136,10 +128,6 @@
 
         splitberry = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = {
-            nixpkgsSrc = nixpkgs;
-          };
-
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-4
             ./machines/splitberry/hardware-configuration.nix
@@ -165,10 +153,6 @@
 
         split3d = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = {
-            nixpkgsSrc = nixpkgs;
-          };
-
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-3
             ./machines/splitberry/networking.nix
