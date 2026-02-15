@@ -119,7 +119,7 @@
     package = pkgs.rofi;
     terminal = "kitty";
     font = "Roboto Mono 10";
-    theme = ./rofi/nord.rasi;
+    theme = ./rofi/theme.rasi;
   };
 
   # see https://github.com/nix-community/nix-direnv
