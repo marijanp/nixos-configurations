@@ -149,6 +149,7 @@
             ./services/printing.nix
             ./services/syncthing
             ./services/syncthing/photos.nix
+            ./services/jellyfin.nix
             (
               { config, ... }:
               {
