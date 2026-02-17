@@ -140,13 +140,15 @@
             nixos-hardware.nixosModules.raspberry-pi-4
             ./machines/splitberry/hardware-configuration.nix
             ./machines/splitberry/networking.nix
+            sops-nix.nixosModules.sops
+            ./modules/luks.nix
             ./users/marijan/base.nix
             ./environments/common.nix
             ./services/adguard.nix
             ./services/prometheus.nix
             ./services/printing.nix
             ./services/syncthing
-            sops-nix.nixosModules.sops
+            ./services/syncthing/photos.nix
             (
               { config, ... }:
               {
@@ -167,12 +169,18 @@
                 sops = {
                   defaultSopsFile = ./secrets/splitberry.yaml;
                   age = {
-
                     sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
                     keyFile = "/var/lib/sops-nix/key.txt";
                     generateKey = true; # derives the keyFile from the private ssh key if it doesn't exist
                   };
                 };
+                services.luks.devices.usb-drive = {
+                  device = "/dev/disk/by-uuid/948a5ffa-a1f2-4874-b646-fab5090eae74";
+                  mountPoint = "/mnt/usb-drive";
+                  keyFile = config.sops.secrets.usb-drive-key.path;
+                  keyService = "sops-nix.service";
+                };
+                sops.secrets.usb-drive-key = { };
               }
             )
           ];
