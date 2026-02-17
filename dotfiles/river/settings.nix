@@ -57,10 +57,10 @@
       firefox.tags = 1;
       thunderbird.tags = 1;
       kitty.tags = 2;
-      Mumble.tags = 4;
+      "info.mumble.Mumble".tags = 4;
       Element.tags = 4;
-      Signal.tags = 4;
-      dino.tags = 4;
+      signal.tags = 4;
+      "im.dino.Dino".tags = 4;
       Gimp = "float";
       control = "float";
       error = "float";
