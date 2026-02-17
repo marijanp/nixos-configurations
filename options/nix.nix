@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, nixpkgs, ... }:
 {
   nix = {
     package = pkgs.nixVersions.latest;
@@ -24,10 +24,7 @@
       ];
     };
 
-    registry.nixpkgs.to = {
-      type = "path";
-      path = pkgs.path;
-    };
-    nixPath = [ "nixpkgs=${pkgs.path}" ];
+    registry.nixpkgs.flake = nixpkgs;
+    nixPath = [ "nixpkgs=flake:nixpkgs" ];
   };
 }
