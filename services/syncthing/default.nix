@@ -3,12 +3,18 @@ let
   guiPort = 2000;
 in
 {
+  sops.secrets.syncthing-password = {
+    owner = config.services.syncthing.user;
+    group = config.services.syncthing.group;
+  };
+
   users.users.marijan.extraGroups = [ config.services.syncthing.group ];
+
   systemd.tmpfiles.rules = [
     "d ${config.services.syncthing.dataDir} 0710 ${config.services.syncthing.user} ${config.services.syncthing.group} - -"
-    "d ${config.services.syncthing.dataDir}/exchange 2770 ${config.services.syncthing.user} ${config.services.syncthing.group} - -"
     "L+ ${config.users.users.marijan.home}/exchange - ${config.users.users.marijan.name} ${config.users.users.marijan.group} - ${config.services.syncthing.dataDir}/exchange"
   ];
+
   services.syncthing = {
     enable = true;
     guiPasswordFile = config.sops.secrets.syncthing-password.path;

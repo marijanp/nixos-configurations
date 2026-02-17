@@ -172,10 +172,6 @@
                     keyFile = "/var/lib/sops-nix/key.txt";
                     generateKey = true; # derives the keyFile from the private ssh key if it doesn't exist
                   };
-                  secrets.syncthing-password = {
-                    owner = config.services.syncthing.user;
-                    group = config.services.syncthing.group;
-                  };
                 };
               }
             )
