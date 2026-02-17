@@ -24,7 +24,7 @@
 
       # keybindings
       "Super Return".spawn = "kitty";
-      "Super D".spawn = "'rofi -show run -theme nord'";
+      "Super D".spawn = "'rofi -show run'";
       "Super+Shift L".spawn = "'loginctl lock-session'";
 
       # multimedia
