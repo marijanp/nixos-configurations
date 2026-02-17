@@ -42,12 +42,14 @@ in
       gui.user = "marijan";
     };
   };
-  networking.firewall.interfaces."tailscale0".allowedUDPPorts = [
-    22000 # transfers
-    21027 # discovery
-  ];
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [
-    22000 # transfers
-    guiPort
-  ];
+  networking.firewall.interfaces."tailscale0" = {
+    allowedUDPPorts = [
+      22000 # transfers
+      21027 # discovery
+    ];
+    allowedTCPPorts = [
+      22000 # transfers
+      guiPort
+    ];
+  };
 }
