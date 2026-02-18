@@ -13,11 +13,10 @@
     ../options/nixpkgs.nix
     ../services/ssh.nix
     ../services/avahi.nix
+    ../services/wireguard
   ];
 
   environment.systemPackages = [ pkgs.kitty.terminfo ];
-
-  services.tailscale.enable = true;
 
   systemd.services."notify-host-online" = {
     description = "notify-host-online";

@@ -48,7 +48,7 @@ in
       gui.user = "marijan";
     };
   };
-  networking.firewall.interfaces."tailscale0" = {
+  networking.firewall.interfaces."wg0" = {
     allowedUDPPorts = [
       22000 # transfers
       21027 # discovery

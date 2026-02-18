@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   services.printing = {
     enable = true;
@@ -10,5 +10,5 @@
     defaultShared = true;
     browsing = true;
   };
-  networking.firewall.interfaces.${config.services.tailscale.interfaceName}.allowedTCPPorts = [ 631 ];
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [ 631 ];
 }

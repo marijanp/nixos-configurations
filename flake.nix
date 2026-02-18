@@ -46,26 +46,45 @@
             ./services/yubikey.nix
             ./services/prometheus.nix
             ./services/ollama.nix
+            sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
-            {
-              system.stateVersion = "23.11";
-              networking.hostName = "split";
-              nixpkgs.overlays = [
-                nur.overlays.default
-                (import ./overlay.nix)
-              ];
+            (
+              { config, ... }:
+              {
+                system.stateVersion = "23.11";
+                networking.hostName = "split";
+                nixpkgs.overlays = [
+                  nur.overlays.default
+                  (import ./overlay.nix)
+                ];
 
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.marijan = {
-                  imports = [
-                    ./users/marijan/home.nix
-                    ./dotfiles/desktop.nix
-                  ];
+                networking.wireguard.interfaces.wg0.ips = [
+                  "10.100.0.3/24"
+                  "fd10:100::3/64"
+                ];
+
+                sops = {
+                  defaultSopsFile = ./secrets/common.yaml;
+                  age = {
+                    sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+                    keyFile = "/var/lib/sops-nix/key.txt";
+                    generateKey = true;
+                  };
+                  secrets.wg-private-key.sopsFile = ./secrets/split.yaml;
                 };
-              };
-            }
+
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.marijan = {
+                    imports = [
+                      ./users/marijan/home.nix
+                      ./dotfiles/desktop.nix
+                    ];
+                  };
+                };
+              }
+            )
           ];
         };
 
@@ -92,7 +111,6 @@
                   (import ./overlay.nix)
                 ];
 
-                services.tailscale.useRoutingFeatures = "client";
 
                 services.printing.enable = true;
 
@@ -100,6 +118,11 @@
                   127.0.0.1 laganinix.local
                   127.0.0.1 agent.laganinix.local
                 '';
+
+                networking.wireguard.interfaces.wg0.ips = [
+                  "10.100.0.2/24"
+                  "fd10:100::2/64"
+                ];
 
                 sops = {
                   defaultSopsFile = ./secrets/common.yaml;
@@ -111,10 +134,7 @@
                   secrets.opencode-zen-api-key = {
                     owner = config.users.users.marijan.name;
                   };
-                  secrets.syncthing-password = {
-                    owner = config.services.syncthing.user;
-                    group = config.services.syncthing.group;
-                  };
+                  secrets.wg-private-key.sopsFile = ./secrets/splitpad.yaml;
                 };
 
                 home-manager = {
@@ -155,18 +175,18 @@
               {
                 system.stateVersion = "22.11";
                 networking.hostName = "splitberry";
-                services.tailscale = {
-                  useRoutingFeatures = "server";
-                  extraUpFlags = [
-                    "--advertise-exit-node"
-                    "--exit-node"
-                  ];
-                };
+
                 nix.gc = {
                   automatic = true;
                   dates = "weekly";
                   options = "--delete-older-than 7d";
                 };
+
+                networking.wireguard.interfaces.wg0.ips = [
+                  "10.100.0.5/24"
+                  "fd10:100::5/64"
+                ];
+
                 sops = {
                   defaultSopsFile = ./secrets/splitberry.yaml;
                   age = {
@@ -174,7 +194,9 @@
                     keyFile = "/var/lib/sops-nix/key.txt";
                     generateKey = true; # derives the keyFile from the private ssh key if it doesn't exist
                   };
+                  secrets.wg-private-key = { };
                 };
+
                 services.luks.devices.usb-drive = {
                   device = "/dev/disk/by-uuid/948a5ffa-a1f2-4874-b646-fab5090eae74";
                   mountPoint = "/mnt/usb-drive";

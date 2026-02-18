@@ -16,7 +16,7 @@
   };
 
   services.prometheus.exporters.klipper.enable = config.services.klipper.enable;
-  networking.firewall.interfaces.${config.services.tailscale.interfaceName}.allowedTCPPorts = [
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [
     config.services.prometheus.exporters.klipper.port
   ];
 
@@ -32,7 +32,7 @@
         ];
         trusted_clients = [
           "127.0.0.1/32"
-          "100.64.0.0/10" # tailscale
+          "10.100.0.0/24" # wireguard
           "fd7a:115c:a1e0::/64"
         ];
       };

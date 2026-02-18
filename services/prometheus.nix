@@ -5,7 +5,7 @@
     enabledCollectors = [ "systemd" ];
     port = 9100;
   };
-  networking.firewall.interfaces.${config.services.tailscale.interfaceName}.allowedTCPPorts = [
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [
     config.services.prometheus.exporters.node.port
   ];
 }

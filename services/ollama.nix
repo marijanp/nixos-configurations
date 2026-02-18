@@ -10,7 +10,7 @@
       "qwen3-coder-next:q4_K_M"
     ];
   };
-  networking.firewall.interfaces.${config.services.tailscale.interfaceName}.allowedTCPPorts = [
+  networking.firewall.interfaces."wg0".allowedTCPPorts = [
     config.services.ollama.port
   ];
 }

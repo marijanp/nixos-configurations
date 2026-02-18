@@ -11,7 +11,7 @@ in
     after = [ "${drive.serviceName}.service" ];
   };
 
-  networking.firewall.interfaces."tailscale0" = {
+  networking.firewall.interfaces."wg0" = {
     allowedTCPPorts = [
       8096
       8920
