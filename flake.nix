@@ -136,6 +136,7 @@
                   secrets.opencode-zen-api-key = {
                     owner = config.users.users.marijan.name;
                   };
+                  secrets.syncthing-password.sopsFile = ./secrets/splitpad.yaml;
                   secrets.wg-private-key.sopsFile = ./secrets/splitpad.yaml;
                 };
 
