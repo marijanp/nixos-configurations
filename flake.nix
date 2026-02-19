@@ -49,7 +49,7 @@
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             (
-              { config, ... }:
+              { pkgs, lib, ... }:
               {
                 system.stateVersion = "23.11";
                 networking.hostName = "split";
@@ -57,6 +57,8 @@
                   nur.overlays.default
                   (import ./overlay.nix)
                 ];
+
+                boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
 
                 networking.wireguard.interfaces.wg0.ips = [
                   "10.100.0.3/24"
