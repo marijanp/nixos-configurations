@@ -26,18 +26,22 @@
         };
         ollama = {
           # The /v1 suffix is required by OpenCode for OpenAI-compatible APIs
-          options.baseURL = "http://split:11434/v1";
+          options.baseURL = "http://10.100.0.3:11434/v1";
           models = {
             "qwen3-coder-next" = {
               id = "qwen3-coder-next:q4_K_M";
               name = "Qwen 3 Coder Next (RTX 4090)";
               limit = {
-                context = 128000;
-                output = 65536;
+                context = 65536;
+                output = 16384;
               };
               prompt = "default";
               options = {
-                temperature = 0.0;
+                temperature = 1.0;
+                top_p = 0.95;
+                top_k = 40;
+                min_p = 0.01;
+                repeat_penalty = 1.0;
               };
             };
           };
