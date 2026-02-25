@@ -77,6 +77,11 @@
           }
         ];
       };
+      user_rules = [
+        "@@||halowaypoint.com^"
+        "@@||playfabapi.com^"
+        "@@||vortex.data.microsoft.com^"
+      ];
     };
   };
 }
