@@ -82,6 +82,5 @@
       "waybar"
       "'rivercarro -main-location monocle'" # make the monocle layout the default
       "firefox"
-      "kitty"
     ];
 }
