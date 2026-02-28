@@ -110,8 +110,10 @@
     enable = true;
     settings = {
       font = "Roboto Mono 10";
-      icon-path = "${pkgs.paper-icon-theme}/share/icons/Paper";
-      max-icon-size = 32;
+      # TODO https://github.com/emersion/mako/issues/629
+      icons = false;
+      #icon-path = "${pkgs.paper-icon-theme}/share/icons/Paper";
+      #max-icon-size = 32;
       text-color = "#d8dee9";
       background-color = "#2e3440";
       progress-color = "#4c566a";
