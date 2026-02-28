@@ -79,7 +79,6 @@
       "'wlr-randr --output eDP-1 --scale 2'"
     ]
     ++ [
-      "waybar"
       "'rivercarro -main-location monocle'" # make the monocle layout the default
       "firefox"
     ];

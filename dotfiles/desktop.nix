@@ -72,6 +72,7 @@
 
   programs.waybar = {
     enable = config.wayland.windowManager.river.enable;
+    systemd.enable = true;
     settings = import ./waybar/settings.nix {
       inherit lib;
       isLaptop = osConfig.networking.hostName == "splitpad";
