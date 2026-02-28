@@ -1,5 +1,6 @@
 {
   config,
+  options,
   pkgs,
   lib,
   osConfig,
@@ -59,11 +60,14 @@
     enable = true;
     package = pkgs.river-classic;
     systemd.enable = true;
-    extraSessionVariables = {
-      XDG_SESSION_TYPE = "wayland";
-      MOZ_ENABLE_WAYLAND = "1";
-      NIXOS_OZONE_WL = "1";
-    };
+    systemd.variables = options.wayland.windowManager.river.systemd.variables.default ++ [
+      "XDG_SESSION_TYPE"
+      "XDG_SESSION_DESKTOP"
+      "GDK_BACKEND"
+      "MOZ_ENABLE_WAYLAND"
+      "QT_QPA_PLATFORM"
+      "QT_WAYLAND_DISABLE_WINDOWDECORATION"
+    ];
     settings = import ./river/settings.nix {
       inherit lib;
       isLaptop = osConfig.networking.hostName == "splitpad";
