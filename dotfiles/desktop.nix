@@ -10,6 +10,7 @@
   imports = [
     ./common.nix
     ./email.nix
+    ./gpg.nix
   ];
 
   gtk = {

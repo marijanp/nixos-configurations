@@ -7,7 +7,6 @@
 {
   imports = [
     ../options/networking.nix
-    ../options/gpg.nix
     ../options/localization.nix
     ../options/nix.nix
     ../options/nixpkgs.nix
