@@ -17,6 +17,8 @@
     nur.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    certilia.url = "github:marijanp/certilia-overlay";
+    certilia.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -27,6 +29,7 @@
       home-manager,
       nur,
       sops-nix,
+      certilia,
     }:
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
@@ -55,6 +58,7 @@
                 networking.hostName = "split";
                 nixpkgs.overlays = [
                   nur.overlays.default
+                  certilia.overlays.default
                   (import ./overlay.nix)
                 ];
 
@@ -110,6 +114,7 @@
                 networking.hostName = "splitpad";
                 nixpkgs.overlays = [
                   nur.overlays.default
+                  certilia.overlays.default
                   (import ./overlay.nix)
                 ];
 

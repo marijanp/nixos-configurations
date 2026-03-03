@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "certilia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772540803,
+        "narHash": "sha256-uwRcq82qyqOyYPThTcOz26Izwbw3mz52C9WT7ooLB28=",
+        "owner": "marijanp",
+        "repo": "certilia-overlay",
+        "rev": "70b8a9b808292cd283b7c536dd666a905e058d15",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marijanp",
+        "repo": "certilia-overlay",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -95,6 +115,7 @@
     },
     "root": {
       "inputs": {
+        "certilia": "certilia",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
