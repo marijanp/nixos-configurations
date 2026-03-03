@@ -15,6 +15,8 @@ in
     "L+ ${config.users.users.marijan.home}/exchange - ${config.users.users.marijan.name} ${config.users.users.marijan.group} - ${config.services.syncthing.dataDir}/exchange"
   ];
 
+  systemd.services.syncthing.serviceConfig.StateDirectoryMode = "0710";
+
   services.syncthing = {
     enable = true;
     guiPasswordFile = config.sops.secrets.syncthing-password.path;
