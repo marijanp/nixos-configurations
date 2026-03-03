@@ -16,62 +16,62 @@
       filtering = {
         rewrites = [
           {
-            domain = "epilentio-infrastructure";
+            domain = "epilentio-infrastructure.wg";
             answer = "10.100.0.1";
             enabled = true;
           }
           {
-            domain = "epilentio-infrastructure";
+            domain = "epilentio-infrastructure.wg";
             answer = "fd10:100::1";
             enabled = true;
           }
           {
-            domain = "splitpad";
+            domain = "splitpad.wg";
             answer = "10.100.0.2";
             enabled = true;
           }
           {
-            domain = "splitpad";
+            domain = "splitpad.wg";
             answer = "fd10:100::2";
             enabled = true;
           }
           {
-            domain = "split";
+            domain = "split.wg";
             answer = "10.100.0.3";
             enabled = true;
           }
           {
-            domain = "split";
+            domain = "split.wg";
             answer = "fd10:100::3";
             enabled = true;
           }
           {
-            domain = "splitphone";
+            domain = "splitphone.wg";
             answer = "10.100.0.4";
             enabled = true;
           }
           {
-            domain = "splitphone";
+            domain = "splitphone.wg";
             answer = "fd10:100::4";
             enabled = true;
           }
           {
-            domain = "splitberry";
+            domain = "splitberry.wg";
             answer = "10.100.0.5";
             enabled = true;
           }
           {
-            domain = "splitberry";
+            domain = "splitberry.wg";
             answer = "fd10:100::5";
             enabled = true;
           }
           {
-            domain = "split3d";
+            domain = "split3d.wg";
             answer = "10.100.0.6";
             enabled = true;
           }
           {
-            domain = "split3d";
+            domain = "split3d.wg";
             answer = "fd10:100::6";
             enabled = true;
           }

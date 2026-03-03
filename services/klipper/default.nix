@@ -28,7 +28,7 @@
       authorization = {
         cors_domains = [
           "http://3d.marijan.pro"
-          "http://split3d"
+          "http://split3d.wg"
         ];
         trusted_clients = [
           "127.0.0.1/32"
