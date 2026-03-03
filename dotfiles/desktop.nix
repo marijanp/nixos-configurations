@@ -206,7 +206,6 @@
       pavucontrol
       rclone
       signal-desktop-bin
-      upterm
       watchexec
     ]
     ++ lib.optionals (config.wayland.windowManager.river.enable) [
