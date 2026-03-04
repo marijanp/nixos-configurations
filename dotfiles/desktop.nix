@@ -102,7 +102,7 @@
         }
         {
           timeout = 8 * 60;
-          command = "${pkgs.systemd}/bin/loginctl suspend";
+          command = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ];
     };
