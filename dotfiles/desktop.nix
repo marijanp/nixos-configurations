@@ -154,7 +154,6 @@
 
   programs.firefox = {
     enable = true;
-    policies.SecurityDevices."CertiliaMiddleware" = "${pkgs.certilia}/lib/pkcs11/libCertiliaPkcs11.so";
     profiles.default = {
       isDefault = true;
       settings = {
@@ -192,7 +191,6 @@
     [
       age-plugin-yubikey
       cachix
-      certilia
       cryptsetup
       dino
       element-desktop

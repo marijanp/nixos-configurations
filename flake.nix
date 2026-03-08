@@ -58,7 +58,6 @@
                 networking.hostName = "split";
                 nixpkgs.overlays = [
                   nur.overlays.default
-                  certilia.overlays.default
                   (import ./overlay.nix)
                 ];
 
@@ -166,6 +165,7 @@
                       ./users/marijan/home.nix
                       ./dotfiles/desktop.nix
                       ./dotfiles/opencode.nix
+                      ./dotfiles/certilia.nix
                     ];
                   };
                 };
