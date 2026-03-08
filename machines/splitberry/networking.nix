@@ -1,35 +1,37 @@
+{ config, lib, ... }:
 {
-  config,
-  pkgs,
-  lib,
-  ...
-}:
-{
-  #networking = {
-  #  wireless = {
-  #    interfaces = [ "wlan0" ];
-  #  };
-  #};
+  networking.wireguard.interfaces.wg0.ips = [
+    "10.100.0.5/24"
+    "fd10:100::5/64"
+  ];
+
   networking = {
     defaultGateway = "192.168.1.1";
+    interfaces.eth0 = {
+      useDHCP = lib.mkDefault false;
+      ipv4.addresses = [
+        {
+          address = "192.168.1.4";
+          prefixLength = 24;
+        }
+      ];
+    };
+
+    interfaces.wlan0.useDHCP = true;
+    wireless = {
+      enable = false;
+      interfaces = [ "wlan0" ];
+    };
+
     firewall = {
       allowedTCPPorts = [
-        3000
+        config.services.adguardhome.port
         53 # DNS
         853 # DNS over TLS
       ];
       allowedUDPPorts = [
         53 # DNS
         5353 # DNS over QUIC
-      ];
-    };
-    interfaces.eth0 = {
-      useDHCP = lib.mkDefault false;
-      ipv4.addresses = [
-        {
-          address = "192.168.1.200";
-          prefixLength = 24;
-        }
       ];
     };
   };

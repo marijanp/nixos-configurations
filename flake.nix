@@ -176,6 +176,7 @@
             nixos-hardware.nixosModules.raspberry-pi-4
             ./machines/splitberry/hardware-configuration.nix
             ./machines/splitberry/networking.nix
+            ./machines/splitberry/nginx.nix
             sops-nix.nixosModules.sops
             ./modules/luks.nix
             ./users/marijan/base.nix
@@ -197,11 +198,6 @@
                   dates = "weekly";
                   options = "--delete-older-than 7d";
                 };
-
-                networking.wireguard.interfaces.wg0.ips = [
-                  "10.100.0.5/24"
-                  "fd10:100::5/64"
-                ];
 
                 sops = {
                   defaultSopsFile = ./secrets/splitberry.yaml;
