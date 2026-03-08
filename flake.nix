@@ -94,6 +94,7 @@
           modules = [
             nixos-hardware.nixosModules.lenovo-thinkpad-z13-gen1
             ./machines/splitpad/hardware-configuration.nix
+            ./machines/splitpad/networking.nix
             ./users/marijan/base.nix
             ./system/desktop.nix
             ./system/services/yubikey.nix
@@ -106,6 +107,7 @@
               {
                 system.stateVersion = "22.11";
                 networking.hostName = "splitpad";
+
                 nixpkgs.overlays = [
                   nur.overlays.default
                   certilia.overlays.default
@@ -114,29 +116,6 @@
 
 
                 services.printing.enable = true;
-
-                services.tailscale.enable = true;
-
-                services.resolved.enable = true;
-                networking.networkmanager.dns = "systemd-resolved";
-                networking.extraHosts = ''
-                  127.0.0.1 laganinix.local
-                  127.0.0.1 agent.laganinix.local
-                '';
-
-                networking.wireguard.interfaces.wg0 = {
-                  ips = [
-                    "10.100.0.2/24"
-                    "fd10:100::2/64"
-                  ];
-                  postSetup = ''
-                    ${pkgs.systemd}/bin/resolvectl dns wg0 10.100.0.5 fd10:100::5
-                    ${pkgs.systemd}/bin/resolvectl domain wg0 "~wg"
-                  '';
-                  postShutdown = ''
-                    ${pkgs.systemd}/bin/resolvectl revert wg0
-                  '';
-                };
 
                 sops = {
                   defaultSopsFile = ./secrets/common.yaml;
