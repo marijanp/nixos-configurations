@@ -52,6 +52,7 @@
             ./system/services/ollama.nix
             ./system/services/klipper
             sops-nix.nixosModules.sops
+            ./system/sops.nix
             home-manager.nixosModules.home-manager
             (
               { pkgs, lib, ... }:
@@ -64,13 +65,8 @@
                 boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
 
                 sops = {
-                  defaultSopsFile = ./secrets/common.yaml;
-                  age = {
-                    sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-                    keyFile = "/var/lib/sops-nix/key.txt";
-                    generateKey = true;
-                  };
-                  secrets.wg-private-key.sopsFile = ./secrets/split.yaml;
+                  defaultSopsFile = ./secrets/split.yaml;
+                  secrets.wg-private-key = { };
                 };
 
                 home-manager = {
@@ -100,10 +96,11 @@
             ./system/services/yubikey.nix
             ./system/services/steam.nix
             sops-nix.nixosModules.sops
+            ./system/sops.nix
             home-manager.nixosModules.home-manager
             ./system/services/syncthing
             (
-              { config, pkgs, ... }:
+              { config, ... }:
               {
                 system.stateVersion = "22.11";
                 networking.hostName = "splitpad";
@@ -118,17 +115,12 @@
                 services.printing.enable = true;
 
                 sops = {
-                  defaultSopsFile = ./secrets/common.yaml;
-                  age = {
-                    sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-                    keyFile = "/var/lib/sops-nix/key.txt";
-                    generateKey = true; # derives the keyFile from the private ssh key if it doesn't exist
-                  };
+                  defaultSopsFile = ./secrets/splitpad.yaml;
+                  secrets.wg-private-key = { };
                   secrets.opencode-zen-api-key = {
                     owner = config.users.users.marijan.name;
                   };
-                  secrets.syncthing-password.sopsFile = ./secrets/splitpad.yaml;
-                  secrets.wg-private-key.sopsFile = ./secrets/splitpad.yaml;
+                  secrets.syncthing-password = { };
                 };
 
                 home-manager = {
@@ -157,6 +149,7 @@
             ./machines/splitberry/networking.nix
             ./machines/splitberry/nginx.nix
             sops-nix.nixosModules.sops
+            ./system/sops.nix
             ./modules/luks.nix
             ./users/marijan/base.nix
             ./system/common.nix
@@ -180,12 +173,8 @@
 
                 sops = {
                   defaultSopsFile = ./secrets/splitberry.yaml;
-                  age = {
-                    sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-                    keyFile = "/var/lib/sops-nix/key.txt";
-                    generateKey = true; # derives the keyFile from the private ssh key if it doesn't exist
-                  };
                   secrets.wg-private-key = { };
+                  secrets.usb-drive-key = { };
                 };
 
                 services.luks.devices.usb-drive = {
@@ -194,7 +183,6 @@
                   keyFile = config.sops.secrets.usb-drive-key.path;
                   keyService = "sops-nix.service";
                 };
-                sops.secrets.usb-drive-key = { };
               }
             )
           ];
