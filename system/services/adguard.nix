@@ -6,9 +6,20 @@
     settings = {
       dns = {
         ratelimit = 0;
-        upstream_dns = config.networking.nameservers;
-        # Bootstrap resolvers (used to resolve DNS over HTTPS/ DNS over TLS upstreams)
-        bootstrap_dns = [ ] ++ config.networking.nameservers;
+        upstream_dns = [
+          # quad9
+          "9.9.9.9"
+          "149.112.112.112"
+          "2620:fe::fe"
+          "2620:fe::9"
+        ];
+        bootstrap_dns = [
+          # quad9
+          "9.9.9.9"
+          "149.112.112.112"
+          "2620:fe::fe"
+          "2620:fe::9"
+        ];
       };
       statistics_interval = 30; # days
       querylog_enabled = true;
