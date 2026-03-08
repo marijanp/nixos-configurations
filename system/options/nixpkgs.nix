@@ -3,7 +3,5 @@
     config = {
       allowUnfree = true;
     };
-    overlays = [
-    ];
   };
 }

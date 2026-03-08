@@ -2,8 +2,8 @@
 {
   imports = [
     ./common.nix
-    ../options/fonts.nix
-    ../options/sound.nix
+    ./options/fonts.nix
+    ./options/sound.nix
   ];
 
   hardware.keyboard.zsa.enable = true;

@@ -6,13 +6,13 @@
 }:
 {
   imports = [
-    ../options/networking.nix
-    ../options/localization.nix
-    ../options/nix.nix
-    ../options/nixpkgs.nix
-    ../services/ssh.nix
-    ../services/avahi.nix
-    ../services/wireguard
+    ./options/networking.nix
+    ./options/localization.nix
+    ./options/nix.nix
+    ./options/nixpkgs.nix
+    ./services/ssh.nix
+    ./services/avahi.nix
+    ./services/wireguard
   ];
 
   environment.systemPackages = [ pkgs.kitty.terminfo ];

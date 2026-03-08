@@ -13,8 +13,8 @@ in
 
   networking.firewall.interfaces."wg0" = {
     allowedTCPPorts = [
-      8096
-      8920
+      8096 # http
+      8920 # http + tls
     ];
     allowedUDPPorts = [
       1900

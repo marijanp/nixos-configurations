@@ -45,10 +45,11 @@
             nixos-hardware.nixosModules.common-pc-ssd
             ./machines/split/hardware-configuration.nix
             ./users/marijan/base.nix
-            ./environments/desktop.nix
-            ./services/yubikey.nix
-            ./services/prometheus.nix
-            ./services/ollama.nix
+            ./system/common.nix
+            ./system/services/yubikey.nix
+            ./system/services/prometheus.nix
+            ./system/services/ollama.nix
+            ./system/services/klipper
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             (
@@ -57,8 +58,6 @@
                 system.stateVersion = "23.11";
                 networking.hostName = "split";
                 nixpkgs.overlays = [
-                  nur.overlays.default
-                  (import ./overlay.nix)
                 ];
 
                 boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
@@ -84,7 +83,7 @@
                   users.marijan = {
                     imports = [
                       ./users/marijan/home.nix
-                      ./dotfiles/desktop.nix
+                      ./dotfiles/common.nix
                     ];
                   };
                 };
@@ -100,12 +99,12 @@
             nixos-hardware.nixosModules.lenovo-thinkpad-z13-gen1
             ./machines/splitpad/hardware-configuration.nix
             ./users/marijan/base.nix
-            ./environments/desktop.nix
-            ./services/yubikey.nix
-            ./services/steam.nix
+            ./system/desktop.nix
+            ./system/services/yubikey.nix
+            ./system/services/steam.nix
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
-            ./services/syncthing
+            ./system/services/syncthing
             (
               { config, pkgs, ... }:
               {
@@ -184,13 +183,13 @@
             sops-nix.nixosModules.sops
             ./modules/luks.nix
             ./users/marijan/base.nix
-            ./environments/common.nix
-            ./services/adguard.nix
-            ./services/prometheus.nix
-            ./services/printing.nix
-            ./services/syncthing
-            ./services/syncthing/photos.nix
-            ./services/jellyfin.nix
+            ./system/common.nix
+            ./system/services/adguard.nix
+            ./system/services/prometheus.nix
+            ./system/services/printing.nix
+            ./system/services/syncthing
+            ./system/services/syncthing/photos.nix
+            ./system/services/jellyfin.nix
             (
               { config, ... }:
               {
@@ -238,9 +237,9 @@
             ./machines/splitberry/networking.nix
             ./machines/split3d/camera.nix
             ./users/marijan/base.nix
-            ./environments/common.nix
-            ./services/prometheus.nix
-            ./services/klipper
+            ./system/common.nix
+            ./system/services/prometheus.nix
+            ./system/services/klipper
             (
               { modulesPath, ... }:
               {
