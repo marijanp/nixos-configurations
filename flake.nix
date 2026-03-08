@@ -44,6 +44,7 @@
             nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
             nixos-hardware.nixosModules.common-pc-ssd
             ./machines/split/hardware-configuration.nix
+            ./machines/split/networking.nix
             ./users/marijan/base.nix
             ./system/common.nix
             ./system/services/yubikey.nix
@@ -61,11 +62,6 @@
                 ];
 
                 boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
-
-                networking.wireguard.interfaces.wg0.ips = [
-                  "10.100.0.3/24"
-                  "fd10:100::3/64"
-                ];
 
                 sops = {
                   defaultSopsFile = ./secrets/common.yaml;
