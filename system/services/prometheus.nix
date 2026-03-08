@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   services.prometheus.exporters = {
     node = {
@@ -13,6 +13,8 @@
   };
   networking.firewall.interfaces."wg0".allowedTCPPorts = [
     config.services.prometheus.exporters.node.port
+  ]
+  ++ lib.optionals (config.networking.hostName == "split") [
     config.services.prometheus.exporters.nvidia-gpu.port
   ];
 }
