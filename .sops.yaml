@@ -12,8 +12,6 @@ creation_rules:
     key_groups:
       - age:
         - *marijan
-        - *split
-        - *splitpad
   - path_regex: secrets/split.yaml$
     key_groups:
       - age:
