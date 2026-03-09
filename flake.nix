@@ -193,7 +193,8 @@
           specialArgs = { inherit nixpkgs; };
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-3
-            ./machines/splitberry/networking.nix
+            ./machines/split3d/hardware-configuration.nix
+            ./machines/split3d/networking.nix
             ./machines/split3d/camera.nix
             ./users/marijan/base.nix
             ./system/common.nix
