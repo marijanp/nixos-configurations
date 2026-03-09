@@ -13,6 +13,7 @@
 
   services.adguardhome = {
     enable = true;
+    host = "127.0.0.1";
     mutableSettings = false;
     settings = {
       dns = {
@@ -85,6 +86,26 @@
           {
             domain = "splitberry.wg";
             answer = "fd10:100::5";
+            enabled = true;
+          }
+          {
+            domain = "*.splitberry.wg";
+            answer = "10.100.0.5";
+            enabled = true;
+          }
+          {
+            domain = "*.splitberry.wg";
+            answer = "fd10:100::5";
+            enabled = true;
+          }
+          {
+            domain = "splitberry.lan";
+            answer = "192.168.1.4";
+            enabled = true;
+          }
+          {
+            domain = "*.splitberry.lan";
+            answer = "192.168.1.4";
             enabled = true;
           }
           {
