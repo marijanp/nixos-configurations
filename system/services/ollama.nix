@@ -10,7 +10,14 @@
       "qwen3-coder-next:q4_K_M"
     ];
   };
-  networking.firewall.interfaces."wg0".allowedTCPPorts = [
+  services.open-webui = {
+    enable = config.services.ollama.enable;
+    host = "0.0.0.0";
+    port = 4000;
+    environment.OLLAMA_API_BASE_URL = "http://localhost:11434";
+  };
+  networking.firewall.allowedTCPPorts = [
     config.services.ollama.port
+    config.services.open-webui.port
   ];
 }
