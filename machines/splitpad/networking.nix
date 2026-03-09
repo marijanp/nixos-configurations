@@ -7,7 +7,7 @@
     ];
     postSetup = ''
       ${pkgs.systemd}/bin/resolvectl dns wg0 10.100.0.5 fd10:100::5
-      ${pkgs.systemd}/bin/resolvectl domain wg0 "~wg"
+      ${pkgs.systemd}/bin/resolvectl domain wg0 "~wg" "~lan"
     '';
     postShutdown = ''
       ${pkgs.systemd}/bin/resolvectl revert wg0
