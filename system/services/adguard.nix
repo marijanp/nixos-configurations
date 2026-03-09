@@ -1,5 +1,16 @@
 { config, ... }:
 {
+  networking.firewall = {
+    allowedTCPPorts = [
+      53 # DNS
+      853 # DNS over TLS
+    ];
+    allowedUDPPorts = [
+      53 # DNS
+      5353 # DNS over QUIC
+    ];
+  };
+
   services.adguardhome = {
     enable = true;
     mutableSettings = false;

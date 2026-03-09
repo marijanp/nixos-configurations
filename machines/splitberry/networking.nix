@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, ... }:
 {
   networking.wireguard.interfaces.wg0.ips = [
     "10.100.0.5/24"
@@ -21,18 +21,6 @@
     wireless = {
       enable = false;
       interfaces = [ "wlan0" ];
-    };
-
-    firewall = {
-      allowedTCPPorts = [
-        config.services.adguardhome.port
-        53 # DNS
-        853 # DNS over TLS
-      ];
-      allowedUDPPorts = [
-        53 # DNS
-        5353 # DNS over QUIC
-      ];
     };
   };
 }
