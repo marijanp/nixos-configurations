@@ -27,6 +27,13 @@ creation_rules:
       - age:
         - *marijan
         - *splitberry
+  - path_regex: secrets/ntfy.yaml$
+    key_groups:
+      - age:
+        - *marijan
+        - *split
+        - *splitpad
+        - *splitberry
   # - path_regex: secrets/split3d.yaml$
   #   key_groups:
   #     - age:

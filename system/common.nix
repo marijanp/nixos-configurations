@@ -17,6 +17,10 @@
 
   environment.systemPackages = [ pkgs.kitty.terminfo ];
 
+  sops.secrets.ntfy-publisher-password = {
+    sopsFile = ../secrets/ntfy.yaml;
+  };
+
   systemd.services."notify-host-online" = {
     description = "notify-host-online";
     after = [ "network-online.target" ];
@@ -31,9 +35,13 @@
       ExecStart = lib.getExe (
         pkgs.writeShellApplication {
           name = "send-push-notification";
-          runtimeInputs = with pkgs; [ curl ];
+          runtimeInputs = with pkgs; [
+            curl
+            coreutils
+          ];
           text = ''
             curl \
+              -u "publisher:$(cat ${config.sops.secrets.ntfy-publisher-password.path})" \
               -H "Title: ${config.networking.hostName} online" \
               -H "Tags: artificial_satellite" \
               -d "$(date -u)" \
