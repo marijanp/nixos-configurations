@@ -16,6 +16,7 @@ in
   ];
 
   systemd.services.syncthing.serviceConfig.StateDirectoryMode = "0710";
+  systemd.services.syncthing.serviceConfig.UMask = "0002";
 
   services.syncthing = {
     enable = true;
