@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 {
   networking.wireguard.interfaces.wg0.ips = [
     "10.100.0.5/24"
@@ -8,7 +8,7 @@
   networking = {
     defaultGateway = "192.168.1.1";
     interfaces.eth0 = {
-      useDHCP = lib.mkDefault false;
+      useDHCP = false;
       ipv4.addresses = [
         {
           address = "192.168.1.4";
