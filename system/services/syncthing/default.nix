@@ -9,13 +9,12 @@ in
   };
 
   users.users.marijan.extraGroups = [ config.services.syncthing.group ];
+  users.users.${config.services.syncthing.user}.homeMode = "0710";
 
   systemd.tmpfiles.rules = [
-    "d ${config.services.syncthing.dataDir} 0710 ${config.services.syncthing.user} ${config.services.syncthing.group} - -"
     "L+ ${config.users.users.marijan.home}/exchange - ${config.users.users.marijan.name} ${config.users.users.marijan.group} - ${config.services.syncthing.dataDir}/exchange"
   ];
 
-  systemd.services.syncthing.serviceConfig.StateDirectoryMode = "0710";
   systemd.services.syncthing.serviceConfig.UMask = "0002";
 
   services.syncthing = {
