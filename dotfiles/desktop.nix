@@ -204,7 +204,7 @@
       # obs-studio
       pavucontrol
       rclone
-      signal-desktop-bin
+      signal-desktop
       watchexec
     ]
     ++ lib.optionals (config.wayland.windowManager.river.enable) [
