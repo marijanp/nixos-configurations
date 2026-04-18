@@ -25,6 +25,9 @@
       package = pkgs.paper-icon-theme;
       name = "Paper";
     };
+    gtk4 = {
+      inherit (config.gtk) enable theme;
+    };
   };
 
   home.pointerCursor = {
