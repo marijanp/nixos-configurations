@@ -76,6 +76,7 @@
     signing = {
       key = "0xEFF1AB41802F3FA7";
       signByDefault = true;
+      format = "openpgp";
     };
   };
 
