@@ -14,8 +14,10 @@
 
   programs.opencode = {
     enable = true;
-    settings = {
+    tui = {
       theme = "system";
+    };
+    settings = {
       autoshare = false;
       autoupdate = true;
       plugin = [ "opencode-antigravity-auth@beta" ];
@@ -32,16 +34,16 @@
               id = "qwen3-coder-next:q4_K_M";
               name = "Qwen 3 Coder Next (RTX 4090)";
               limit = {
-                context = 65536;
-                output = 16384;
+                context = 32768;
+                output = 4096;
               };
               prompt = "default";
               options = {
-                temperature = 1.0;
-                top_p = 0.95;
-                top_k = 40;
-                min_p = 0.01;
-                repeat_penalty = 1.0;
+                temperature = 0.2;
+                top_p = 1.0;
+                top_k = 0;
+                min_p = 0.05;
+                repeat_penalty = 1.1;
               };
             };
           };
