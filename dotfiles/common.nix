@@ -93,6 +93,7 @@
   };
 
   home.packages = with pkgs; [
+    bottom
     curl
     jq
     niv
