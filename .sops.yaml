@@ -5,6 +5,7 @@ keys:
     - &split age1jcj0dwa2skgypqyy7y0ufqcx9clslz0zunu3s2kee76aurg6ev7qd2a44l
     - &splitpad age1luu7gmkpmzr3y0nv0c77g6qwac30u8lwpvzpevxs65q9yzjvxgdqefx22u
     - &splitberry age13p75306ukxcqwfkazty6jps20jxz6m4a3d7qdmj53ynwqg9q3uaqcz6fvy
+    - &pneuma age1c69tm8zj9nczp9d8zny4yuhr3ffnaq35hev9z63gme9fhn6w3awsnugukf
     # - &split3d <TODO: run `ssh split3d 'cat /etc/ssh/ssh_host_ed25519_key.pub' | nix-shell -p ssh-to-age --run ssh-to-age`>
 
 creation_rules:
@@ -27,6 +28,11 @@ creation_rules:
       - age:
         - *marijan
         - *splitberry
+  - path_regex: secrets/pneuma.yaml$
+    key_groups:
+      - age:
+        - *marijan
+        - *pneuma
   - path_regex: secrets/ntfy.yaml$
     key_groups:
       - age:
@@ -34,6 +40,7 @@ creation_rules:
         - *split
         - *splitpad
         - *splitberry
+        - *pneuma
   # - path_regex: secrets/split3d.yaml$
   #   key_groups:
   #     - age:
