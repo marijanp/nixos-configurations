@@ -30,11 +30,12 @@
     startLimitBurst = 10;
     serviceConfig = {
       Type = "oneshot";
+      RemainAfterExit = true;
       Restart = "on-failure";
       RestartSec = 5;
       ExecStart = lib.getExe (
         pkgs.writeShellApplication {
-          name = "send-push-notification";
+          name = "notify-host-online";
           runtimeInputs = with pkgs; [
             curl
             coreutils
@@ -44,6 +45,23 @@
               -u "publisher:$(cat ${config.sops.secrets.ntfy-publisher-password.path})" \
               -H "Title: ${config.networking.hostName} online" \
               -H "Tags: artificial_satellite" \
+              -d "$(date -u)" \
+              https://ntfy.marijan.pro/host-online
+          '';
+        }
+      );
+      ExecStop = lib.getExe (
+        pkgs.writeShellApplication {
+          name = "notify-host-offline";
+          runtimeInputs = with pkgs; [
+            curl
+            coreutils
+          ];
+          text = ''
+            curl \
+              -u "publisher:$(cat ${config.sops.secrets.ntfy-publisher-password.path})" \
+              -H "Title: ${config.networking.hostName} offline" \
+              -H "Tags: warning" \
               -d "$(date -u)" \
               https://ntfy.marijan.pro/host-online
           '';
