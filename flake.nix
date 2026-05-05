@@ -134,8 +134,10 @@
                   useUserPackages = true;
                   users.marijan = {
                     imports = [
+                      ./modules/home-manager/voxtype.nix
                       ./users/marijan/home.nix
                       ./dotfiles/desktop.nix
+                      ./dotfiles/voxtype.nix
                       ./dotfiles/opencode.nix
                       ./dotfiles/certilia.nix
                     ];
