@@ -157,6 +157,8 @@
 
   programs.firefox = {
     enable = true;
+    # New config location in 26.05 defaults to $XDG_CONFIG
+    configPath = "${config.home.homeDirectory}/.mozilla/firefox";
     profiles.default = {
       isDefault = true;
       settings = {
