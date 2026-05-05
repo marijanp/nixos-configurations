@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
   networking.wireguard.interfaces.wg0 = {
+    # Lower than the default 1420 to avoid PMTU issues on some Wi-Fi networks.
+    mtu = 1380;
     ips = [
       "10.100.0.2/24"
       "fd10:100::2/64"
