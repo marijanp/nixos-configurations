@@ -74,22 +74,16 @@ in
       forceSSL = false;
       enableACME = false;
       locations."/" = {
-        proxyPass = "http://${splitLocalIp}";
+        proxyPass = "http://${splitLocalIp}:42617";
         proxyWebsockets = true;
-        extraConfig = ''
-          proxy_set_header Host "zeroclaw.split.wg";
-        '';
       };
     };
     virtualHosts."zeroclaw.${hostName}.lan" = {
       forceSSL = false;
       enableACME = false;
       locations."/" = {
-        proxyPass = "http://${splitLocalIp}";
+        proxyPass = "http://${splitLocalIp}:42617";
         proxyWebsockets = true;
-        extraConfig = ''
-          proxy_set_header Host "zeroclaw.split.wg";
-        '';
       };
     };
   };
