@@ -19,6 +19,8 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     certilia.url = "github:marijanp/certilia-overlay";
     certilia.inputs.nixpkgs.follows = "nixpkgs";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -26,6 +28,7 @@
       self,
       nixpkgs,
       nixos-hardware,
+      disko,
       home-manager,
       nur,
       sops-nix,
@@ -33,6 +36,9 @@
     }:
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
+
+      packages.aarch64-linux.pneuma-installer =
+        self.nixosConfigurations.pneuma.config.system.build.diskoImagesScript;
 
       nixosConfigurations = {
         split = nixpkgs.lib.nixosSystem {
@@ -140,6 +146,47 @@
           ];
         };
 
+        pneuma = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          specialArgs = {
+            inherit nixpkgs nixos-hardware;
+          };
+          modules = [
+            disko.nixosModules.disko
+            ./modules/nixos-hardware/radxa/rock-5c
+            ./machines/pneuma/hardware-configuration.nix
+            ./machines/pneuma/disko.nix
+            ./machines/pneuma/heatsink-fan.nix
+            ./machines/pneuma/networking.nix
+            sops-nix.nixosModules.sops
+            ./system/sops.nix
+            ./users/marijan/base.nix
+            ./system/common.nix
+            ./system/services/prometheus.nix
+            (
+              { ... }:
+              {
+                nixpkgs.overlays = [
+                  (import ./overlay.nix)
+                ];
+
+                system.stateVersion = "26.05";
+                networking.hostName = "pneuma";
+
+                nix.gc = {
+                  automatic = true;
+                  dates = "weekly";
+                  options = "--delete-older-than 7d";
+                };
+
+                sops = {
+                  defaultSopsFile = ./secrets/pneuma.yaml;
+                  secrets.wg-private-key = { };
+                };
+              }
+            )
+          ];
+        };
         splitberry = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           specialArgs = { inherit nixpkgs; };

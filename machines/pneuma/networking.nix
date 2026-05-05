@@ -1,0 +1,26 @@
+{ ... }:
+{
+  networking.wireguard.interfaces.wg0.ips = [
+    "10.100.0.7/24"
+    "fd10:100::7/64"
+  ];
+
+  networking = {
+    defaultGateway = "192.168.1.1";
+    interfaces.eth0 = {
+      useDHCP = false;
+      ipv4.addresses = [
+        {
+          address = "192.168.1.6";
+          prefixLength = 24;
+        }
+      ];
+    };
+
+    interfaces.wlan0.useDHCP = true;
+    wireless = {
+      enable = false;
+      interfaces = [ "wlan0" ];
+    };
+  };
+}
