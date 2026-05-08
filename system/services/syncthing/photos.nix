@@ -24,7 +24,7 @@ in
       params.cleanoutDays = "10";
     };
     devices = [
-      "splitberry"
+      "pneuma"
       "splitphone"
     ];
   };

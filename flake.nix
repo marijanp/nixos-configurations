@@ -159,14 +159,21 @@
             ./machines/pneuma/hardware-configuration.nix
             ./machines/pneuma/disko.nix
             ./machines/pneuma/heatsink-fan.nix
+            ./machines/pneuma/nginx.nix
             ./machines/pneuma/networking.nix
             sops-nix.nixosModules.sops
             ./system/sops.nix
+            ./modules/luks.nix
             ./users/marijan/base.nix
             ./system/common.nix
+            ./system/services/adguard.nix
             ./system/services/prometheus.nix
+            ./system/services/printing.nix
+            ./system/services/syncthing
+            ./system/services/syncthing/photos.nix
+            ./system/services/jellyfin.nix
             (
-              { ... }:
+              { config, ... }:
               {
                 nixpkgs.overlays = [
                   (import ./overlay.nix)
@@ -184,6 +191,19 @@
                 sops = {
                   defaultSopsFile = ./secrets/pneuma.yaml;
                   secrets.wg-private-key = { };
+                  secrets.syncthing-password = { };
+                  secrets.usb-drive-key = { };
+                };
+
+                systemd.tmpfiles.rules = [
+                  "d /mnt/usb-drive 0755 root root - -"
+                ];
+
+                services.luks.devices.usb-drive = {
+                  device = "/dev/disk/by-uuid/948a5ffa-a1f2-4874-b646-fab5090eae74";
+                  mountPoint = "/mnt/usb-drive";
+                  keyFile = config.sops.secrets.usb-drive-key.path;
+                  keyService = "sops-install-secrets.service";
                 };
               }
             )

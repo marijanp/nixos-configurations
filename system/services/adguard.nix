@@ -79,32 +79,32 @@
             enabled = true;
           }
           {
-            domain = "splitberry.wg";
+            domain = "pneuma.wg";
             answer = "10.100.0.5";
             enabled = true;
           }
           {
-            domain = "splitberry.wg";
+            domain = "pneuma.wg";
             answer = "fd10:100::5";
             enabled = true;
           }
           {
-            domain = "*.splitberry.wg";
+            domain = "*.pneuma.wg";
             answer = "10.100.0.5";
             enabled = true;
           }
           {
-            domain = "*.splitberry.wg";
+            domain = "*.pneuma.wg";
             answer = "fd10:100::5";
             enabled = true;
           }
           {
-            domain = "splitberry.lan";
+            domain = "pneuma.lan";
             answer = "192.168.1.4";
             enabled = true;
           }
           {
-            domain = "*.splitberry.lan";
+            domain = "*.pneuma.lan";
             answer = "192.168.1.4";
             enabled = true;
           }
