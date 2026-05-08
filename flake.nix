@@ -216,20 +216,13 @@
             nixos-hardware.nixosModules.raspberry-pi-4
             ./machines/splitberry/hardware-configuration.nix
             ./machines/splitberry/networking.nix
-            ./machines/splitberry/nginx.nix
             sops-nix.nixosModules.sops
             ./system/sops.nix
-            ./modules/luks.nix
             ./users/marijan/base.nix
             ./system/common.nix
-            ./system/services/adguard.nix
             ./system/services/prometheus.nix
-            ./system/services/printing.nix
-            ./system/services/syncthing
-            ./system/services/syncthing/photos.nix
-            ./system/services/jellyfin.nix
             (
-              { config, ... }:
+              { ... }:
               {
                 system.stateVersion = "22.11";
                 networking.hostName = "splitberry";
@@ -243,14 +236,6 @@
                 sops = {
                   defaultSopsFile = ./secrets/splitberry.yaml;
                   secrets.wg-private-key = { };
-                  secrets.usb-drive-key = { };
-                };
-
-                services.luks.devices.usb-drive = {
-                  device = "/dev/disk/by-uuid/948a5ffa-a1f2-4874-b646-fab5090eae74";
-                  mountPoint = "/mnt/usb-drive";
-                  keyFile = config.sops.secrets.usb-drive-key.path;
-                  keyService = "sops-nix.service";
                 };
               }
             )
