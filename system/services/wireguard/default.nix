@@ -1,5 +1,10 @@
 { config, ... }:
 {
+  systemd.services.wireguard-wg0 = {
+    wants = [ "sops-install-secrets.service" ];
+    after = [ "sops-install-secrets.service" ];
+  };
+
   networking.wireguard.interfaces.wg0 = {
     privateKeyFile = config.sops.secrets.wg-private-key.path;
     peers = [
