@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  utils,
   ...
 }:
 let
@@ -13,6 +14,7 @@ let
     nameValuePair
     optional
     ;
+  inherit (utils) escapeSystemdPath;
   cfg = config.services.luks;
 in
 {
@@ -54,7 +56,7 @@ in
               keyService = mkOption {
                 type = types.nullOr types.str;
                 default = null;
-                description = "Systemd service that provides the keyFile (e.g. \"sops-nix.service\").";
+                description = "Systemd service that provides the keyFile (e.g. \"sops-install-secrets.service\").";
               };
             };
           }
@@ -68,12 +70,18 @@ in
   config = mkIf (cfg.devices != { }) {
     systemd.services = mapAttrs' (
       _: drive:
+      let
+        deviceUnit = "${escapeSystemdPath (toString drive.device)}.device";
+      in
       nameValuePair drive.serviceName {
         description = "Decrypt and mount LUKS device ${drive.name}";
-        wants = optional (drive.keyService != null) drive.keyService;
-        after = optional (drive.keyService != null) drive.keyService;
-        wantedBy = [ "multi-user.target" ];
-        unitConfig.ConditionPathExists = drive.device;
+        wants = optional (drive.keyService != null) drive.keyService ++ [ deviceUnit ];
+        after = optional (drive.keyService != null) drive.keyService ++ [ deviceUnit ];
+        bindsTo = [ deviceUnit ];
+        wantedBy = [
+          "multi-user.target"
+          deviceUnit
+        ];
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;
