@@ -27,3 +27,11 @@
 #battery.good, #battery.full {
   color: #a3be8c;
 }
+
+#custom-voxtype.recording {
+  color: #bf616a;
+}
+
+#custom-voxtype.idle {
+  color: #a3be8c;
+}

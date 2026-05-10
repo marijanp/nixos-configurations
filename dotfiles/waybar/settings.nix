@@ -1,4 +1,8 @@
-{ lib, isLaptop }:
+{
+  lib,
+  isLaptop,
+  voxtype,
+}:
 {
   mainBar = {
     output = [ "eDP-1" ];
@@ -10,6 +14,7 @@
     ];
     modules-center = [ ];
     modules-right = [
+      "custom/voxtype"
       "river/layout"
       "cpu"
       "memory"
@@ -39,6 +44,13 @@
     "river/window" = {
       format = "{}";
       max-length = 80;
+    };
+    "custom/voxtype" = {
+      exec = "${lib.getExe voxtype} status --follow --format json";
+      return-type = "json";
+      format = "{}";
+      tooltip = true;
+      on-click = "${lib.getExe voxtype} record toggle";
     };
     cpu = {
       interval = 1;

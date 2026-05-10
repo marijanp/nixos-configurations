@@ -84,6 +84,7 @@
     settings = import ./waybar/settings.nix {
       inherit lib;
       isLaptop = osConfig.networking.hostName == "splitpad";
+      voxtype = config.services.voxtype.package;
     };
     style = lib.readFile ./waybar/style.css;
   };
