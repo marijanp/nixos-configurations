@@ -14,6 +14,12 @@
         mode = "type";
         fallback_to_clipboard = true;
       };
+      status.icons = {
+        idle = "🟢";
+        recording = "🔴";
+        transcribing = "✒️";
+        stopped = "⚫";
+      };
     };
   };
 }
