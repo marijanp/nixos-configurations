@@ -124,5 +124,21 @@
             tls.enable = true;
           };
         };
+
+      synapse =
+        let
+          address = "marijan.petricevic@synapse-lifestyle.com";
+        in
+        {
+          inherit address realName;
+          userName = address;
+          maildir.path = "${address}";
+          flavor = "gmail.com";
+
+          thunderbird = {
+            enable = true;
+            profiles = [ "personal" ];
+          };
+        };
     };
 }
