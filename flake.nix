@@ -172,6 +172,7 @@
             ./system/services/syncthing
             ./system/services/syncthing/photos.nix
             ./system/services/jellyfin.nix
+            ./system/services/navidrome.nix
             (
               { config, ... }:
               {
