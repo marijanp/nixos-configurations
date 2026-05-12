@@ -17,6 +17,7 @@ in
       Address = "127.0.0.1";
       Port = 4533;
       MusicFolder = musicFolder;
+      Scanner.PurgeMissing = "always";
     };
   };
 
