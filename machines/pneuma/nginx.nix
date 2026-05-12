@@ -57,6 +57,19 @@ in
       locations."/".proxyPass = "http://127.0.0.1:8096";
     };
 
+    virtualHosts."beats.${hostName}.wg" = {
+      forceSSL = false;
+      enableACME = false;
+      locations."/".proxyPass =
+        "http://${config.services.navidrome.settings.Address}:${toString config.services.navidrome.settings.Port}";
+    };
+    virtualHosts."beats.${hostName}.lan" = {
+      forceSSL = false;
+      enableACME = false;
+      locations."/".proxyPass =
+        "http://${config.services.navidrome.settings.Address}:${toString config.services.navidrome.settings.Port}";
+    };
+
     virtualHosts."3d.${hostName}.wg" = {
       forceSSL = false;
       enableACME = false;
