@@ -105,6 +105,7 @@
             ./system/sops.nix
             home-manager.nixosModules.home-manager
             ./system/services/syncthing
+            ./system/services/syncthing/obsidian-vault.nix
             (
               { config, ... }:
               {
