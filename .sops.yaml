@@ -41,8 +41,8 @@ creation_rules:
         - *splitpad
         - *splitberry
         - *pneuma
-  # - path_regex: secrets/split3d.yaml$
-  #   key_groups:
-  #     - age:
-  #       - *marijan
-  #       - *split3d
+  - path_regex: secrets/synapse-splitpad-wg\.conf$
+    key_groups:
+      - age:
+        - *marijan
+        - *splitpad
