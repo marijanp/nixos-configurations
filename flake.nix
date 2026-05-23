@@ -97,6 +97,7 @@
             nixos-hardware.nixosModules.lenovo-thinkpad-z13-gen1
             ./machines/splitpad/hardware-configuration.nix
             ./machines/splitpad/networking.nix
+            ./machines/splitpad/synapse.nix
             ./users/marijan/base.nix
             ./system/desktop.nix
             ./system/services/yubikey.nix
