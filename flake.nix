@@ -11,6 +11,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixpkgs-parabol.url = "github:NixOS/nixpkgs/aca4d95fce4914b3892661bcb80b8087293536c6";
+    nixos-hardware-parabol.url = "github:NixOS/nixos-hardware/3966ce987e1a9a164205ac8259a5fe8a64528f72";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
@@ -27,7 +29,9 @@
     {
       self,
       nixpkgs,
+      nixpkgs-parabol,
       nixos-hardware,
+      nixos-hardware-parabol,
       disko,
       home-manager,
       nur,
@@ -211,13 +215,14 @@
             )
           ];
         };
-        splitberry = nixpkgs.lib.nixosSystem {
+        parabol = nixpkgs-parabol.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = { inherit nixpkgs; };
+          specialArgs = { nixpkgs = nixpkgs-parabol; };
           modules = [
-            nixos-hardware.nixosModules.raspberry-pi-4
-            ./machines/splitberry/hardware-configuration.nix
-            ./machines/splitberry/networking.nix
+            nixos-hardware-parabol.nixosModules.raspberry-pi-4
+            ./machines/parabol/hardware-configuration.nix
+            ./machines/parabol/networking.nix
+            ./machines/parabol/camera.nix
             sops-nix.nixosModules.sops
             ./system/sops.nix
             ./users/marijan/base.nix
@@ -227,7 +232,7 @@
               { ... }:
               {
                 system.stateVersion = "22.11";
-                networking.hostName = "splitberry";
+                networking.hostName = "parabol";
 
                 nix.gc = {
                   automatic = true;
@@ -236,34 +241,9 @@
                 };
 
                 sops = {
-                  defaultSopsFile = ./secrets/splitberry.yaml;
+                  defaultSopsFile = ./secrets/parabol.yaml;
                   secrets.wg-private-key = { };
                 };
-              }
-            )
-          ];
-        };
-
-        split3d = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          specialArgs = { inherit nixpkgs; };
-          modules = [
-            nixos-hardware.nixosModules.raspberry-pi-3
-            ./machines/split3d/hardware-configuration.nix
-            ./machines/split3d/networking.nix
-            ./machines/split3d/camera.nix
-            ./users/marijan/base.nix
-            ./system/common.nix
-            ./system/services/prometheus.nix
-            ./system/services/klipper
-            (
-              { modulesPath, ... }:
-              {
-                imports = [
-                  (modulesPath + "/installer/sd-card/sd-image-aarch64-installer.nix")
-                ];
-                system.stateVersion = "25.11";
-                networking.hostName = "split3d";
               }
             )
           ];
