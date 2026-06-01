@@ -116,13 +116,13 @@
             enabled = true;
           }
           {
-            domain = "split3d.wg";
-            answer = "10.100.0.6";
+            domain = "parabol.wg";
+            answer = "10.100.0.7";
             enabled = true;
           }
           {
-            domain = "split3d.wg";
-            answer = "fd10:100::6";
+            domain = "parabol.wg";
+            answer = "fd10:100::7";
             enabled = true;
           }
         ];
