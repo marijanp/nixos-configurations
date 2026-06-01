@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  environment.systemPackages = [ pkgs.gamescope ];
   programs.steam = {
     enable = true;
     # when having scaling issues with compositor
