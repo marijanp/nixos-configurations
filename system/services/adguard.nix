@@ -33,8 +33,15 @@
           "2620:fe::9"
         ];
       };
-      statistics_interval = 30; # days
-      querylog_enabled = true;
+      querylog = {
+        enabled = true;
+        file_enabled = false;
+        size_memory = 1000;
+      };
+      statistics = {
+        enabled = true;
+        interval = "168h"; # 7 days
+      };
       refuse_any = true;
       filtering = {
         rewrites = [
