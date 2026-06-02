@@ -11,8 +11,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixpkgs-parabol.url = "github:NixOS/nixpkgs/aca4d95fce4914b3892661bcb80b8087293536c6";
-    nixos-hardware-parabol.url = "github:NixOS/nixos-hardware/3966ce987e1a9a164205ac8259a5fe8a64528f72";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
@@ -29,9 +27,7 @@
     {
       self,
       nixpkgs,
-      nixpkgs-parabol,
       nixos-hardware,
-      nixos-hardware-parabol,
       disko,
       home-manager,
       nur,
@@ -215,11 +211,11 @@
             )
           ];
         };
-        parabol = nixpkgs-parabol.lib.nixosSystem {
+        parabol = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = { nixpkgs = nixpkgs-parabol; };
+          specialArgs = { inherit nixpkgs; };
           modules = [
-            nixos-hardware-parabol.nixosModules.raspberry-pi-4
+            nixos-hardware.nixosModules.raspberry-pi-4
             ./machines/parabol/hardware-configuration.nix
             ./machines/parabol/networking.nix
             ./machines/parabol/camera.nix
