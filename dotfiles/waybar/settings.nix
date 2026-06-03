@@ -2,6 +2,7 @@
   lib,
   isLaptop,
   voxtype,
+  voxtypeServiceToggle,
 }:
 {
   mainBar = {
@@ -51,6 +52,7 @@
       format = "{}";
       tooltip = true;
       on-click = "${lib.getExe voxtype} record toggle";
+      on-click-right = toString voxtypeServiceToggle;
     };
     cpu = {
       interval = 1;

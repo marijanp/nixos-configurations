@@ -18,7 +18,7 @@
         idle = "🟢";
         recording = "🔴";
         transcribing = "✒️";
-        stopped = "⚫";
+        stopped = "⚪";
       };
     };
   };

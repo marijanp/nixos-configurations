@@ -35,3 +35,7 @@
 #custom-voxtype.idle {
   color: #a3be8c;
 }
+
+#custom-voxtype.stopped {
+  color: #e5e9f0;
+}
