@@ -85,6 +85,13 @@
       inherit lib;
       isLaptop = osConfig.networking.hostName == "splitpad";
       voxtype = config.services.voxtype.package;
+      voxtypeServiceToggle = pkgs.writeShellScript "voxtype-service-toggle" ''
+        if ${pkgs.systemd}/bin/systemctl --user is-active --quiet voxtype.service; then
+          ${pkgs.systemd}/bin/systemctl --user stop voxtype.service
+        else
+          ${pkgs.systemd}/bin/systemctl --user start voxtype.service
+        fi
+      '';
     };
     style = lib.readFile ./waybar/style.css;
   };
