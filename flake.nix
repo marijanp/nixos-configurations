@@ -43,7 +43,7 @@
       nixosConfigurations = {
         split = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit nixpkgs; };
+          specialArgs = { inherit nixpkgs revision; };
           modules = [
             nixos-hardware.nixosModules.common-pc
             nixos-hardware.nixosModules.common-cpu-amd
@@ -92,7 +92,7 @@
 
         splitpad = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit nixpkgs; };
+          specialArgs = { inherit nixpkgs revision; };
           modules = [
             nixos-hardware.nixosModules.lenovo-thinkpad-z13-gen1
             ./machines/splitpad/nix-ci.nix
@@ -155,7 +155,7 @@
         pneuma = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           specialArgs = {
-            inherit nixpkgs nixos-hardware;
+            inherit nixpkgs nixos-hardware revision;
           };
           modules = [
             disko.nixosModules.disko
@@ -216,7 +216,7 @@
         };
         parabol = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = { inherit nixpkgs; };
+          specialArgs = { inherit nixpkgs revision; };
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-4
             ./machines/parabol/hardware-configuration.nix
