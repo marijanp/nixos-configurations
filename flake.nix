@@ -180,10 +180,6 @@
             (
               { config, ... }:
               {
-                nixpkgs.overlays = [
-                  (import ./overlay.nix)
-                ];
-
                 system.stateVersion = "26.05";
                 networking.hostName = "pneuma";
 
