@@ -9,6 +9,10 @@
     loadModels = [
       "qwen3-coder-next:q4_K_M"
     ];
+    environmentVariables = {
+      OLLAMA_NUM_PARALLEL = "1";
+      OLLAMA_MAX_LOADED_MODELS = "1";
+    };
   };
   services.open-webui = {
     enable = config.services.ollama.enable;
