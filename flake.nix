@@ -95,6 +95,7 @@
           specialArgs = { inherit nixpkgs; };
           modules = [
             nixos-hardware.nixosModules.lenovo-thinkpad-z13-gen1
+            ./machines/splitpad/nix-ci.nix
             ./machines/splitpad/hardware-configuration.nix
             ./machines/splitpad/networking.nix
             ./machines/splitpad/synapse.nix
@@ -125,6 +126,7 @@
                 sops = {
                   defaultSopsFile = ./secrets/splitpad.yaml;
                   secrets.wg-private-key = { };
+                  secrets.nix-gh-token = { };
                   secrets.opencode-zen-api-key = {
                     owner = config.users.users.marijan.name;
                   };
