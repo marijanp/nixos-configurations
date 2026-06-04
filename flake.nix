@@ -98,6 +98,7 @@
             ./machines/splitpad/nix-ci.nix
             ./machines/splitpad/hardware-configuration.nix
             ./machines/splitpad/networking.nix
+            ./machines/splitpad/steam-library.nix
             ./machines/splitpad/synapse.nix
             ./users/marijan/base.nix
             ./system/desktop.nix
