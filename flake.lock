@@ -201,7 +201,6 @@
     "root": {
       "inputs": {
         "certilia": "certilia",
-        "comfyui": "comfyui",
         "disko": "disko",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",

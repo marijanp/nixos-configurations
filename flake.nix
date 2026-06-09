@@ -34,6 +34,9 @@
       sops-nix,
       certilia,
     }:
+    let
+      revision = self.rev or self.dirtyRev or "dirty";
+    in
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
 
