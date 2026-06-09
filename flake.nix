@@ -132,7 +132,18 @@
                     owner = config.users.users.marijan.name;
                   };
                   secrets.syncthing-password = { };
+                  templates."nix-access-tokens.conf" = {
+                    owner = config.users.users.marijan.name;
+                    mode = "0400";
+                    content = ''
+                      access-tokens = github.com=${config.sops.placeholder.nix-gh-token}
+                    '';
+                  };
                 };
+
+                nix.extraOptions = ''
+                  !include ${config.sops.templates."nix-access-tokens.conf".path}
+                '';
 
                 home-manager = {
                   useGlobalPkgs = true;
