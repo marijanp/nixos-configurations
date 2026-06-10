@@ -7,7 +7,8 @@
     port = 11434;
     syncModels = true;
     loadModels = [
-      "qwen3-coder-next:q4_K_M"
+      "qwen3.6:27b-q4_K_M"
+      "qwen3.6:27b-mtp-q4_K_M"
     ];
     environmentVariables = {
       OLLAMA_NUM_PARALLEL = "1";

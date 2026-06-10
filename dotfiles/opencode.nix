@@ -18,90 +18,51 @@
       theme = "system";
     };
     settings = {
+      "$schema" = "https://opencode.ai/config.json";
       autoshare = false;
-      autoupdate = true;
-      plugin = [ "opencode-antigravity-auth@beta" ];
-      model = "ollama/qwen3-coder-next";
+      autoupdate = false;
+      model = "ollama/qwen3.6-27b-mtp-q4";
       provider = {
         opencode = {
           options.apiKey = "{file:${osConfig.sops.secrets.opencode-zen-api-key.path}}";
         };
         ollama = {
-          # The /v1 suffix is required by OpenCode for OpenAI-compatible APIs
+          npm = "@ai-sdk/openai-compatible";
+          name = "Ollama on RTX 4090";
+          # The /v1 suffix is required by OpenCode for OpenAI-compatible APIs.
           options.baseURL = "http://10.100.0.3:11434/v1";
           models = {
-            "qwen3-coder-next" = {
-              id = "qwen3-coder-next:q4_K_M";
-              name = "Qwen 3 Coder Next (RTX 4090)";
+            "qwen3.6-27b-mtp-q4" = {
+              id = "qwen3.6:27b-mtp-q4_K_M";
+              name = "Qwen 3.6 27B MTP Q4_K_M (RTX 4090)";
+
               limit = {
                 context = 32768;
-                output = 4096;
+                output = 8192;
               };
               prompt = "default";
               options = {
-                temperature = 0.2;
-                top_p = 1.0;
-                top_k = 0;
+                temperature = 0.15;
+                top_p = 0.95;
+                top_k = 40;
                 min_p = 0.05;
-                repeat_penalty = 1.1;
+                repeat_penalty = 1.05;
               };
             };
-          };
-        };
-        google = {
-          models = {
-            antigravity-gemini-3-pro = {
-              id = "gemini-3-pro";
-              name = "Gemini 3 Pro (Antigravity)";
+            "qwen3.6-27b-q4" = {
+              id = "qwen3.6:27b-q4_K_M";
+              name = "Qwen 3.6 27B Q4_K_M (RTX 4090";
               limit = {
-                context = 1048576;
-                output = 65535;
+                context = 32768;
+                output = 8192;
               };
-              modalities = {
-                input = [
-                  "text"
-                  "image"
-                  "pdf"
-                ];
-                output = [ "text" ];
-              };
-              variants = {
-                low = {
-                  thinkingLevel = "low";
-                };
-                high = {
-                  thinkingLevel = "high";
-                };
-              };
-            };
-            antigravity-gemini-3-flash = {
-              id = "gemini-3-flash";
-              name = "Gemini 3 Flash (Antigravity)";
-              limit = {
-                context = 1048576;
-                output = 65536;
-              };
-              modalities = {
-                input = [
-                  "text"
-                  "image"
-                  "pdf"
-                ];
-                output = [ "text" ];
-              };
-              variants = {
-                minimal = {
-                  thinkingLevel = "minimal";
-                };
-                low = {
-                  thinkingLevel = "low";
-                };
-                medium = {
-                  thinkingLevel = "medium";
-                };
-                high = {
-                  thinkingLevel = "high";
-                };
+              prompt = "default";
+              options = {
+                temperature = 0.15;
+                top_p = 0.95;
+                top_k = 40;
+                min_p = 0.05;
+                repeat_penalty = 1.05;
               };
             };
           };
