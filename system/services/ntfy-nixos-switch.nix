@@ -53,7 +53,7 @@ in
   system.activationScripts.nixos-switch-notify = {
     text = ''
       if [ "''${NIXOS_ACTION:-}" = switch ]; then
-        ${pkgs.systemd}/bin/systemctl start --no-block nixos-switch-notify.service || true
+        ${pkgs.systemd}/bin/systemctl start --no-block notify-nixos-switch.service || true
       fi
     '';
   };

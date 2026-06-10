@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  revision,
   ...
 }:
 let
@@ -9,16 +10,21 @@ let
   ntfyTopic = "infra-host-status";
 in
 {
+  environment.etc."revision".text = ''
+    ${revision}
+  '';
+
   systemd.services.notify-host-status =
     let
-      stateDir = "/var/lib/infra-host-status-notify";
+      stateDir = "/var/lib/notify-host-status";
+
       publishScript = pkgs.writeShellScript "publish-host-status" ''
         set -euo pipefail
 
         title="$1"
         tags="$2"
         body="$3"
-        password="$(${pkgs.coreutils}/bin/cat ${config.sops.secrets.ntfy-publisher-password.path})"
+        password="$(${pkgs.coreutils}/bin/cat ${lib.escapeShellArg config.sops.secrets.ntfy-publisher-password.path})"
 
         ${pkgs.curl}/bin/curl \
           --fail-with-body \
@@ -32,6 +38,7 @@ in
           -d "$body" \
           ${lib.escapeShellArg "${ntfyBaseUrl}/${ntfyTopic}"}
       '';
+
       onlineScript = pkgs.writeShellScript "notify-host-online" ''
         set -euo pipefail
 
@@ -43,9 +50,10 @@ in
           exit 0
         fi
 
-        body="$(${pkgs.coreutils}/bin/printf 'Host: %s\nBoot ID: %s\nStatus: online after boot\n' \
+        body="$(${pkgs.coreutils}/bin/printf 'Host: %s\nBoot ID: %s\nRevision: %s\nStatus: online after boot\n' \
           ${lib.escapeShellArg config.networking.hostName} \
-          "$boot_id")"
+          "$boot_id" \
+          ${lib.escapeShellArg revision})"
 
         ${publishScript} \
           ${lib.escapeShellArg "${config.networking.hostName} online"} \
@@ -54,6 +62,7 @@ in
 
         ${pkgs.coreutils}/bin/printf '%s\n' "$boot_id" > "$state_file"
       '';
+
       offlineScript = pkgs.writeShellScript "notify-host-offline" ''
         set -euo pipefail
 
@@ -65,6 +74,7 @@ in
         action="shutting down"
         title=${lib.escapeShellArg "${config.networking.hostName} offline"}
         tag="satellite,warning"
+
         if ${pkgs.systemd}/bin/systemctl list-jobs --no-legend | ${pkgs.gnugrep}/bin/grep -q 'reboot.target.*start'; then
           action="rebooting"
           title=${lib.escapeShellArg "${config.networking.hostName} rebooting"}
@@ -75,8 +85,9 @@ in
           tag="satellite,octagonal_sign"
         fi
 
-        body="$(${pkgs.coreutils}/bin/printf 'Host: %s\nStatus: %s\n' \
+        body="$(${pkgs.coreutils}/bin/printf 'Host: %s\nRevision: %s\nStatus: %s\n' \
           ${lib.escapeShellArg config.networking.hostName} \
+          ${lib.escapeShellArg revision} \
           "$action")"
 
         ${publishScript} "$title" "$tag" "$body" || true
@@ -84,9 +95,14 @@ in
     in
     {
       description = "Send ntfy host online and offline notifications";
+
       wantedBy = [ "multi-user.target" ];
+
       wants = [ "network-online.target" ];
-      after = [ "network-online.target" ];
+      after = [
+        "network-online.target"
+        "sops-nix.service"
+      ];
 
       serviceConfig = {
         Type = "oneshot";
