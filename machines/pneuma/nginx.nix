@@ -24,17 +24,6 @@ in
         "http://${config.services.adguardhome.host}:${toString config.services.adguardhome.port}";
     };
 
-    virtualHosts."ai.${hostName}.wg" = {
-      forceSSL = false;
-      enableACME = false;
-      locations."/".proxyPass = "http://split.wg:4000";
-    };
-    virtualHosts."ai.${hostName}.lan" = {
-      forceSSL = false;
-      enableACME = false;
-      locations."/".proxyPass = "http://${splitLocalIp}:4000";
-    };
-
     virtualHosts."sync.${hostName}.wg" = {
       forceSSL = false;
       enableACME = false;
