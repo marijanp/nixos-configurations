@@ -1,8 +1,8 @@
 { ... }:
 {
   networking.wireguard.interfaces.wg0.ips = [
-    "10.100.0.5/24"
-    "fd10:100::5/64"
+    "10.100.0.7/24"
+    "fd10:100::7/64"
   ];
 
   networking = {
@@ -11,7 +11,7 @@
       useDHCP = false;
       ipv4.addresses = [
         {
-          address = "192.168.1.4";
+          address = "192.168.1.6";
           prefixLength = 24;
         }
       ];
