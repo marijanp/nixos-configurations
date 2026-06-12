@@ -54,6 +54,7 @@
             nixos-hardware.nixosModules.common-pc-ssd
             ./machines/split/hardware-configuration.nix
             ./machines/split/networking.nix
+            ./users/deploy.nix
             ./users/marijan/base.nix
             ./system/common.nix
             ./system/services/yubikey.nix
@@ -182,6 +183,7 @@
             sops-nix.nixosModules.sops
             ./system/sops.nix
             ./modules/luks.nix
+            ./users/deploy.nix
             ./users/marijan/base.nix
             ./system/common.nix
             ./system/services/adguard.nix
@@ -234,6 +236,7 @@
             ./machines/parabol/camera.nix
             sops-nix.nixosModules.sops
             ./system/sops.nix
+            ./users/deploy.nix
             ./users/marijan/base.nix
             ./system/common.nix
             ./system/services/prometheus.nix
