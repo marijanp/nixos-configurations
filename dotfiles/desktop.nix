@@ -176,6 +176,8 @@
       settings = {
         "sidebar.revamp" = true;
         "sidebar.verticalTabs" = true;
+        "browser.startup.page" = 1;
+        "browser.startup.homepage" = "https://hq.marijan.pro";
         "browser.download.dir" = "${config.home.homeDirectory}/Downloads";
         "browser.ml.chat.enabled" = false;
         "layout.css.grid-template-masonry-value.enabled" = true;
