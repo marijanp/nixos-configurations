@@ -20,19 +20,26 @@
     config.services.prometheus.exporters.klipper.port
   ];
 
+  networking.firewall.allowedTCPPorts = [ 80 ];
+
   services.moonraker = {
     enable = config.services.klipper.enable;
     address = "0.0.0.0";
     port = 7125;
     settings = {
+      file_manager.config_path = config.services.klipper.configDir;
       authorization = {
         cors_domains = [
-          "http://3d.marijan.pro"
-          "http://split3d.wg"
+          "http://split.lan:7125"
+          "http://split.wg:7125"
+          "http://split.local:7125"
+          "http://3d.pneuma.wg"
+          "http://3d.pneuma.lan"
         ];
         trusted_clients = [
           "127.0.0.1/32"
           "10.100.0.0/24" # wireguard
+          "192.168.1.0/24" # local network (pneuma proxy)
           "fd7a:115c:a1e0::/64"
         ];
       };
@@ -41,8 +48,14 @@
 
   services.mainsail = {
     enable = config.services.moonraker.enable;
-    hostName = "3d.marijan.pro";
+    hostName = "3d.pneuma.lan";
     nginx = {
+      serverAliases = [
+        "3d.pneuma.wg"
+        "${config.networking.hostName}.local"
+        "split.lan"
+        "split.wg"
+      ];
       locations."/websocket" = {
         proxyWebsockets = true;
         proxyPass = "http://mainsail-apiserver/websocket";
