@@ -1,0 +1,39 @@
+{ pkgs, ... }:
+{
+  networking.wireguard.interfaces.wg0 = {
+    # Lower than the default 1420 to avoid PMTU issues on some Wi-Fi networks.
+    mtu = 1380;
+    ips = [
+      "10.100.0.10/24"
+      "fd10:100::10/64"
+    ];
+    postSetup = ''
+      ${pkgs.systemd}/bin/resolvectl dns wg0 10.100.0.5 fd10:100::5
+      ${pkgs.systemd}/bin/resolvectl domain wg0 "~wg" "~lan"
+    '';
+    postShutdown = ''
+      ${pkgs.systemd}/bin/resolvectl revert wg0
+    '';
+  };
+
+  networking = {
+    interfaces.wlp194s0.useDHCP = true;
+    wireless = {
+      enable = true;
+      interfaces = [ "wlp194s0" ];
+    };
+    extraHosts = ''
+      127.0.0.1 laganinix.local
+      127.0.0.1 agent.laganinix.local
+    '';
+  };
+
+  services.tailscale.enable = true;
+
+  services.resolved.enable = true;
+
+  networking.networkmanager = {
+    enable = true;
+    dns = "systemd-resolved";
+  };
+}

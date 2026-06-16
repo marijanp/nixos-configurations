@@ -47,6 +47,7 @@ creation_rules:
         - *splitpad
         - *splitberry
         - *pneuma
+        - *duality
   - path_regex: secrets/synapse-wg\.conf$
     key_groups:
       - age:

@@ -21,6 +21,7 @@
   sops.secrets.ntfy-publisher-password = {
     sopsFile = ../secrets/ntfy.yaml;
   };
+
   programs.bash.promptInit = ''
     PS1="\[\e[36m\]\u@\H\[\e[m\] | 📅 \d ⌚️ \A\n[\w]\$ "
   '';

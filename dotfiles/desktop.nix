@@ -30,6 +30,10 @@
     };
   };
 
+  dconf.settings."org/gnome/desktop/interface" = {
+    color-scheme = "prefer-dark";
+  };
+
   home.pointerCursor = {
     gtk.enable = true;
     name = "Paper";
@@ -74,7 +78,7 @@
     ];
     settings = import ./river/settings.nix {
       inherit lib;
-      isLaptop = osConfig.networking.hostName == "splitpad";
+      isLaptop = osConfig.networking.hostName == "splitpad" || osConfig.networking.hostName == "duality";
     };
   };
 
@@ -83,7 +87,7 @@
     systemd.enable = true;
     settings = import ./waybar/settings.nix {
       inherit lib;
-      isLaptop = osConfig.networking.hostName == "splitpad";
+      isLaptop = osConfig.networking.hostName == "splitpad" || osConfig.networking.hostName == "duality";
       voxtype = config.services.voxtype.package;
       voxtypeServiceToggle = pkgs.writeShellScript "voxtype-service-toggle" ''
         if ${pkgs.systemd}/bin/systemctl --user is-active --quiet voxtype.service; then
@@ -205,6 +209,7 @@
       age-plugin-yubikey
       cachix
       cryptsetup
+      codex
       dino
       element-desktop
       gopass

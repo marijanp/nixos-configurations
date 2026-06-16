@@ -28,6 +28,7 @@ in
         "splitpad".id = "H7JXADF-HDG634J-Y3HO5DP-FWO5NK7-NWJRBFA-EFY23AA-SLFNMKE-7PU2YQD";
         "pneuma".id = "IL564JI-SIBQ6NJ-MPIPJMQ-BFFQNWO-3BX3L72-GVRQNCB-JT4SDKO-Y2HTBA4";
         "splitphone".id = "VKUIYXT-FMCXVB4-U3EV4ZC-G4ZJ4AY-WIFGUY6-45JQVF6-APDZAZS-5OESTA5";
+        "duality".id = "Z5ZJJNN-6GKTD7C-TXMBMOE-U7HKVZA-ZLVFJFO-UQSQR7B-KOUXZRA-4TUMFAQ";
       };
       folders = {
         "exchange" = {
@@ -41,6 +42,7 @@ in
             "splitpad"
             "pneuma"
             "splitphone"
+            "duality"
           ];
         };
       };

@@ -11,6 +11,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware-duality.url = "github:toastal/nixos-hardware/asus-px13";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
@@ -28,6 +29,7 @@
       self,
       nixpkgs,
       nixos-hardware,
+      nixos-hardware-duality,
       disko,
       home-manager,
       nur,
@@ -74,10 +76,7 @@
 
                 boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
 
-                sops = {
-                  defaultSopsFile = ./secrets/split.yaml;
-                  secrets.wg-private-key = { };
-                };
+                sops.defaultSopsFile = ./secrets/split.yaml;
 
                 home-manager = {
                   useGlobalPkgs = true;
@@ -94,15 +93,31 @@
           ];
         };
 
+        duality = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit
+              nixpkgs
+              revision
+              home-manager
+              certilia
+              sops-nix
+              nur
+              ;
+            nixos-hardware = nixos-hardware-duality;
+          };
+          modules = [
+            ./machines/duality/configuration.nix
+          ];
+        };
+
         splitpad = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit nixpkgs revision; };
           modules = [
             nixos-hardware.nixosModules.lenovo-thinkpad-z13-gen1
-            ./machines/splitpad/nix-ci.nix
             ./machines/splitpad/hardware-configuration.nix
             ./machines/splitpad/networking.nix
-            ./machines/splitpad/steam-library.nix
             ./users/marijan/base.nix
             ./system/desktop.nix
             ./system/services/yubikey.nix
@@ -124,17 +139,14 @@
                   (import ./overlay.nix)
                 ];
 
-
                 services.printing.enable = true;
 
                 sops = {
                   defaultSopsFile = ./secrets/splitpad.yaml;
-                  secrets.wg-private-key = { };
                   secrets.nix-gh-token = { };
                   secrets.opencode-zen-api-key = {
                     owner = config.users.users.marijan.name;
                   };
-                  secrets.syncthing-password = { };
                   templates."nix-access-tokens.conf" = {
                     owner = config.users.users.marijan.name;
                     mode = "0400";
@@ -206,8 +218,6 @@
 
                 sops = {
                   defaultSopsFile = ./secrets/pneuma.yaml;
-                  secrets.wg-private-key = { };
-                  secrets.syncthing-password = { };
                   secrets.usb-drive-key = { };
                 };
 
@@ -251,10 +261,7 @@
                   options = "--delete-older-than 7d";
                 };
 
-                sops = {
-                  defaultSopsFile = ./secrets/parabol.yaml;
-                  secrets.wg-private-key = { };
-                };
+                sops.defaultSopsFile = ./secrets/parabol.yaml;
               }
             )
           ];
