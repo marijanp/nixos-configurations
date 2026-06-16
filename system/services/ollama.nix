@@ -11,6 +11,7 @@
       "qwen3.6:35b-a3b-q4_K_M"
     ];
     environmentVariables = {
+      OLLAMA_KEEP_ALIVE = "30m"; # keeps the model loaded
       OLLAMA_NUM_PARALLEL = "1";
       OLLAMA_MAX_LOADED_MODELS = "1";
       OLLAMA_CONTEXT_LENGTH = "65536";
