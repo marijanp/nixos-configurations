@@ -47,8 +47,8 @@ creation_rules:
         - *splitpad
         - *splitberry
         - *pneuma
-  - path_regex: secrets/synapse-splitpad-wg\.conf$
+  - path_regex: secrets/synapse-wg\.conf$
     key_groups:
       - age:
         - *marijan
-        - *splitpad
+        - *duality
