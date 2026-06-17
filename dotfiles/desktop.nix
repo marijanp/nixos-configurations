@@ -174,6 +174,7 @@
     profiles.default = {
       isDefault = true;
       settings = {
+        "extensions.autoDisableScopes" = 0; # auto enables the extensions
         "sidebar.revamp" = true;
         "sidebar.verticalTabs" = true;
         "browser.startup.page" = 1;
