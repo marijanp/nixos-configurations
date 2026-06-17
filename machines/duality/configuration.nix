@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   certilia,
   nur,
   nixos-hardware,
@@ -88,4 +89,11 @@
     disableWhileTyping = true;
     tapping = false;
   };
+
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="sound", ATTR{id}=="amdsoundwire", RUN+="${lib.getBin pkgs.alsa-utils}/bin/amixer -c $attr{device/number} set 'tas2783-1 Amp' on"
+    ACTION=="add", SUBSYSTEM=="sound", ATTR{id}=="amdsoundwire", RUN+="${lib.getBin pkgs.alsa-utils}/bin/amixer -c $attr{device/number} set 'tas2783-2 Amp' on"
+    ACTION=="add", SUBSYSTEM=="sound", ATTR{id}=="amdsoundwire", RUN+="${lib.getBin pkgs.alsa-utils}/bin/amixer -c $attr{device/number} set 'tas2783-1 Speaker' on"
+    ACTION=="add", SUBSYSTEM=="sound", ATTR{id}=="amdsoundwire", RUN+="${lib.getBin pkgs.alsa-utils}/bin/amixer -c $attr{device/number} set 'tas2783-2 Speaker' on"
+  '';
 }
