@@ -35,7 +35,7 @@
       "None XF86MonBrightnessUp".spawn = "'brightnessctl set +5%'";
       "None XF86MonBrightnessDown".spawn = "'brightnessctl set 5%-'";
       "None Print".spawn = "'grim -g \"$(slurp)\"'";
-      "None XF86PickupPhone".spawn = "'voxtype record toggle'";
+      "None XF86WLAN".spawn = "'voxtype record toggle'";
 
       # window management
       "Super Q" = "close";
