@@ -241,33 +241,16 @@
         };
         parabol = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = { inherit nixpkgs revision; };
+          specialArgs = {
+            inherit
+              nixpkgs
+              revision
+              nixos-hardware
+              sops-nix
+              ;
+          };
           modules = [
-            nixos-hardware.nixosModules.raspberry-pi-4
-            ./machines/parabol/hardware-configuration.nix
-            ./machines/parabol/networking.nix
-            ./machines/parabol/camera.nix
-            sops-nix.nixosModules.sops
-            ./system/sops.nix
-            ./users/deploy.nix
-            ./users/marijan/base.nix
-            ./system/common.nix
-            ./system/services/prometheus.nix
-            (
-              { ... }:
-              {
-                system.stateVersion = "22.11";
-                networking.hostName = "parabol";
-
-                nix.gc = {
-                  automatic = true;
-                  dates = "weekly";
-                  options = "--delete-older-than 7d";
-                };
-
-                sops.defaultSopsFile = ./secrets/parabol.yaml;
-              }
-            )
+            ./machines/parabol/configuration.nix
           ];
         };
       };
