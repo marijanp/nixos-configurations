@@ -80,7 +80,9 @@
         ../../users/marijan/home.nix
         ../../dotfiles/desktop.nix
         ../../dotfiles/voxtype.nix
+        ../../dotfiles/mcp.nix
         ../../dotfiles/opencode.nix
+        ../../dotfiles/codex.nix
         ../../dotfiles/certilia.nix
         "${noctalia}/nix/home-module.nix"
       ];

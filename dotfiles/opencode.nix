@@ -15,22 +15,6 @@
       "$schema" = "https://opencode.ai/config.json";
       autoshare = false;
       autoupdate = false;
-      mcp = {
-        nixos = {
-          type = "local";
-          command = [ (lib.getExe pkgs.mcp-nixos) ];
-          enabled = true;
-        };
-        github = {
-          type = "local";
-          command = [
-            (lib.getExe pkgs.github-mcp-server)
-            "stdio"
-          ];
-          environment.GITHUB_PERSONAL_ACCESS_TOKEN = "{file:${osConfig.sops.secrets.gh-mcp-token.path}}";
-          enabled = true;
-        };
-      };
       model = "ollama-duality/qwen3-coder-next:q4_K_M";
       provider = {
         opencode = {

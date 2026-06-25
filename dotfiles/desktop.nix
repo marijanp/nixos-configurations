@@ -135,7 +135,6 @@
     age-plugin-yubikey
     cachix
     cryptsetup
-    codex
     dino
     element-desktop
     gopass
