@@ -45,6 +45,8 @@ layout {
   }
 
   gaps 5
+
+  background-color "transparent"
 }
 
 window-rule {
@@ -64,6 +66,11 @@ window-rule {
   match title=r#"(?i)(control|error|file progress|dialog|download|update|notification|confirm|splash|toolbar)"#
 
   open-floating true
+}
+
+layer-rule {
+  match namespace="^noctalia-wallpaper*"
+  place-within-backdrop true
 }
 
 binds {
