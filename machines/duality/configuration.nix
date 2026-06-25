@@ -34,6 +34,7 @@
     ./steam-library.nix
     ./synapse-wg.nix
     ./nix-ci.nix
+    ./ollama.nix
   ];
 
   nixpkgs.overlays = [
