@@ -55,6 +55,9 @@
     secrets.opencode-zen-api-key = {
       owner = config.users.users.marijan.name;
     };
+    secrets.gh-mcp-token = {
+      owner = config.users.users.marijan.name;
+    };
     secrets.nix-gh-token = { };
     templates."nix-access-tokens.conf" = {
       owner = config.users.users.marijan.name;
