@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   certilia,
   nur,
   nixos-hardware,
@@ -18,7 +17,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   imports = [
-    (import "${nixos-hardware}/asus/proart/px13/hn7306eac")
+    nixos-hardware.nixosModules.asus-proart-px13-hn7306eac
     ./hardware-configuration.nix
     ./networking.nix
     ./bluetooth.nix

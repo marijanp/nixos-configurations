@@ -11,7 +11,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixos-hardware-duality.url = "github:toastal/nixos-hardware/asus-px13";
+    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
@@ -31,7 +31,6 @@
       self,
       nixpkgs,
       nixos-hardware,
-      nixos-hardware-duality,
       disko,
       home-manager,
       nur,
@@ -102,13 +101,13 @@
             inherit
               nixpkgs
               revision
+              nixos-hardware
               home-manager
               certilia
               sops-nix
               nur
               noctalia
               ;
-            nixos-hardware = nixos-hardware-duality;
           };
           modules = [
             ./machines/duality/configuration.nix
