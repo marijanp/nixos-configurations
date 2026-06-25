@@ -22,6 +22,8 @@
     certilia.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    noctalia.url = "github:noctalia-dev/noctalia";
+    noctalia.flake = false;
   };
 
   outputs =
@@ -35,6 +37,7 @@
       nur,
       sops-nix,
       certilia,
+      noctalia,
     }:
     let
       revision = self.rev or self.dirtyRev or "dirty";
@@ -103,6 +106,7 @@
               certilia
               sops-nix
               nur
+              noctalia
               ;
             nixos-hardware = nixos-hardware-duality;
           };

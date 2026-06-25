@@ -7,6 +7,7 @@
   nixos-hardware,
   home-manager,
   sops-nix,
+  noctalia,
   ...
 }:
 {
@@ -39,9 +40,14 @@
     nur.overlays.default
     certilia.overlays.default
     (import ../../overlay.nix)
+    (final: _prev: {
+      noctalia-shell = final.callPackage "${noctalia}/nix/package.nix" { };
+    })
   ];
 
   services.printing.enable = true;
+
+  services.upower.enable = true;
 
   sops = {
     defaultSopsFile = ../../secrets/duality.yaml;
@@ -72,6 +78,7 @@
         ../../dotfiles/voxtype.nix
         ../../dotfiles/opencode.nix
         ../../dotfiles/certilia.nix
+        "${noctalia}/nix/home-module.nix"
       ];
     };
   };

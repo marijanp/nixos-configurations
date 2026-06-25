@@ -1,0 +1,157 @@
+output "DP-2" {
+  mode "2880x1800@60"
+  scale 2.0
+  position x=0 y=0
+}
+
+output "eDP-1" {
+  mode "2880x1800@60"
+  scale 2.0
+  position x=0 y=900
+}
+
+input {
+  focus-follows-mouse max-scroll-amount="0%"
+
+  keyboard {
+    xkb {
+      layout "us"
+    }
+  }
+}
+
+spawn-at-startup "noctalia"
+
+spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
+spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
+spawn-sh-at-startup "firefox"
+
+prefer-no-csd
+
+layout {
+  default-column-width {
+    proportion 1.0
+  }
+
+  preset-column-widths {
+    proportion 0.33333
+    proportion 0.5
+    proportion 0.66667
+    proportion 1.0
+  }
+
+  focus-ring {
+    off
+  }
+
+  gaps 5
+}
+
+window-rule {
+  geometry-corner-radius 5
+  clip-to-geometry true
+}
+
+window-rule {
+  match app-id=r#"^(thunderbird|signal|Element|im\.dino\.Dino)$"#
+
+  block-out-from "screen-capture"
+}
+
+window-rule {
+  match app-id=r#"^(Gimp|gimp.*)$"#
+  match app-id=r#"^(control|error|file_progress|dialog|download|Update|notification|confirm|splash|toolbar)$"#
+  match title=r#"(?i)(control|error|file progress|dialog|download|update|notification|confirm|splash|toolbar)"#
+
+  open-floating true
+}
+
+binds {
+  Mod+Q {
+    close-window
+  }
+
+  Mod+J {
+    focus-workspace-down
+  }
+
+  Mod+K {
+    focus-workspace-up
+  }
+
+  Mod+H {
+    focus-column-left
+  }
+
+  Mod+L {
+    focus-column-right
+  }
+
+  Mod+Shift+H {
+    set-column-width "-5%"
+  }
+
+  Mod+Shift+L {
+    set-column-width "+5%"
+  }
+
+  Mod+F {
+    toggle-window-floating
+  }
+
+  Mod+O {
+    toggle-overview
+  }
+
+  Mod+Space {
+    maximize-column
+  }
+
+  Mod+Alt+L {
+    spawn "noctalia" "msg" "session" "lock"
+  }
+
+  Mod+V hotkey-overlay-title="Clipboard History" {
+    spawn "noctalia" "msg" "panel-toggle" "clipboard"
+  }
+
+  Mod+Return {
+    spawn "kitty"
+  }
+
+  Mod+D {
+    spawn "noctalia" "msg" "panel-toggle" "launcher"
+  }
+
+  XF86AudioRaiseVolume allow-when-locked=true {
+    spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%+"
+  }
+
+  XF86AudioLowerVolume allow-when-locked=true {
+    spawn "noctalia" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-"
+  }
+
+  XF86AudioMute allow-when-locked=true {
+    spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"
+  }
+
+  XF86AudioMicMute allow-when-locked=true {
+    spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"
+  }
+
+  XF86MonBrightnessUp allow-when-locked=true {
+    spawn "brightnessctl" "set" "+5%"
+  }
+
+  XF86MonBrightnessDown allow-when-locked=true {
+    spawn "brightnessctl" "set" "5%-"
+  }
+
+  Print {
+    screenshot
+  }
+
+  XF86WLAN {
+    spawn "voxtype" "record" "toggle"
+  }
+}

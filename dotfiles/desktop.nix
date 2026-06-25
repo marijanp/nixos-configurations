@@ -1,9 +1,7 @@
 {
   config,
-  options,
   pkgs,
   lib,
-  osConfig,
   ...
 }:
 {
@@ -53,8 +51,8 @@
 
   home.sessionVariables = {
     XDG_SESSION_TYPE = "wayland";
-    XDG_SESSION_DESKTOP = "river";
-    XDG_CURRENT_DESKTOP = "river";
+    XDG_SESSION_DESKTOP = "niri";
+    XDG_CURRENT_DESKTOP = "niri";
     GDK_BACKEND = "wayland";
     MOZ_ENABLE_WAYLAND = "1";
     NIXOS_OZONE_WL = "1";
@@ -64,85 +62,12 @@
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${config.home.homeDirectory}/.steam/root/compatibilitytools.d/";
   };
 
-  wayland.windowManager.river = {
+  xdg.configFile."niri/config.kdl".source = ./niri/config.kdl;
+
+  programs.noctalia = {
     enable = true;
-    package = pkgs.river-classic;
+    package = pkgs.noctalia-shell;
     systemd.enable = true;
-    systemd.variables = options.wayland.windowManager.river.systemd.variables.default ++ [
-      "XDG_SESSION_TYPE"
-      "XDG_SESSION_DESKTOP"
-      "GDK_BACKEND"
-      "MOZ_ENABLE_WAYLAND"
-      "QT_QPA_PLATFORM"
-      "QT_WAYLAND_DISABLE_WINDOWDECORATION"
-    ];
-    settings = import ./river/settings.nix {
-      inherit lib;
-      isLaptop = osConfig.networking.hostName == "splitpad" || osConfig.networking.hostName == "duality";
-    };
-  };
-
-  programs.waybar = {
-    enable = config.wayland.windowManager.river.enable;
-    systemd.enable = true;
-    settings = import ./waybar/settings.nix {
-      inherit lib;
-      isLaptop = osConfig.networking.hostName == "splitpad" || osConfig.networking.hostName == "duality";
-      voxtype = config.services.voxtype.package;
-      voxtypeServiceToggle = pkgs.writeShellScript "voxtype-service-toggle" ''
-        if ${pkgs.systemd}/bin/systemctl --user is-active --quiet voxtype.service; then
-          ${pkgs.systemd}/bin/systemctl --user stop voxtype.service
-        else
-          ${pkgs.systemd}/bin/systemctl --user start voxtype.service
-        fi
-      '';
-    };
-    style = lib.readFile ./waybar/style.css;
-  };
-
-  services.swayidle =
-    let
-      lockCmd = "${lib.getExe pkgs.waylock} -fork-on-lock -init-color 0x2e3440 -input-color 0x5e81ac -input-alt-color 0x81a1c1 -fail-color 0xbf616a";
-    in
-    {
-      enable = true;
-      events = {
-        "before-sleep" = lockCmd;
-        "lock" = lockCmd;
-      };
-      timeouts = [
-        {
-          timeout = 5 * 60;
-          command = lockCmd;
-        }
-        {
-          timeout = 8 * 60;
-          command = "${pkgs.systemd}/bin/systemctl suspend";
-        }
-      ];
-    };
-
-  services.mako = {
-    enable = true;
-    settings = {
-      font = "Roboto Mono 10";
-      # TODO https://github.com/emersion/mako/issues/629
-      icons = false;
-      #icon-path = "${pkgs.paper-icon-theme}/share/icons/Paper";
-      #max-icon-size = 32;
-      text-color = "#d8dee9";
-      background-color = "#2e3440";
-      progress-color = "#4c566a";
-      default-timeout = 5 * 1000;
-    };
-  };
-
-  programs.rofi = {
-    enable = true;
-    package = pkgs.rofi;
-    terminal = "kitty";
-    font = "Roboto Mono 10";
-    theme = ./rofi/theme.rasi;
   };
 
   # see https://github.com/nix-community/nix-direnv
@@ -206,38 +131,30 @@
     };
   };
 
-  home.packages =
-    with pkgs;
-    [
-      age-plugin-yubikey
-      cachix
-      cryptsetup
-      codex
-      dino
-      element-desktop
-      gopass
-      gopass-jsonapi
-      hledger
-      mumble
-      nix-tree
-      nix-diff
-      obsidian
-      # obs-studio
-      pavucontrol
-      rclone
-      signal-desktop
-      watchexec
-    ]
-    ++ lib.optionals (config.wayland.windowManager.river.enable) [
-      wlr-randr
-      wdisplays # wayland arandr equivalent
-      wl-mirror
-      wl-clipboard
-      rivercarro
-      waylock
-      brightnessctl
-      optipng
-      slurp
-      grim
-    ];
+  home.packages = with pkgs; [
+    age-plugin-yubikey
+    cachix
+    cryptsetup
+    codex
+    dino
+    element-desktop
+    gopass
+    gopass-jsonapi
+    hledger
+    mumble
+    nix-tree
+    nix-diff
+    obsidian
+    # obs-studio
+    pavucontrol
+    rclone
+    signal-desktop
+    watchexec
+    # niri
+    niri
+    wl-clipboard
+    cliphist
+    brightnessctl
+    noctalia-shell
+  ];
 }

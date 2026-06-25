@@ -6,6 +6,9 @@
     ./options/sound.nix
   ];
 
+  programs.niri.enable = true;
+  services.gnome.gcr-ssh-agent.enable = false;
+
   hardware.keyboard.zsa.enable = true;
 
   programs.dconf.enable = true;
