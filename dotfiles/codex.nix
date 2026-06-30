@@ -7,7 +7,7 @@
 let
   tomlFormat = pkgs.formats.toml { };
 
-  codexConfig = "${config.home.homeDirectory}/.codex/config.toml";
+  codexConfig = "${config.xdg.configHome}/codex/config.toml";
 
   transformedMcpServers =
     lib.optionalAttrs (config.programs.mcp.enable && config.programs.mcp.servers != { })
