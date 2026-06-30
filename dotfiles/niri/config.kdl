@@ -94,12 +94,52 @@ binds {
     focus-column-right
   }
 
+  Mod+Down {
+    focus-workspace-down
+  }
+
+  Mod+Up {
+    focus-workspace-up
+  }
+
+  Mod+Left {
+    focus-column-left
+  }
+
+  Mod+Right {
+    focus-column-right
+  }
+
+  Mod+Shift+J {
+    move-window-to-workspace-down
+  }
+
+  Mod+Shift+K {
+    move-window-to-workspace-up
+  }
+
   Mod+Shift+H {
-    set-column-width "-5%"
+    move-column-left
   }
 
   Mod+Shift+L {
-    set-column-width "+5%"
+    move-column-right
+  }
+
+  Mod+Shift+Down {
+    move-window-to-workspace-down
+  }
+
+  Mod+Shift+Up {
+    move-window-to-workspace-up
+  }
+
+  Mod+Shift+Left {
+    move-column-left
+  }
+
+  Mod+Shift+Right {
+    move-column-right
   }
 
   Mod+F {
@@ -158,7 +198,7 @@ binds {
     screenshot
   }
 
-  XF86WLAN {
+  XF86Assistant {
     spawn "voxtype" "record" "toggle"
   }
 }
