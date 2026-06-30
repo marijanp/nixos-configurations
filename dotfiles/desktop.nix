@@ -155,5 +155,6 @@
     cliphist
     brightnessctl
     noctalia-shell
+    xwayland-satellite
   ];
 }
